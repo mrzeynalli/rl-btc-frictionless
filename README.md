@@ -13,7 +13,7 @@ CryptoRL/
 │       ├── binance.py     # bulk-archive downloader + REST API fallback
 │       └── collect.py     # CLI entry point
 ├── data/                  # parquet output (gitignored)
-│   └── 1MIN/<SYMBOL>/<YYYY>/<MM>/<SYMBOL>-1m-<YYYY>-<MM>.parquet
+│   └── 1MIN/<SYMBOL>.parquet   # one time-ordered dataset per symbol
 ├── pyproject.toml
 ├── requirements.txt
 └── .env                   # BINANCE_API_KEY / BINANCE_API_SECRET (gitignored)
@@ -43,8 +43,10 @@ python3 -m venv .venv
 .venv/bin/python -m cryptorl.data.collect --force
 ```
 
-Existing files are skipped, so re-running only fetches what is missing —
-extend `END_MONTH` in `config.py` (or pass `--end`) to append new months.
+Each symbol is written as a single parquet covering the whole range, sorted
+by `open_time`. Symbols whose file already exists are skipped; to extend the
+date range, pass the new `--end` together with `--force` to rebuild the file
+(months are downloaded in parallel, a full rebuild takes ~2 minutes).
 
 ## Data source and rate limits
 

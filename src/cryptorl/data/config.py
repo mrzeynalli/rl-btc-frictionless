@@ -69,13 +69,6 @@ def month_range(start: tuple[int, int], end: tuple[int, int]):
             year, month = year + 1, 1
 
 
-def parquet_path(symbol: str, year: int, month: int) -> Path:
-    """data/1MIN/<symbol>/<year>/<month>/<symbol>-1m-<year>-<month>.parquet"""
-    return (
-        DATA_DIR
-        / INTERVAL_DIR
-        / symbol
-        / f"{year}"
-        / f"{month:02d}"
-        / f"{symbol}-{INTERVAL}-{year}-{month:02d}.parquet"
-    )
+def parquet_path(symbol: str) -> Path:
+    """data/1MIN/<symbol>.parquet — one time-ordered dataset per symbol."""
+    return DATA_DIR / INTERVAL_DIR / f"{symbol}.parquet"
