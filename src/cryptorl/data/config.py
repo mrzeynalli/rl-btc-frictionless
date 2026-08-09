@@ -1,4 +1,8 @@
-"""Configuration for market data collection."""
+"""Configuration for market data collection.
+
+Market: Binance USD-M perpetual futures (the <COIN>USDT contracts on
+fapi/`futures/um`), not spot. Perpetuals are what carry funding rates.
+"""
 
 from pathlib import Path
 
@@ -7,15 +11,19 @@ DATA_DIR = PROJECT_ROOT / "data"
 
 SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "BNBUSDT"]
 
+# "um" = USD-margined perpetual futures on data.binance.vision / fapi.
+MARKET = "um"
+
 INTERVAL = "1m"
-INTERVAL_DIR = "1MIN"
+KLINES_DIR = "1MIN"
+FUNDING_DIR = "FUNDING"
 
 # Inclusive month range: (year, month)
 START_MONTH = (2021, 1)
 END_MONTH = (2026, 6)
 
 # Column order as returned by both the Binance Vision CSV files and the
-# REST /api/v3/klines endpoint.
+# fapi /fapi/v1/klines endpoint.
 RAW_COLUMNS = [
     "open_time",
     "open",
@@ -31,7 +39,7 @@ RAW_COLUMNS = [
     "ignore",
 ]
 
-# Final schema written to parquet.
+# Final kline schema written to parquet.
 OUTPUT_COLUMNS = [
     "open_time",
     "symbol",
@@ -58,6 +66,16 @@ FLOAT_COLUMNS = [
     "taker_buy_quote_volume",
 ]
 
+# Funding rate archives ship these three columns.
+FUNDING_RAW_COLUMNS = ["calc_time", "funding_interval_hours", "last_funding_rate"]
+
+FUNDING_OUTPUT_COLUMNS = [
+    "funding_time",
+    "symbol",
+    "funding_rate",
+    "funding_interval_hours",
+]
+
 
 def month_range(start: tuple[int, int], end: tuple[int, int]):
     """Yield (year, month) tuples from start to end, inclusive."""
@@ -70,5 +88,10 @@ def month_range(start: tuple[int, int], end: tuple[int, int]):
 
 
 def parquet_path(symbol: str) -> Path:
-    """data/1MIN/<symbol>.parquet — one time-ordered dataset per symbol."""
-    return DATA_DIR / INTERVAL_DIR / f"{symbol}.parquet"
+    """data/1MIN/<symbol>.parquet — one time-ordered kline dataset per symbol."""
+    return DATA_DIR / KLINES_DIR / f"{symbol}.parquet"
+
+
+def funding_path(symbol: str) -> Path:
+    """data/FUNDING/<symbol>.parquet — one time-ordered funding series per symbol."""
+    return DATA_DIR / FUNDING_DIR / f"{symbol}.parquet"
