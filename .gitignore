@@ -1,6 +1,22 @@
+# secrets and environments
 .env
 .venv/
+
+# large local trees: market data, study outputs, and the superseded code archive
 /data/
+/artifacts/
+/backup/
+
+# third-party reference corpus (139 MB of downloaded PDFs, not our work)
+/Articles/
+
+# manuscript sources and build output
+/paper/
+
+# python noise
 __pycache__/
 *.egg-info/
+.pytest_cache/
+
+# tooling
 .claude/

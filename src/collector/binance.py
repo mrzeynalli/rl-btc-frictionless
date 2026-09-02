@@ -288,15 +288,14 @@ def fetch_month(
 
 
 def normalize_funding(raw: pd.DataFrame, symbol: str) -> pd.DataFrame:
-    """Cast raw funding rows to the output schema.
+    """Cast raw funding rows while preserving recorded settlement times.
 
-    Archive `calc_time` values carry a few milliseconds of settlement
-    latency (e.g. 00:00:00.002); funding always settles on an exact
-    interval boundary, so round to the minute for clean joins against
-    kline `open_time`.
+    Binance archive ``calc_time`` values can be a few milliseconds after the
+    nominal boundary.  That latency matters for causal replay: a rate recorded
+    just after 00:00 is not observable at 23:59:59.999.  Do not round it.
     """
     df = raw.copy()
-    df["funding_time"] = _epoch_to_utc(df["calc_time"]).dt.round("1min")
+    df["funding_time"] = _epoch_to_utc(df["calc_time"])
     df["funding_rate"] = df["last_funding_rate"].astype("float64")
     df["funding_interval_hours"] = df["funding_interval_hours"].astype("int64")
     df["symbol"] = symbol

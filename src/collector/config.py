@@ -6,21 +6,21 @@ fapi/`futures/um`), not spot. Perpetuals are what carry funding rates.
 
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
 
-SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "BNBUSDT"]
+SYMBOLS = ["BTCUSDT"]
 
 # "um" = USD-margined perpetual futures on data.binance.vision / fapi.
 MARKET = "um"
 
-INTERVAL = "1m"
-KLINES_DIR = "1MIN"
+INTERVAL = "5m"
+KLINES_DIR = "5MIN"
 FUNDING_DIR = "FUNDING"
 
 # Inclusive month range: (year, month)
-START_MONTH = (2021, 1)
-END_MONTH = (2026, 6)
+START_MONTH = (2025, 5)
+END_MONTH = (2026, 5)
 
 # Column order as returned by both the Binance Vision CSV files and the
 # fapi /fapi/v1/klines endpoint.

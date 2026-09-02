@@ -1,148 +1,106 @@
-# CryptoRL
+# BTCUSDT Recurrent PPO
 
-Reinforcement learning on crypto markets. Currently: Binance **USD-M
-perpetual futures** 1-minute klines and funding rates, stored as one
-parquet per symbol.
+Binance USD-M `BTCUSDT` perpetual futures only. No cross-asset data is used.
 
-## Project layout
+The current model is the flat set of modules in `src/`. Everything superseded —
+five earlier studies, the direct-reinforcement line, the walk-forward runs and
+their artifacts — is under `backup/`, with `backup/HISTORY.md` carrying the
+narrative of why each one exists.
+
+## Layout
 
 ```
-CryptoRL/
-├── src/cryptorl/          # importable package (installed with pip install -e .)
-│   └── data/
-│       ├── config.py      # symbols, date range, schema, output paths
-│       ├── binance.py     # bulk-archive downloader + REST API fallback
-│       └── collect.py     # CLI entry point
-├── data/                  # parquet output (gitignored)
-│   ├── 1MIN/<SYMBOL>.parquet      # 1-minute klines
-│   └── FUNDING/<SYMBOL>.parquet   # funding rate settlements
-├── pyproject.toml
-├── requirements.txt
-└── .env                   # BINANCE_API_KEY / BINANCE_API_SECRET (gitignored)
+src/            the current model, flat modules — run with PYTHONPATH=src
+  data.py         builds the 5-minute study dataset from data/1MIN + data/FUNDING
+  features.py     market construction, walk-forward splits, normalisers
+  env.py          vectorised hourly environment, funding and cost accounting
+  model.py        GruActorCritic
+  ppo.py          PPO trainer
+  train.py        one (split, arm, config, seed) run
+  experiment.py   the whole study: grid search, selection, gates, final test
+  evaluation.py   causal policy rollout, metrics, benchmarks, nulls
+  evaluate.py     opens the sealed test window
+  signal_check.py pre-declared information-coefficient hurdle
+  probe.py        short probe used to fix the configuration
+  report.py       writes FINAL_REPORT.md
+  collector/      Binance downloader (klines + funding), a package
+artifacts/      the current study's results
+tests/          invariants for the current model
+backup/         superseded code, tests and artifacts (see backup/README.md)
+data/           market data, shared by both trees
 ```
 
-Future components (feature engineering, environments, agents, backtesting)
-belong in sibling packages: `src/cryptorl/features/`, `src/cryptorl/envs/`,
-`src/cryptorl/agents/`.
+## The model
 
-## Market
+`GruActorCritic`, **6,532 parameters**:
 
-Data is the **USD-M perpetual futures** contract (`<COIN>USDT` on
-`fapi` / `futures/um`), *not* spot. Perpetuals are the tradable venue for
-leveraged long/short RL policies and are what carry funding rates; their
-prices differ from spot by the basis (e.g. BTC 2021-01-01 00:00 opens at
-28948.19 on perp vs 28923.63 on spot).
+```
+12 five-minute bars x 4 vars ──► GRU(4 → 32) ──► h₁₂
+                                                  │
+7 slow vars + 3 funding-schedule vars ─────────┐  │
+position one-hot [3] ──────────────────────────┤  │
+                                    concat(42) ◄──┘
+                                  ╱                ╲
+                   Linear(42→32) tanh       Linear(42→32) tanh
+                   Linear(32→3)             Linear(32→1)
+                   action logits             state value
+```
 
-Change `MARKET` / `SYMBOLS` / `START_MONTH` / `END_MONTH` in `config.py` to
-retarget the collection.
+- The GRU hidden state **carries across hourly decisions** rather than being
+  rebuilt each hour; hour *h* feeds twelve consecutive bars and the heads read
+  the state after the twelfth.
+- Slow variables and the position one-hot enter **at the head**, not the
+  recurrent stream: the position is the agent's own state and must be readable
+  at the decision instant without rewriting twelve bars of history.
+- Action `{SHORT, FLAT, LONG}` at fixed 1x notional. γ = 0.5, λ = 0.5, matched
+  to the two-step causal reach.
+- Reward is the log change in realised equity after price P&L, exact funding
+  settlements and executed turnover cost. Nothing else.
 
-## Setup
+Study window 2021-06-01 to 2026-06-01, hourly decisions, 4-fold walk-forward.
+Configuration chosen by median validation log return over folds and seeds
+(5 seeds), then run on the held-out test with 10 seeds. Selected `c08` at 225
+updates. Cost arms: `zero_cost` (0 bp) and `economic` (4 bp one-way).
+
+## Results
+
+Held-out test, 10 seeds, in `artifacts/`:
+
+| arm | median total return | median Sharpe | seeds positive | median turnover |
+|---|---:|---:|---:|---:|
+| `zero_cost` | +18.7% | +0.44 | 9/10 | 0.74 /h |
+| `economic` (4 bp) | −12.7% | −0.35 | 4/10 | 0.022 /h |
+
+The gap is entirely cost. Best economic seeds were 211 (+20.0%, Sharpe +0.46)
+and 29 (+12.9%, +0.32); worst were 137 (−55.2%) and 47 (−40.4%). Profitable
+seeds held long for 55–144 h; badly losing seeds held short for ~31 h.
+
+**The study's own pre-declared gates rejected it.** The zero-cost gate failed
+(policy beat the best simple benchmark in 35% of runs, and only 10% cleared the
+95th percentile of their matched-turnover null; the bar was half). The signal
+check failed in advance: median IC 0.018 at 1 h against a break-even IC of
+0.183, with 0 of 4 folds clearing at any horizon. No test seed cleared the null.
+
+## Running it
 
 ```bash
-python3 -m venv .venv
-.venv/bin/pip install -e .
+PYTHONPATH=src .venv/bin/python -m data              # build the study dataset
+PYTHONPATH=src .venv/bin/python -m signal_check      # IC hurdle, before training
+PYTHONPATH=src .venv/bin/python -m experiment --output-dir artifacts --workers 8
+PYTHONPATH=src .venv/bin/python -m report --output-dir artifacts
+PYTHONPATH=src .venv/bin/python -m pytest tests
 ```
 
-## Collecting data
+Collecting fresh market data:
 
 ```bash
-# Full configured range: klines + funding (BTC/ETH/SOL/XRP/BNB, 2021-01 .. 2026-06)
-.venv/bin/python -m cryptorl.data.collect
-
-# One kind only
-.venv/bin/python -m cryptorl.data.collect --what funding
-
-# Subset
-.venv/bin/python -m cryptorl.data.collect --symbols BTCUSDT ETHUSDT --start 2024-01 --end 2024-12
-
-# Rebuild existing files (per-month progress with --verbose)
-.venv/bin/python -m cryptorl.data.collect --force --verbose
+PYTHONPATH=src .venv/bin/python -m collector.binance
+PYTHONPATH=src .venv/bin/python -m collector.five_minute
 ```
 
-Each symbol is written as a single parquet covering the whole range, sorted
-by time. Symbols whose file already exists are skipped; to extend the date
-range, pass the new `--end` together with `--force` to rebuild (months are
-downloaded in parallel, a full rebuild takes ~3 minutes).
+## Data
 
-## Data source and rate limits
-
-Historical months come from Binance's official bulk archive
-(`data.binance.vision/data/futures/um/monthly/...`), which has no
-request-weight limits. Months not yet published there (typically only the
-current month) fall back to the REST `fapi/v1/klines` and
-`fapi/v1/fundingRate` endpoints, throttled against the 2400/min
-request-weight cap. The API key from `.env` is attached to REST requests
-when present; market data endpoints work without it.
-
-Binance sometimes publishes a **truncated monthly archive** — SOLUSDT and
-XRPUSDT `2022-02` stop on the 25th, and their `2022-04` starts on the 3rd,
-while BTCUSDT's are complete for the same months. The collector counts the
-minutes in every elapsed day and tops up short days from the daily archives
-(or REST if a day is absent there too), so a silently short month cannot
-reach the dataset.
-
-Timestamps are UTC, stored as `datetime64[us, UTC]`. Binance switched its
-spot archives from millisecond to microsecond timestamps on 2025-01-01
-while futures archives stayed in milliseconds, and newer files added a CSV
-header row; the collector detects both and normalizes to one schema.
-
-## Schema
-
-### `data/1MIN/<SYMBOL>.parquet`
-
-| column | type |
-|---|---|
-| open_time | datetime64[us, UTC] |
-| symbol | str |
-| open, high, low, close | float64 |
-| volume, quote_asset_volume | float64 |
-| close_time | datetime64[us, UTC] |
-| number_of_trades | int64 |
-| taker_buy_base_volume, taker_buy_quote_volume | float64 |
-
-### `data/FUNDING/<SYMBOL>.parquet`
-
-| column | type |
-|---|---|
-| funding_time | datetime64[us, UTC] |
-| symbol | str |
-| funding_rate | float64 |
-| funding_interval_hours | int64 |
-
-Funding normally settles every 8 hours (00:00 / 08:00 / 16:00 UTC), but
-the interval is **not constant**: during the FTX collapse Binance shortened
-SOLUSDT's to 4h and then 2h (2022-11-09 → 2022-11-18, 101 settlements) while
-the rate sat pinned at the -0.02 clamp. Always weight a settlement by its
-own `funding_interval_hours` rather than assuming three per day, or funding
-PnL across that window comes out roughly 4x too small.
-
-The archive's raw `calc_time` carries a few milliseconds of settlement
-latency, so it is rounded to the minute — `funding_time` joins directly
-against kline `open_time`:
-
-```python
-klines.merge(funding, left_on=["open_time", "symbol"],
-             right_on=["funding_time", "symbol"], how="left")
-```
-
-`funding_rate` is the rate applied at that settlement (longs pay shorts
-when positive). To carry it across the minutes between settlements, use
-`.ffill()` — but note the rate is only *known* at settlement, so shift
-before using it as a feature to avoid lookahead.
-
-## Completeness
-
-As collected (2021-01-01 .. 2026-06-30, verified against a full minute grid):
-
-| symbol | kline rows | missing minutes | funding rows | missing settlements |
-|---|---|---|---|---|
-| BTCUSDT | 2,890,080 | 0 | 6,021 | 0 |
-| ETHUSDT | 2,890,080 | 0 | 6,021 | 0 |
-| SOLUSDT | 2,890,080 | 0 | 6,096 | 0 |
-| XRPUSDT | 2,890,080 | 0 | 6,021 | 0 |
-| BNBUSDT | 2,890,080 | 0 | 6,021 | 0 |
-
-2,890,080 = 2007 days x 1440. SOLUSDT carries 75 extra funding rows from the
-shortened-interval window described above. Note the perpetual series is
-*more* complete than spot, which had ~1,000 minutes of exchange downtime
-per symbol over the same range (including the 2021-04-25 outage).
+`data/1MIN/` and `data/FUNDING/` hold the USD-M perpetual archive.
+`data/UNTOUCHED_2026_07/` is a sealed holdout and is never read by any code
+here. Other coins exist in the archive and are deliberately unused — this study
+is BTCUSDT only, including as a cross-asset feature.
