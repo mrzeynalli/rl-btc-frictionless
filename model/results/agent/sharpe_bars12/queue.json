@@ -1,0 +1,64 @@
+{
+  "jobs": [
+    [
+      2024,
+      11
+    ],
+    [
+      2025,
+      11
+    ],
+    [
+      2024,
+      29
+    ],
+    [
+      2025,
+      29
+    ],
+    [
+      2024,
+      47
+    ],
+    [
+      2025,
+      47
+    ],
+    [
+      2024,
+      61
+    ],
+    [
+      2025,
+      61
+    ],
+    [
+      2024,
+      83
+    ],
+    [
+      2025,
+      83
+    ]
+  ],
+  "workers": 6,
+  "threads_per_worker": 1,
+  "folds": {
+    "2024": {
+      "training_decisions": 61344,
+      "updates": 5991,
+      "bar_return_sd": 0.0026550434945382465,
+      "cost_break_even_hours": 12.211556862760112,
+      "credit_window_hours": 24.29218735738973
+    },
+    "2025": {
+      "training_decisions": 70128,
+      "updates": 6849,
+      "bar_return_sd": 0.002553572439308052,
+      "cost_break_even_hours": 12.696806288934038,
+      "credit_window_hours": 24.29218735738973
+    }
+  },
+  "total_jobs": 10,
+  "test_locked": true
+}

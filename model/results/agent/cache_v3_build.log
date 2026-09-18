@@ -1,0 +1,8 @@
+minutes 4785118 seconds 4.9
+trend_efficiency_1w    mean +0.00536 sd 0.03423 min -0.2815 max +1.0000
+drawdown_4w            mean -3.24378 sd 2.43093 min -17.7724 max +0.0000
+volatility_level       mean -3.40151 sd 0.44627 min -5.6176 max +0.0000
+volatility_regime      mean -0.19122 sd 0.45229 min -2.6631 max +1.5868
+volume_regime          mean -0.00688 sd 0.37012 min -1.4514 max +1.6269
+funding_rate           mean +0.00007 sd 0.00070 min -0.0037 max +0.0037
+daily volatility median 0.03236604854464531

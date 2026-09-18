@@ -1,0 +1,154 @@
+{
+  "mode": "latent",
+  "reward": "sharpe",
+  "decision_bars": 12,
+  "seed": 11,
+  "market_seed": 7,
+  "passes": 100,
+  "evaluate_passes": 5,
+  "training_decisions": 25439,
+  "updates": 2485,
+  "bar_return_sd": 0.0019905995237394208,
+  "edge": {
+    "expected_move_per_trend_regime_bp": 1875.0,
+    "round_trip_cost_bp": 12.000000000000002,
+    "edge_to_cost_ratio": 156.24999999999997,
+    "trend_regime_annualised_sharpe": 9.5524865872714,
+    "mean_regime_days": 10.0,
+    "regime_share": [
+      0.32234969558599696,
+      0.3371266171993912,
+      0.34052368721461185
+    ]
+  },
+  "references": {
+    "validation": {
+      "flat": 0.0,
+      "oracle": 3.326173045117412,
+      "trend_rule": 2.1352274943344702,
+      "constant_long": -2.8754107634144046,
+      "constant_short": 0.663927951525272
+    },
+    "test": {
+      "flat": 0.0,
+      "oracle": 2.1207998918123785,
+      "trend_rule": 1.3939001407390232,
+      "constant_long": -4.841035609015439,
+      "constant_short": 0.8019973149388628
+    }
+  },
+  "pass_if_selected_test_return_above": 0.8019973149388628,
+  "training_window": [
+    "2012-02-05 00:05:00+00:00",
+    "2014-12-31 00:00:00+00:00"
+  ],
+  "windows": {
+    "validation": [
+      "2015-01-07 00:00:00+00:00",
+      "2015-07-08 00:00:00+00:00"
+    ],
+    "test": [
+      "2015-07-08 00:00:00+00:00",
+      "2015-12-31 00:00:00+00:00"
+    ]
+  },
+  "credit_window_hours": 24.29218735738973,
+  "reward_scale": 0.05857011354530285
+}
+parameters 832,516
+upd     1 pass   0.0  1.4s | H 1.097 | hold     1.5h | MI 0.0019 | side S/F/L 0.33/0.32/0.35 | long entries 0.50 | EV 0.72 | KL 0.0006 clip 0.004 | liq 0
+upd    50 pass   2.0  1.4s | H 0.802 | hold     2.1h | MI 0.2143 | side S/F/L 0.53/0.19/0.28 | long entries 0.37 | EV 0.48 | KL 0.0007 clip 0.027 | liq 0
+upd   100 pass   4.0  1.4s | H 0.666 | hold     2.6h | MI 0.3524 | side S/F/L 0.44/0.18/0.38 | long entries 0.49 | EV 0.48 | KL 0.0032 clip 0.144 | liq 0
+  CHECKPOINT @124 pass 5.0: validation +1.632 | test +0.752 (orders 1588, hold 2.0h, long up/down 0.54/0.14, short up/down 0.32/0.79)
+upd   150 pass   6.0  1.7s | H 0.453 | hold     4.3h | MI 0.4765 | side S/F/L 0.51/0.09/0.40 | long entries 0.51 | EV 0.42 | KL 0.0036 clip 0.085 | liq 0
+upd   200 pass   8.1  1.5s | H 0.397 | hold     4.6h | MI 0.5721 | side S/F/L 0.38/0.12/0.49 | long entries 0.34 | EV 0.56 | KL 0.0026 clip 0.096 | liq 0
+  CHECKPOINT @248 pass 10.0: validation -0.015 | test -0.441 (orders 1124, hold 3.0h, long up/down 0.49/0.49, short up/down 0.37/0.44)
+upd   250 pass  10.1  1.6s | H 0.337 | hold     5.8h | MI 0.5116 | side S/F/L 0.27/0.09/0.63 | long entries 0.53 | EV 0.67 | KL 0.0028 clip 0.077 | liq 0
+upd   300 pass  12.1  1.3s | H 0.335 | hold     6.0h | MI 0.3524 | side S/F/L 0.13/0.10/0.77 | long entries 0.66 | EV 0.72 | KL 0.0011 clip 0.059 | liq 0
+upd   350 pass  14.1  1.6s | H 0.141 | hold    15.9h | MI 0.3125 | side S/F/L 0.11/0.03/0.87 | long entries 0.58 | EV 0.63 | KL 0.0020 clip 0.033 | liq 0
+  CHECKPOINT @373 pass 15.0: validation -2.731 | test +0.169 (orders 812, hold 3.0h, long up/down 0.50/0.55, short up/down 0.30/0.39)
+upd   400 pass  16.1  2.2s | H 0.299 | hold     7.2h | MI 0.6419 | side S/F/L 0.52/0.09/0.39 | long entries 0.26 | EV 0.84 | KL 0.0054 clip 0.093 | liq 0
+upd   450 pass  18.1  2.1s | H 0.249 | hold     8.6h | MI 0.6944 | side S/F/L 0.38/0.10/0.52 | long entries 0.35 | EV 0.62 | KL 0.0046 clip 0.084 | liq 0
+  CHECKPOINT @497 pass 20.0: validation +1.103 | test +0.287 (orders 776, hold 4.0h, long up/down 0.34/0.16, short up/down 0.44/0.76)
+upd   500 pass  20.1  1.3s | H 0.378 | hold     5.9h | MI 0.6708 | side S/F/L 0.37/0.21/0.42 | long entries 0.50 | EV 0.60 | KL 0.0051 clip 0.104 | liq 0
+upd   550 pass  22.1  1.7s | H 0.352 | hold     6.0h | MI 0.6685 | side S/F/L 0.37/0.18/0.46 | long entries 0.45 | EV 0.66 | KL 0.0051 clip 0.137 | liq 0
+upd   600 pass  24.2  1.7s | H 0.335 | hold     6.8h | MI 0.7047 | side S/F/L 0.37/0.19/0.44 | long entries 0.36 | EV 0.39 | KL 0.0033 clip 0.097 | liq 0
+  CHECKPOINT @621 pass 25.0: validation -2.606 | test -0.879 (orders 652, hold 4.0h, long up/down 0.47/0.57, short up/down 0.30/0.37)
+upd   650 pass  26.2  1.5s | H 0.382 | hold     6.4h | MI 0.7120 | side S/F/L 0.32/0.31/0.37 | long entries 0.44 | EV 0.72 | KL 0.0048 clip 0.117 | liq 0
+upd   700 pass  28.2  1.4s | H 0.172 | hold    14.7h | MI 0.8041 | side S/F/L 0.34/0.14/0.52 | long entries 0.32 | EV 0.72 | KL 0.0019 clip 0.057 | liq 0
+  CHECKPOINT @746 pass 30.0: validation +0.233 | test +1.169 (orders 480, hold 7.0h, long up/down 0.62/0.15, short up/down 0.22/0.53)
+upd   750 pass  30.2  1.7s | H 0.239 | hold    10.3h | MI 0.7799 | side S/F/L 0.40/0.14/0.46 | long entries 0.23 | EV 0.75 | KL 0.0038 clip 0.069 | liq 0
+upd   800 pass  32.2  1.9s | H 0.181 | hold    13.3h | MI 0.8731 | side S/F/L 0.35/0.22/0.43 | long entries 0.26 | EV 0.88 | KL 0.0021 clip 0.048 | liq 0
+upd   850 pass  34.2  1.6s | H 0.292 | hold     8.6h | MI 0.7328 | side S/F/L 0.25/0.22/0.52 | long entries 0.47 | EV 0.79 | KL 0.0094 clip 0.117 | liq 0
+  CHECKPOINT @870 pass 35.0: validation +0.193 | test +1.174 (orders 475, hold 6.0h, long up/down 0.43/0.09, short up/down 0.20/0.58)
+upd   900 pass  36.2  1.4s | H 0.267 | hold     9.7h | MI 0.7164 | side S/F/L 0.28/0.16/0.56 | long entries 0.67 | EV 0.45 | KL 0.0063 clip 0.083 | liq 0
+upd   950 pass  38.2  1.4s | H 0.299 | hold     8.0h | MI 0.7891 | side S/F/L 0.33/0.40/0.27 | long entries 0.52 | EV 0.72 | KL 0.0056 clip 0.096 | liq 0
+  CHECKPOINT @994 pass 40.0: validation +0.765 | test +1.226 (orders 499, hold 5.5h, long up/down 0.30/0.08, short up/down 0.32/0.78)
+upd  1000 pass  40.3  1.7s | H 0.237 | hold     9.8h | MI 0.7840 | side S/F/L 0.50/0.34/0.16 | long entries 0.56 | EV 0.77 | KL 0.0036 clip 0.080 | liq 0
+upd  1050 pass  42.3  1.4s | H 0.131 | hold    19.5h | MI 0.8302 | side S/F/L 0.43/0.11/0.46 | long entries 0.48 | EV 0.85 | KL 0.0009 clip 0.025 | liq 0
+upd  1100 pass  44.3  1.7s | H 0.211 | hold    11.7h | MI 0.8856 | side S/F/L 0.30/0.34/0.36 | long entries 0.68 | EV 0.80 | KL 0.0020 clip 0.049 | liq 0
+  CHECKPOINT @1118 pass 45.0: validation +1.036 | test +1.009 (orders 476, hold 7.5h, long up/down 0.43/0.10, short up/down 0.34/0.80)
+upd  1150 pass  46.3  1.6s | H 0.225 | hold     9.8h | MI 0.8141 | side S/F/L 0.27/0.21/0.51 | long entries 0.79 | EV 0.65 | KL 0.0038 clip 0.079 | liq 0
+upd  1200 pass  48.3  1.4s | H 0.261 | hold     9.3h | MI 0.7925 | side S/F/L 0.27/0.48/0.26 | long entries 0.60 | EV 0.71 | KL 0.0027 clip 0.071 | liq 0
+  CHECKPOINT @1242 pass 50.0: validation -0.438 | test +0.961 (orders 457, hold 7.0h, long up/down 0.32/0.16, short up/down 0.27/0.59)
+upd  1250 pass  50.3  1.6s | H 0.276 | hold     7.4h | MI 0.7980 | side S/F/L 0.25/0.43/0.32 | long entries 0.52 | EV 0.40 | KL 0.0031 clip 0.079 | liq 0
+upd  1300 pass  52.3  1.7s | H 0.208 | hold    11.3h | MI 0.8516 | side S/F/L 0.38/0.20/0.42 | long entries 0.43 | EV 0.78 | KL 0.0028 clip 0.064 | liq 0
+upd  1350 pass  54.3  1.5s | H 0.276 | hold     8.6h | MI 0.7957 | side S/F/L 0.25/0.45/0.31 | long entries 0.44 | EV 0.79 | KL 0.0021 clip 0.068 | liq 0
+  CHECKPOINT @1367 pass 55.0: validation +0.666 | test +0.728 (orders 591, hold 5.0h, long up/down 0.42/0.11, short up/down 0.26/0.46)
+upd  1400 pass  56.4  1.6s | H 0.318 | hold     6.5h | MI 0.7774 | side S/F/L 0.35/0.33/0.32 | long entries 0.41 | EV 0.61 | KL 0.0024 clip 0.071 | liq 0
+upd  1450 pass  58.4  1.3s | H 0.285 | hold     7.8h | MI 0.7444 | side S/F/L 0.22/0.25/0.52 | long entries 0.74 | EV 0.78 | KL 0.0033 clip 0.088 | liq 0
+  CHECKPOINT @1491 pass 60.0: validation +0.166 | test +0.678 (orders 581, hold 4.5h, long up/down 0.40/0.11, short up/down 0.29/0.46)
+upd  1500 pass  60.4  1.6s | H 0.300 | hold     7.3h | MI 0.7813 | side S/F/L 0.28/0.41/0.31 | long entries 0.48 | EV 0.81 | KL 0.0049 clip 0.088 | liq 0
+upd  1550 pass  62.4  1.4s | H 0.320 | hold     7.0h | MI 0.6130 | side S/F/L 0.42/0.50/0.08 | long entries 0.23 | EV 0.73 | KL 0.0035 clip 0.084 | liq 0
+upd  1600 pass  64.4  1.6s | H 0.301 | hold     6.4h | MI 0.7778 | side S/F/L 0.42/0.31/0.27 | long entries 0.43 | EV 0.58 | KL 0.0020 clip 0.059 | liq 0
+  CHECKPOINT @1615 pass 65.0: validation +0.157 | test +0.371 (orders 633, hold 6.5h, long up/down 0.46/0.22, short up/down 0.33/0.52)
+upd  1650 pass  66.4  1.5s | H 0.240 | hold     8.3h | MI 0.8433 | side S/F/L 0.38/0.26/0.36 | long entries 0.45 | EV 0.76 | KL 0.0023 clip 0.051 | liq 0
+upd  1700 pass  68.4  1.7s | H 0.314 | hold     6.4h | MI 0.6789 | side S/F/L 0.52/0.34/0.15 | long entries 0.29 | EV 0.73 | KL 0.0018 clip 0.075 | liq 0
+  CHECKPOINT @1740 pass 70.0: validation +0.195 | test +0.983 (orders 625, hold 6.0h, long up/down 0.42/0.14, short up/down 0.31/0.70)
+upd  1750 pass  70.4  1.4s | H 0.299 | hold     6.3h | MI 0.7453 | side S/F/L 0.49/0.30/0.21 | long entries 0.38 | EV 0.69 | KL 0.0034 clip 0.080 | liq 0
+upd  1800 pass  72.5  1.8s | H 0.257 | hold     7.5h | MI 0.7866 | side S/F/L 0.49/0.20/0.31 | long entries 0.45 | EV 0.79 | KL 0.0018 clip 0.053 | liq 0
+upd  1850 pass  74.5  1.7s | H 0.208 | hold     8.9h | MI 0.8639 | side S/F/L 0.40/0.22/0.38 | long entries 0.47 | EV 0.81 | KL 0.0015 clip 0.043 | liq 0
+  CHECKPOINT @1864 pass 75.0: validation -0.063 | test +0.762 (orders 619, hold 6.0h, long up/down 0.44/0.13, short up/down 0.35/0.63)
+upd  1900 pass  76.5  1.4s | H 0.259 | hold     7.8h | MI 0.8241 | side S/F/L 0.32/0.26/0.42 | long entries 0.66 | EV 0.74 | KL 0.0018 clip 0.055 | liq 0
+upd  1950 pass  78.5  2.3s | H 0.248 | hold     7.2h | MI 0.8175 | side S/F/L 0.37/0.21/0.42 | long entries 0.51 | EV 0.84 | KL 0.0016 clip 0.055 | liq 0
+  CHECKPOINT @1988 pass 80.0: validation -0.328 | test +0.417 (orders 570, hold 6.5h, long up/down 0.45/0.21, short up/down 0.28/0.57)
+upd  2000 pass  80.5  1.3s | H 0.258 | hold     6.9h | MI 0.8362 | side S/F/L 0.36/0.30/0.34 | long entries 0.50 | EV 0.82 | KL 0.0017 clip 0.054 | liq 0
+upd  2050 pass  82.5  1.4s | H 0.247 | hold     7.1h | MI 0.7592 | side S/F/L 0.42/0.14/0.43 | long entries 0.49 | EV 0.76 | KL 0.0015 clip 0.052 | liq 0
+upd  2100 pass  84.5  1.5s | H 0.282 | hold     6.9h | MI 0.7866 | side S/F/L 0.44/0.26/0.29 | long entries 0.48 | EV 0.67 | KL 0.0013 clip 0.042 | liq 0
+  CHECKPOINT @2112 pass 85.0: validation +0.278 | test +0.760 (orders 601, hold 7.0h, long up/down 0.46/0.20, short up/down 0.33/0.64)
+upd  2150 pass  86.5  1.6s | H 0.301 | hold     6.1h | MI 0.7898 | side S/F/L 0.39/0.28/0.33 | long entries 0.58 | EV 0.76 | KL 0.0012 clip 0.046 | liq 0
+upd  2200 pass  88.6  1.3s | H 0.293 | hold     5.7h | MI 0.7843 | side S/F/L 0.38/0.25/0.37 | long entries 0.51 | EV 0.65 | KL 0.0007 clip 0.026 | liq 0
+  CHECKPOINT @2236 pass 90.0: validation +0.100 | test +0.727 (orders 597, hold 6.5h, long up/down 0.51/0.26, short up/down 0.26/0.51)
+upd  2250 pass  90.6  1.5s | H 0.239 | hold     7.5h | MI 0.8147 | side S/F/L 0.45/0.20/0.35 | long entries 0.48 | EV 0.78 | KL 0.0006 clip 0.025 | liq 0
+upd  2300 pass  92.6  1.4s | H 0.262 | hold     7.3h | MI 0.8238 | side S/F/L 0.40/0.30/0.30 | long entries 0.37 | EV 0.78 | KL 0.0005 clip 0.017 | liq 0
+upd  2350 pass  94.6  1.5s | H 0.304 | hold     6.2h | MI 0.7371 | side S/F/L 0.19/0.36/0.46 | long entries 0.64 | EV 0.71 | KL 0.0002 clip 0.010 | liq 0
+  CHECKPOINT @2361 pass 95.0: validation +0.306 | test +0.610 (orders 539, hold 7.5h, long up/down 0.52/0.23, short up/down 0.29/0.60)
+upd  2400 pass  96.6  1.2s | H 0.205 | hold     9.2h | MI 0.8694 | side S/F/L 0.32/0.25/0.43 | long entries 0.56 | EV 0.86 | KL 0.0001 clip 0.002 | liq 0
+upd  2450 pass  98.6  2.7s | H 0.266 | hold     6.5h | MI 0.7960 | side S/F/L 0.36/0.21/0.42 | long entries 0.49 | EV 0.69 | KL 0.0000 clip 0.001 | liq 0
+  CHECKPOINT @2485 pass 100.0: validation -0.033 | test +0.562 (orders 530, hold 8.0h, long up/down 0.51/0.23, short up/down 0.33/0.60)
+{
+  "mode": "latent",
+  "reward": "sharpe",
+  "decision_bars": 12,
+  "seed": 11,
+  "selected_update": 124,
+  "selected_passes": 4.9913911710365975,
+  "selected_validation_return": 1.6315393770017,
+  "selected_test_return": 0.7519757002799481,
+  "criterion": 0.8019973149388628,
+  "beats_best_constant": false,
+  "regime_conditioned": true,
+  "passed": false,
+  "selected_test_conditioning": {
+    "long_when_up": 0.5387215734480639,
+    "long_when_down": 0.14190897597977245,
+    "short_when_up": 0.316840811309158,
+    "short_when_down": 0.7904551201011378
+  },
+  "test_oracle": 2.1207998918123785,
+  "test_trend_rule": 1.3939001407390232,
+  "share_of_trend_rule": 0.5394760200549681,
+  "final_checkpoint_test_return": 0.5622899367523788,
+  "peak_validation_passes": 4.9913911710365975,
+  "hours": 1.555367084288866
+}

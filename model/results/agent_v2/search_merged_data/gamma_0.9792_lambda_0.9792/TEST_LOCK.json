@@ -1,0 +1,7 @@
+{
+  "locked": true,
+  "start_inclusive": "2026-08-01 00:00:00+00:00",
+  "performance_accessed": false,
+  "unlock_entrypoint": null,
+  "enforcement": "cache built only from rows before the test start; date guards; development fold whitelist"
+}

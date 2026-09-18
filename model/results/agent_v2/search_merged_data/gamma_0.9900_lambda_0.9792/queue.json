@@ -1,0 +1,32 @@
+{
+  "jobs": [
+    [
+      2022,
+      11
+    ],
+    [
+      2023,
+      11
+    ]
+  ],
+  "workers": 2,
+  "threads_per_worker": 1,
+  "folds": {
+    "2022": {
+      "training_decisions": 43824,
+      "updates": 1284,
+      "bar_return_sd": 0.00292171383150594,
+      "cost_break_even_hours": 11.096985015107972,
+      "credit_window_hours": 32.688284518827906
+    },
+    "2023": {
+      "training_decisions": 52584,
+      "updates": 1541,
+      "bar_return_sd": 0.0027949204653923594,
+      "cost_break_even_hours": 11.60040688388733,
+      "credit_window_hours": 32.688284518827906
+    }
+  },
+  "total_jobs": 2,
+  "test_locked": true
+}

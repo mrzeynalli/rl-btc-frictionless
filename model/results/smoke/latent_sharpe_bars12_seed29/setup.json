@@ -1,0 +1,39 @@
+{
+  "mode": "latent",
+  "reward": "sharpe",
+  "decision_bars": 12,
+  "seed": 29,
+  "market_seed": 7,
+  "updates": 1000,
+  "edge": {
+    "expected_move_per_trend_regime_bp": 1875.0,
+    "round_trip_cost_bp": 12.000000000000002,
+    "edge_to_cost_ratio": 156.24999999999997,
+    "trend_regime_annualised_sharpe": 9.5524865872714,
+    "mean_regime_days": 10.0,
+    "regime_share": [
+      0.32234969558599696,
+      0.3371266171993912,
+      0.34052368721461185
+    ]
+  },
+  "references": {
+    "flat": 0.0,
+    "oracle": 5.4478023848625154,
+    "trend_rule": 3.530081673216614,
+    "constant_long": -4.977832610854252,
+    "constant_short": 1.466988382419949
+  },
+  "pass_if_last_three_mean_above": 1.466988382419949,
+  "training_window": [
+    "2012-02-05 00:05:00+00:00",
+    "2014-12-31 00:00:00+00:00"
+  ],
+  "validation_window": [
+    "2015-01-07 00:00:00+00:00",
+    "2015-12-31 00:00:00+00:00"
+  ],
+  "episode_steps": 2048,
+  "credit_window_hours": 24.29218735738973,
+  "reward_scale": 0.05857011354530285
+}

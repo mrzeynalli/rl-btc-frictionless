@@ -1,0 +1,26 @@
+{
+  "mode": "latent",
+  "reward": "sortino",
+  "decision_bars": 12,
+  "seed": 29,
+  "selected_update": 2361,
+  "selected_passes": 95.03769802272102,
+  "selected_validation_return": 1.3606483411864039,
+  "selected_test_return": 1.3305839100946513,
+  "criterion": 0.8019973149388628,
+  "beats_best_constant": true,
+  "regime_conditioned": true,
+  "passed": true,
+  "selected_test_conditioning": {
+    "long_when_up": 0.5064535955746773,
+    "long_when_down": 0.13780025284450062,
+    "short_when_up": 0.29440688383527963,
+    "short_when_down": 0.6826801517067004
+  },
+  "test_oracle": 2.1207998918123785,
+  "test_trend_rule": 1.3939001407390232,
+  "share_of_trend_rule": 0.9545762075819845,
+  "final_checkpoint_test_return": 1.3458663290560646,
+  "peak_validation_passes": 95.03769802272102,
+  "hours": 1.5251237762133112
+}

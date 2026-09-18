@@ -1,0 +1,22 @@
+{
+  "mode": "observable",
+  "reward": "sharpe",
+  "decision_bars": 12,
+  "seed": 11,
+  "last_three_mean_log_return": 3.331163747380938,
+  "criterion": 0.8719920889246715,
+  "beats_best_constant": true,
+  "regime_conditioned": true,
+  "passed": true,
+  "oracle": 3.3733994765729984,
+  "trend_rule": 3.3733994765729984,
+  "share_of_oracle": 0.9874797724119626,
+  "share_of_trend_rule": 0.9874797724119626,
+  "last_three_conditioning": {
+    "long_when_up": 0.9498015873015873,
+    "long_when_down": 0.002136752136752137,
+    "short_when_up": 0.006944444444444444,
+    "short_when_down": 0.9803921568627452
+  },
+  "hours": 0.9643090768738896
+}

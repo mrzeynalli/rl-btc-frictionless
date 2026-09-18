@@ -1,0 +1,307 @@
+{
+  "rule": "results/agent_v2/PREREGISTRATION.md \u00a73",
+  "cells": [
+    {
+      "gamma_hour": 0.9583,
+      "lambda_hour": 0.9,
+      "credit_window_hours": 7.271140841998113,
+      "score_iqm": -0.0380858860949251,
+      "mean": -0.07987139504387818,
+      "positive_quarter_checkpoints": 0.3958333333333333,
+      "quarter_means": [
+        0.05949,
+        -0.50264,
+        0.04602,
+        -0.04616,
+        -0.16839,
+        -0.11764,
+        -0.06315,
+        0.15349
+      ],
+      "checkpoint_means": [
+        -0.20537,
+        0.03404,
+        0.0022,
+        -0.09618,
+        -0.06001,
+        -0.15391
+      ],
+      "median_orders_per_quarter": 29.0,
+      "median_holding_hours": 27.25,
+      "mean_long_share": 0.5141444945453097,
+      "mean_short_share": 0.12420594137645768
+    },
+    {
+      "gamma_hour": 0.9583,
+      "lambda_hour": 0.95,
+      "credit_window_hours": 11.158846175305474,
+      "score_iqm": -0.11123660311654193,
+      "mean": -0.15829330495017693,
+      "positive_quarter_checkpoints": 0.3125,
+      "quarter_means": [
+        0.0625,
+        -0.68829,
+        0.08448,
+        -0.14697,
+        -0.45838,
+        -0.15116,
+        -0.08728,
+        0.11876
+      ],
+      "checkpoint_means": [
+        -0.20214,
+        -0.25495,
+        -0.15039,
+        -0.10924,
+        -0.12242,
+        -0.11061
+      ],
+      "median_orders_per_quarter": 31.5,
+      "median_holding_hours": 44.0,
+      "mean_long_share": 0.6969786279625501,
+      "mean_short_share": 0.15018700037382104
+    },
+    {
+      "gamma_hour": 0.9583,
+      "lambda_hour": 0.9792,
+      "credit_window_hours": 16.225169001360314,
+      "score_iqm": -0.047361983290227366,
+      "mean": -0.08865801574918052,
+      "positive_quarter_checkpoints": 0.3958333333333333,
+      "quarter_means": [
+        -0.03269,
+        -0.53369,
+        0.02416,
+        -0.10083,
+        -0.12469,
+        -0.09671,
+        0.01954,
+        0.13565
+      ],
+      "checkpoint_means": [
+        -0.10996,
+        -0.12713,
+        -0.08457,
+        -0.07215,
+        -0.12001,
+        -0.01813
+      ],
+      "median_orders_per_quarter": 36.0,
+      "median_holding_hours": 24.75,
+      "mean_long_share": 0.4606791777817593,
+      "mean_short_share": 0.08079022364008777
+    },
+    {
+      "gamma_hour": 0.9792,
+      "lambda_hour": 0.9,
+      "credit_window_hours": 8.42318059299191,
+      "score_iqm": -0.11539206396421915,
+      "mean": -0.13735942708462395,
+      "positive_quarter_checkpoints": 0.2916666666666667,
+      "quarter_means": [
+        -0.08926,
+        -0.39623,
+        0.02582,
+        -0.15398,
+        -0.36876,
+        -0.05025,
+        -0.00075,
+        -0.06547
+      ],
+      "checkpoint_means": [
+        -0.19904,
+        -0.06667,
+        -0.09567,
+        -0.17456,
+        -0.16135,
+        -0.12687
+      ],
+      "median_orders_per_quarter": 46.0,
+      "median_holding_hours": 35.5,
+      "mean_long_share": 0.5637900143334926,
+      "mean_short_share": 0.24825063787359983
+    },
+    {
+      "gamma_hour": 0.9792,
+      "lambda_hour": 0.95,
+      "credit_window_hours": 14.334862385321092,
+      "score_iqm": -0.09925400157527246,
+      "mean": -0.12295967834185105,
+      "positive_quarter_checkpoints": 0.22916666666666666,
+      "quarter_means": [
+        0.03605,
+        -0.34081,
+        0.08093,
+        -0.05763,
+        -0.43768,
+        -0.12903,
+        -0.00113,
+        -0.13438
+      ],
+      "checkpoint_means": [
+        -0.12374,
+        -0.22127,
+        -0.17429,
+        -0.12439,
+        -0.03794,
+        -0.05614
+      ],
+      "median_orders_per_quarter": 35.0,
+      "median_holding_hours": 45.75,
+      "mean_long_share": 0.616350073160535,
+      "mean_short_share": 0.18245406821607002
+    },
+    {
+      "gamma_hour": 0.9792,
+      "lambda_hour": 0.9792,
+      "credit_window_hours": 24.291088862632865,
+      "score_iqm": 0.00046669730956579517,
+      "mean": 0.011572067060916728,
+      "positive_quarter_checkpoints": 0.5208333333333334,
+      "quarter_means": [
+        -0.08811,
+        0.17776,
+        -0.02012,
+        0.05294,
+        -0.14272,
+        0.03718,
+        -0.04319,
+        0.11883
+      ],
+      "checkpoint_means": [
+        -0.06545,
+        0.11429,
+        0.04484,
+        0.07025,
+        -0.06062,
+        -0.03388
+      ],
+      "median_orders_per_quarter": 38.0,
+      "median_holding_hours": 19.0,
+      "mean_long_share": 0.3965242040819486,
+      "mean_short_share": 0.2338781664189273
+    },
+    {
+      "gamma_hour": 0.99,
+      "lambda_hour": 0.9,
+      "credit_window_hours": 9.174311926605506,
+      "score_iqm": -0.05615113363556884,
+      "mean": -0.11768317188864695,
+      "positive_quarter_checkpoints": 0.375,
+      "quarter_means": [
+        -0.04114,
+        -0.80976,
+        0.05666,
+        -0.11454,
+        -0.10099,
+        -0.03528,
+        -0.04483,
+        0.14841
+      ],
+      "checkpoint_means": [
+        -0.10859,
+        -0.08674,
+        -0.17678,
+        -0.099,
+        -0.10914,
+        -0.12586
+      ],
+      "median_orders_per_quarter": 19.0,
+      "median_holding_hours": 54.5,
+      "mean_long_share": 0.8315171861820412,
+      "mean_short_share": 0.10103394554821184
+    },
+    {
+      "gamma_hour": 0.99,
+      "lambda_hour": 0.95,
+      "credit_window_hours": 16.80672268907563,
+      "score_iqm": -0.14587386934067015,
+      "mean": -0.2562160072996286,
+      "positive_quarter_checkpoints": 0.1875,
+      "quarter_means": [
+        -0.01887,
+        -0.84248,
+        -0.03387,
+        -0.1568,
+        -0.6757,
+        -0.12065,
+        0.08362,
+        -0.28498
+      ],
+      "checkpoint_means": [
+        -0.19042,
+        -0.28678,
+        -0.19818,
+        -0.25868,
+        -0.27852,
+        -0.32472
+      ],
+      "median_orders_per_quarter": 17.0,
+      "median_holding_hours": 56.5,
+      "mean_long_share": 0.6170891461765556,
+      "mean_short_share": 0.18988995228805014
+    },
+    {
+      "gamma_hour": 0.99,
+      "lambda_hour": 0.9792,
+      "credit_window_hours": 32.68828451882838,
+      "score_iqm": -0.10575842368747285,
+      "mean": -0.17091300407865329,
+      "positive_quarter_checkpoints": 0.2916666666666667,
+      "quarter_means": [
+        -0.01975,
+        -0.54172,
+        -0.01936,
+        -0.13269,
+        -0.60093,
+        -0.11464,
+        -0.03169,
+        0.09348
+      ],
+      "checkpoint_means": [
+        -0.04541,
+        -0.19728,
+        -0.14095,
+        -0.24492,
+        -0.22048,
+        -0.17643
+      ],
+      "median_orders_per_quarter": 48.5,
+      "median_holding_hours": 32.5,
+      "mean_long_share": 0.6989198867255934,
+      "mean_short_share": 0.25782386163387067
+    }
+  ],
+  "gamma": {
+    "level_means": {
+      "0.9583": -0.06556149083389813,
+      "0.9792": -0.0713931227433086,
+      "0.9900": -0.10259447555457062
+    },
+    "best": "0.9583",
+    "gain_over_v1": 0.005831631909410467,
+    "standard_error_of_paired_quarter_difference": 0.05843141072755376,
+    "replaces_v1": false,
+    "chosen": "0.9792"
+  },
+  "lambda": {
+    "level_means": {
+      "0.90": -0.06987636123157102,
+      "0.95": -0.11878815801082819,
+      "0.9792": -0.05088456988937814
+    },
+    "best": "0.9792",
+    "gain_over_v1": 0.0,
+    "standard_error_of_paired_quarter_difference": 0.0,
+    "replaces_v1": false,
+    "chosen": "0.9792"
+  },
+  "chosen_per_hour": {
+    "gamma": 0.9792,
+    "lambda": 0.9792
+  },
+  "chosen_per_bar": {
+    "gamma": 0.9982499192450389,
+    "lambda": 0.9982499192450389
+  }
+}

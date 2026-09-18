@@ -1,0 +1,173 @@
+{
+  "mode": "latent",
+  "reward": "sharpe",
+  "decision_bars": 1,
+  "seed": 29,
+  "market_seed": 7,
+  "updates": 1000,
+  "edge": {
+    "expected_move_per_trend_regime_bp": 1875.0,
+    "round_trip_cost_bp": 12.000000000000002,
+    "edge_to_cost_ratio": 156.24999999999997,
+    "trend_regime_annualised_sharpe": 9.5524865872714,
+    "mean_regime_days": 10.0,
+    "regime_share": [
+      0.32234969558599696,
+      0.3371266171993912,
+      0.34052368721461185
+    ]
+  },
+  "references": {
+    "flat": 0.0,
+    "oracle": 5.452330329914567,
+    "trend_rule": 3.214108063112309,
+    "constant_long": -4.977832610854276,
+    "constant_short": 1.4669883824199408
+  },
+  "pass_if_last_three_mean_above": 1.4669883824199408,
+  "training_window": [
+    "2012-02-05 00:05:00+00:00",
+    "2014-12-31 00:00:00+00:00"
+  ],
+  "validation_window": [
+    "2015-01-07 00:00:00+00:00",
+    "2015-12-31 00:00:00+00:00"
+  ],
+  "episode_steps": 26624,
+  "credit_window_hours": 23.83037538798817,
+  "reward_scale": 0.059134909317593604
+}
+parameters 832,516
+upd    1   6.1s | H 1.092 | hold     0.1h | MI 0.0048 | side S/F/L 0.33/0.34/0.34 | long entries 0.52 | EV 0.61 | KL 0.0019 clip 0.000 | liq 0
+upd   10   6.7s | H 0.971 | hold     0.1h | MI 0.1196 | side S/F/L 0.37/0.30/0.33 | long entries 0.46 | EV 0.93 | KL 0.0071 clip 0.041 | liq 0
+upd   20   7.0s | H 0.821 | hold     0.2h | MI 0.2314 | side S/F/L 0.27/0.42/0.31 | long entries 0.39 | EV 0.88 | KL 0.0106 clip 0.075 | liq 0
+upd   30   6.4s | H 0.624 | hold     0.2h | MI 0.3261 | side S/F/L 0.46/0.37/0.17 | long entries 0.43 | EV 0.93 | KL 0.0069 clip 0.056 | liq 0
+upd   40   6.7s | H 0.618 | hold     0.2h | MI 0.4389 | side S/F/L 0.44/0.26/0.31 | long entries 0.74 | EV 0.71 | KL 0.0061 clip 0.053 | liq 0
+upd   50   5.7s | H 0.514 | hold     0.3h | MI 0.4432 | side S/F/L 0.59/0.16/0.25 | long entries 0.47 | EV 0.84 | KL 0.0042 clip 0.028 | liq 0
+upd   60   5.9s | H 0.413 | hold     0.4h | MI 0.5821 | side S/F/L 0.31/0.16/0.53 | long entries 0.71 | EV 0.90 | KL 0.0040 clip 0.034 | liq 0
+upd   70   5.8s | H 0.326 | hold     0.5h | MI 0.5720 | side S/F/L 0.37/0.08/0.54 | long entries 0.57 | EV 0.75 | KL 0.0031 clip 0.024 | liq 0
+upd   80   7.1s | H 0.271 | hold     0.7h | MI 0.5923 | side S/F/L 0.54/0.06/0.40 | long entries 0.35 | EV 0.86 | KL 0.0034 clip 0.026 | liq 0
+upd   90   5.5s | H 0.240 | hold     0.8h | MI 0.5566 | side S/F/L 0.63/0.04/0.33 | long entries 0.36 | EV 0.88 | KL 0.0017 clip 0.014 | liq 0
+upd  100   6.6s | H 0.217 | hold     0.9h | MI 0.6346 | side S/F/L 0.58/0.06/0.36 | long entries 0.31 | EV 0.78 | KL 0.0023 clip 0.017 | liq 0
+  VALIDATION @100: log return -4.6423 [-4.8439, -4.4408] | orders 12002 | hold 0.3h | long up/down 0.53/0.15 | short up/down 0.42/0.81 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  110   6.6s | H 0.217 | hold     0.9h | MI 0.6316 | side S/F/L 0.56/0.06/0.38 | long entries 0.39 | EV 0.88 | KL 0.0034 clip 0.026 | liq 0
+upd  120   6.0s | H 0.208 | hold     1.0h | MI 0.5478 | side S/F/L 0.64/0.03/0.33 | long entries 0.22 | EV 0.82 | KL 0.0039 clip 0.021 | liq 0
+upd  130   7.0s | H 0.213 | hold     1.0h | MI 0.6836 | side S/F/L 0.41/0.07/0.52 | long entries 0.51 | EV 0.80 | KL 0.0048 clip 0.030 | liq 0
+upd  140   6.3s | H 0.155 | hold     1.3h | MI 0.6654 | side S/F/L 0.58/0.04/0.37 | long entries 0.29 | EV 0.81 | KL 0.0010 clip 0.008 | liq 0
+upd  150   5.6s | H 0.131 | hold     1.6h | MI 0.6585 | side S/F/L 0.60/0.03/0.36 | long entries 0.38 | EV 0.77 | KL 0.0018 clip 0.012 | liq 0
+upd  160   6.5s | H 0.228 | hold     0.9h | MI 0.5977 | side S/F/L 0.65/0.06/0.29 | long entries 0.16 | EV 0.69 | KL 0.0034 clip 0.022 | liq 0
+upd  170   7.5s | H 0.160 | hold     1.4h | MI 0.6619 | side S/F/L 0.54/0.04/0.42 | long entries 0.15 | EV 0.90 | KL 0.0034 clip 0.016 | liq 0
+upd  180   5.8s | H 0.180 | hold     1.2h | MI 0.6892 | side S/F/L 0.53/0.04/0.43 | long entries 0.19 | EV 0.71 | KL 0.0044 clip 0.020 | liq 0
+upd  190   7.0s | H 0.153 | hold     1.5h | MI 0.6360 | side S/F/L 0.39/0.03/0.59 | long entries 0.44 | EV 0.59 | KL 0.0045 clip 0.024 | liq 0
+upd  200   6.0s | H 0.142 | hold     1.9h | MI 0.7854 | side S/F/L 0.49/0.09/0.42 | long entries 0.19 | EV 0.88 | KL 0.0025 clip 0.014 | liq 0
+  VALIDATION @200: log return -0.7088 [-0.7337, -0.6840] | orders 5657 | hold 1.1h | long up/down 0.46/0.13 | short up/down 0.49/0.84 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  210   7.4s | H 0.140 | hold     1.9h | MI 0.8289 | side S/F/L 0.49/0.12/0.38 | long entries 0.25 | EV 0.83 | KL 0.0027 clip 0.015 | liq 0
+upd  220   6.0s | H 0.122 | hold     2.0h | MI 0.7387 | side S/F/L 0.26/0.10/0.64 | long entries 0.20 | EV 0.82 | KL 0.0030 clip 0.017 | liq 0
+upd  230   5.9s | H 0.130 | hold     1.8h | MI 0.6350 | side S/F/L 0.23/0.07/0.71 | long entries 0.53 | EV 0.79 | KL 0.0033 clip 0.015 | liq 0
+upd  240   5.9s | H 0.114 | hold     2.6h | MI 0.6248 | side S/F/L 0.28/0.03/0.69 | long entries 0.19 | EV 0.78 | KL 0.0028 clip 0.011 | liq 0
+upd  250   7.2s | H 0.142 | hold     1.9h | MI 0.8011 | side S/F/L 0.42/0.10/0.47 | long entries 0.22 | EV 0.83 | KL 0.0038 clip 0.017 | liq 0
+upd  260   6.7s | H 0.146 | hold     2.0h | MI 0.8420 | side S/F/L 0.44/0.13/0.43 | long entries 0.26 | EV 0.77 | KL 0.0037 clip 0.014 | liq 0
+upd  270   7.3s | H 0.156 | hold     1.7h | MI 0.8351 | side S/F/L 0.23/0.20/0.57 | long entries 0.42 | EV 0.59 | KL 0.0109 clip 0.046 | liq 0
+upd  280   6.9s | H 0.128 | hold     2.0h | MI 0.8792 | side S/F/L 0.36/0.15/0.49 | long entries 0.37 | EV 0.75 | KL 0.0025 clip 0.012 | liq 0
+upd  290   6.0s | H 0.156 | hold     1.9h | MI 0.8448 | side S/F/L 0.31/0.17/0.53 | long entries 0.54 | EV 0.67 | KL 0.0030 clip 0.015 | liq 0
+upd  300   7.2s | H 0.134 | hold     2.0h | MI 0.8137 | side S/F/L 0.19/0.20/0.61 | long entries 0.59 | EV 0.83 | KL 0.0026 clip 0.015 | liq 0
+  VALIDATION @300: log return -0.1496 [-0.1706, -0.1287] | orders 3716 | hold 0.7h | long up/down 0.64/0.13 | short up/down 0.18/0.36 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  310   7.2s | H 0.138 | hold     2.1h | MI 0.7904 | side S/F/L 0.12/0.58/0.31 | long entries 0.30 | EV 0.53 | KL 0.0037 clip 0.016 | liq 0
+upd  320   6.4s | H 0.091 | hold     2.8h | MI 1.0022 | side S/F/L 0.33/0.38/0.28 | long entries 0.21 | EV 0.79 | KL 0.0056 clip 0.015 | liq 0
+upd  330   6.5s | H 0.109 | hold     2.2h | MI 0.9706 | side S/F/L 0.33/0.25/0.42 | long entries 0.27 | EV 0.80 | KL 0.0025 clip 0.013 | liq 0
+upd  340   6.7s | H 0.123 | hold     2.4h | MI 0.8994 | side S/F/L 0.23/0.52/0.25 | long entries 0.23 | EV 0.77 | KL 0.0053 clip 0.017 | liq 0
+upd  350   5.8s | H 0.147 | hold     1.6h | MI 0.8749 | side S/F/L 0.40/0.41/0.18 | long entries 0.19 | EV 0.71 | KL 0.0038 clip 0.015 | liq 0
+upd  360   6.0s | H 0.121 | hold     2.2h | MI 0.9691 | side S/F/L 0.35/0.38/0.27 | long entries 0.54 | EV 0.71 | KL 0.0068 clip 0.022 | liq 0
+upd  370   5.4s | H 0.084 | hold     3.7h | MI 0.9680 | side S/F/L 0.24/0.49/0.27 | long entries 0.44 | EV 0.83 | KL 0.0022 clip 0.010 | liq 0
+upd  380   5.5s | H 0.103 | hold     2.7h | MI 0.8034 | side S/F/L 0.52/0.41/0.07 | long entries 0.18 | EV 0.73 | KL 0.0029 clip 0.012 | liq 0
+upd  390   7.4s | H 0.091 | hold     3.0h | MI 0.9871 | side S/F/L 0.28/0.42/0.29 | long entries 0.65 | EV 0.67 | KL 0.0032 clip 0.017 | liq 0
+upd  400   5.9s | H 0.081 | hold     2.5h | MI 0.9657 | side S/F/L 0.29/0.48/0.24 | long entries 0.40 | EV 0.77 | KL 0.0058 clip 0.013 | liq 0
+  VALIDATION @400: log return +1.0265 [+0.8898, +1.1632] | orders 1660 | hold 1.5h | long up/down 0.55/0.04 | short up/down 0.13/0.22 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  410   6.9s | H 0.084 | hold     3.0h | MI 1.0062 | side S/F/L 0.30/0.40/0.30 | long entries 0.30 | EV 0.73 | KL 0.0026 clip 0.009 | liq 0
+upd  420  14.4s | H 0.104 | hold     2.6h | MI 0.9554 | side S/F/L 0.46/0.32/0.22 | long entries 0.16 | EV 0.50 | KL 0.0024 clip 0.011 | liq 0
+upd  430   5.7s | H 0.097 | hold     2.9h | MI 0.9971 | side S/F/L 0.29/0.34/0.37 | long entries 0.42 | EV 0.77 | KL 0.0030 clip 0.013 | liq 0
+upd  440   6.7s | H 0.069 | hold     3.9h | MI 0.9683 | side S/F/L 0.36/0.18/0.46 | long entries 0.45 | EV 0.80 | KL 0.0022 clip 0.006 | liq 0
+upd  450   6.5s | H 0.096 | hold     2.7h | MI 0.9469 | side S/F/L 0.28/0.23/0.49 | long entries 0.58 | EV 0.60 | KL 0.0048 clip 0.016 | liq 0
+upd  460   6.4s | H 0.098 | hold     2.7h | MI 0.9373 | side S/F/L 0.17/0.43/0.40 | long entries 0.42 | EV 0.86 | KL 0.0032 clip 0.013 | liq 0
+upd  470   6.9s | H 0.097 | hold     2.4h | MI 0.9693 | side S/F/L 0.30/0.25/0.45 | long entries 0.57 | EV 0.80 | KL 0.0076 clip 0.021 | liq 0
+upd  480   9.8s | H 0.112 | hold     2.1h | MI 0.8790 | side S/F/L 0.15/0.33/0.52 | long entries 0.68 | EV 0.79 | KL 0.0178 clip 0.036 | liq 0
+upd  490   6.8s | H 0.084 | hold     3.1h | MI 0.8508 | side S/F/L 0.13/0.59/0.28 | long entries 0.39 | EV 0.93 | KL 0.0045 clip 0.012 | liq 0
+upd  500   6.5s | H 0.064 | hold     3.0h | MI 0.9108 | side S/F/L 0.14/0.55/0.31 | long entries 0.62 | EV 0.79 | KL 0.0064 clip 0.011 | liq 0
+  VALIDATION @500: log return +0.8721 [+0.7391, +1.0050] | orders 2164 | hold 1.4h | long up/down 0.57/0.08 | short up/down 0.06/0.39 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  510   9.4s | H 0.087 | hold     2.3h | MI 0.9549 | side S/F/L 0.23/0.51/0.26 | long entries 0.44 | EV 0.77 | KL 0.0068 clip 0.023 | liq 0
+upd  520  16.1s | H 0.080 | hold     2.8h | MI 0.8723 | side S/F/L 0.14/0.58/0.28 | long entries 0.39 | EV 0.89 | KL 0.0053 clip 0.013 | liq 0
+upd  530   9.7s | H 0.066 | hold     3.2h | MI 0.9073 | side S/F/L 0.23/0.58/0.20 | long entries 0.36 | EV 0.66 | KL 0.0022 clip 0.009 | liq 0
+upd  540  10.1s | H 0.100 | hold     2.7h | MI 0.8941 | side S/F/L 0.20/0.55/0.25 | long entries 0.43 | EV 0.88 | KL 0.0027 clip 0.013 | liq 0
+upd  550   8.2s | H 0.060 | hold     4.3h | MI 0.6747 | side S/F/L 0.05/0.70/0.26 | long entries 0.59 | EV 0.89 | KL 0.0022 clip 0.009 | liq 0
+upd  560   9.7s | H 0.036 | hold     8.1h | MI 0.4834 | side S/F/L 0.00/0.79/0.20 | long entries 0.74 | EV 0.79 | KL 0.0023 clip 0.005 | liq 0
+upd  570   6.0s | H 0.044 | hold     5.7h | MI 0.5179 | side S/F/L 0.00/0.75/0.25 | long entries 0.86 | EV 0.78 | KL 0.0043 clip 0.007 | liq 0
+upd  580   6.4s | H 0.051 | hold     4.8h | MI 0.5846 | side S/F/L 0.03/0.77/0.20 | long entries 0.73 | EV 0.91 | KL 0.0022 clip 0.009 | liq 0
+upd  590   7.0s | H 0.064 | hold     4.2h | MI 0.8003 | side S/F/L 0.18/0.67/0.15 | long entries 0.22 | EV 0.37 | KL 0.0019 clip 0.009 | liq 0
+upd  600   8.3s | H 0.032 | hold     7.4h | MI 0.3334 | side S/F/L 0.06/0.90/0.03 | long entries 0.12 | EV 0.81 | KL 0.0014 clip 0.005 | liq 0
+  VALIDATION @600: log return -0.2573 [-0.3648, -0.1497] | orders 1333 | hold 0.6h | long up/down 0.05/0.02 | short up/down 0.12/0.22 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  610   8.3s | H 0.030 | hold     8.2h | MI 0.4467 | side S/F/L 0.14/0.84/0.01 | long entries 0.17 | EV 0.52 | KL 0.0019 clip 0.006 | liq 0
+upd  620   6.3s | H 0.011 | hold    29.7h | MI 0.0806 | side S/F/L 0.02/0.98/0.00 | long entries 0.07 | EV 0.93 | KL 0.0003 clip 0.002 | liq 0
+upd  630   6.5s | H 0.015 | hold    19.0h | MI 0.0479 | side S/F/L 0.01/0.99/0.00 | long entries 0.25 | EV 0.71 | KL 0.0004 clip 0.002 | liq 0
+upd  640   5.7s | H 0.053 | hold     4.5h | MI 0.5182 | side S/F/L 0.26/0.74/0.00 | long entries 0.05 | EV 0.70 | KL 0.0029 clip 0.010 | liq 0
+upd  650   6.3s | H 0.025 | hold     9.3h | MI 0.1304 | side S/F/L 0.03/0.97/0.00 | long entries 0.17 | EV 0.66 | KL 0.0008 clip 0.003 | liq 0
+upd  660   5.6s | H 0.020 | hold    10.8h | MI 0.2389 | side S/F/L 0.07/0.93/0.00 | long entries 0.00 | EV 0.57 | KL 0.0020 clip 0.003 | liq 0
+upd  670   6.6s | H 0.035 | hold     4.6h | MI 0.4059 | side S/F/L 0.17/0.83/0.00 | long entries 0.12 | EV 0.61 | KL 0.0026 clip 0.007 | liq 0
+upd  680   6.1s | H 0.041 | hold     7.4h | MI 0.5403 | side S/F/L 0.16/0.81/0.03 | long entries 0.29 | EV 0.61 | KL 0.0011 clip 0.006 | liq 0
+upd  690   6.4s | H 0.038 | hold     5.2h | MI 0.3094 | side S/F/L 0.03/0.92/0.04 | long entries 0.57 | EV 0.72 | KL 0.0023 clip 0.009 | liq 0
+upd  700   6.4s | H 0.045 | hold     4.3h | MI 0.5843 | side S/F/L 0.16/0.80/0.04 | long entries 0.28 | EV 0.31 | KL 0.0026 clip 0.011 | liq 0
+  VALIDATION @700: log return -0.2114 [-0.3063, -0.1165] | orders 644 | hold 1.7h | long up/down 0.05/0.02 | short up/down 0.09/0.11 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  710   7.0s | H 0.039 | hold     5.0h | MI 0.5034 | side S/F/L 0.14/0.82/0.04 | long entries 0.12 | EV 0.63 | KL 0.0037 clip 0.009 | liq 0
+upd  720   7.7s | H 0.036 | hold     6.1h | MI 0.4547 | side S/F/L 0.07/0.87/0.05 | long entries 0.53 | EV 0.66 | KL 0.0012 clip 0.003 | liq 0
+upd  730   7.0s | H 0.053 | hold     4.5h | MI 0.6099 | side S/F/L 0.14/0.79/0.07 | long entries 0.12 | EV 0.61 | KL 0.0043 clip 0.011 | liq 0
+upd  740   6.9s | H 0.031 | hold     8.9h | MI 0.4279 | side S/F/L 0.05/0.87/0.07 | long entries 0.50 | EV 0.47 | KL 0.0014 clip 0.004 | liq 0
+upd  750   7.6s | H 0.026 | hold     9.2h | MI 0.5197 | side S/F/L 0.11/0.83/0.05 | long entries 0.37 | EV 0.42 | KL 0.0015 clip 0.005 | liq 0
+upd  760   7.9s | H 0.027 | hold     8.3h | MI 0.4381 | side S/F/L 0.07/0.87/0.06 | long entries 0.21 | EV 0.68 | KL 0.0027 clip 0.009 | liq 0
+upd  770   6.3s | H 0.009 | hold    39.7h | MI 0.2209 | side S/F/L 0.03/0.95/0.02 | long entries 0.57 | EV 0.97 | KL 0.0002 clip 0.001 | liq 0
+upd  780   6.0s | H 0.028 | hold     8.5h | MI 0.5921 | side S/F/L 0.08/0.80/0.12 | long entries 0.53 | EV 0.40 | KL 0.0010 clip 0.005 | liq 0
+upd  790   5.7s | H 0.015 | hold    14.0h | MI 0.5385 | side S/F/L 0.15/0.82/0.03 | long entries 0.18 | EV 0.83 | KL 0.0005 clip 0.003 | liq 0
+upd  800   5.7s | H 0.014 | hold    10.1h | MI 0.2262 | side S/F/L 0.05/0.94/0.01 | long entries 0.21 | EV 0.76 | KL 0.0037 clip 0.005 | liq 0
+  VALIDATION @800: log return +0.1642 [+0.1165, +0.2119] | orders 518 | hold 1.6h | long up/down 0.02/0.01 | short up/down 0.07/0.16 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  810   6.3s | H 0.032 | hold     7.1h | MI 0.5380 | side S/F/L 0.09/0.83/0.08 | long entries 0.22 | EV 0.79 | KL 0.0026 clip 0.007 | liq 0
+upd  820   6.5s | H 0.030 | hold    10.1h | MI 0.4776 | side S/F/L 0.10/0.85/0.05 | long entries 0.15 | EV 0.67 | KL 0.0010 clip 0.005 | liq 0
+upd  830   5.6s | H 0.021 | hold     8.1h | MI 0.3185 | side S/F/L 0.01/0.92/0.07 | long entries 0.56 | EV 0.71 | KL 0.0007 clip 0.005 | liq 0
+upd  840  10.1s | H 0.030 | hold     9.3h | MI 0.6455 | side S/F/L 0.07/0.77/0.16 | long entries 0.21 | EV 0.87 | KL 0.0007 clip 0.003 | liq 0
+upd  850   6.3s | H 0.042 | hold     6.5h | MI 0.7669 | side S/F/L 0.20/0.70/0.10 | long entries 0.13 | EV 0.81 | KL 0.0007 clip 0.003 | liq 0
+upd  860   6.6s | H 0.029 | hold     9.5h | MI 0.7213 | side S/F/L 0.15/0.74/0.11 | long entries 0.33 | EV 0.79 | KL 0.0005 clip 0.002 | liq 0
+upd  870   6.1s | H 0.034 | hold     7.3h | MI 0.5275 | side S/F/L 0.11/0.83/0.06 | long entries 0.32 | EV 0.55 | KL 0.0013 clip 0.005 | liq 0
+upd  880   5.9s | H 0.029 | hold     9.8h | MI 0.9526 | side S/F/L 0.15/0.53/0.32 | long entries 0.65 | EV 0.51 | KL 0.0006 clip 0.003 | liq 0
+upd  890   6.7s | H 0.035 | hold     6.8h | MI 0.5772 | side S/F/L 0.12/0.82/0.07 | long entries 0.33 | EV 0.61 | KL 0.0005 clip 0.003 | liq 0
+upd  900   5.8s | H 0.037 | hold     7.2h | MI 0.7048 | side S/F/L 0.16/0.75/0.10 | long entries 0.22 | EV 0.49 | KL 0.0004 clip 0.003 | liq 0
+  VALIDATION @900: log return +0.3343 [+0.3328, +0.3359] | orders 852 | hold 2.4h | long up/down 0.13/0.04 | short up/down 0.09/0.15 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+upd  910   5.9s | H 0.024 | hold    11.6h | MI 0.5302 | side S/F/L 0.07/0.84/0.09 | long entries 0.38 | EV 0.70 | KL 0.0004 clip 0.002 | liq 0
+upd  920   6.5s | H 0.031 | hold     8.1h | MI 0.6865 | side S/F/L 0.17/0.75/0.08 | long entries 0.19 | EV 0.66 | KL 0.0004 clip 0.002 | liq 0
+upd  930  10.5s | H 0.025 | hold    11.3h | MI 0.5998 | side S/F/L 0.13/0.80/0.07 | long entries 0.20 | EV 0.64 | KL 0.0007 clip 0.003 | liq 0
+upd  940  10.3s | H 0.022 | hold    12.4h | MI 0.6213 | side S/F/L 0.11/0.80/0.10 | long entries 0.37 | EV 0.66 | KL 0.0002 clip 0.001 | liq 0
+upd  950   7.8s | H 0.039 | hold     6.7h | MI 0.6477 | side S/F/L 0.29/0.69/0.02 | long entries 0.06 | EV 0.71 | KL 0.0002 clip 0.001 | liq 0
+upd  960   9.0s | H 0.028 | hold     7.8h | MI 0.6821 | side S/F/L 0.19/0.74/0.07 | long entries 0.25 | EV 0.54 | KL 0.0013 clip 0.002 | liq 0
+upd  970   6.8s | H 0.028 | hold     9.7h | MI 0.8573 | side S/F/L 0.32/0.59/0.09 | long entries 0.12 | EV 0.80 | KL 0.0002 clip 0.001 | liq 0
+upd  980   8.0s | H 0.047 | hold     6.1h | MI 0.7837 | side S/F/L 0.31/0.62/0.06 | long entries 0.10 | EV 0.58 | KL 0.0002 clip 0.001 | liq 0
+upd  990   6.0s | H 0.015 | hold    19.5h | MI 0.4260 | side S/F/L 0.09/0.88/0.03 | long entries 0.33 | EV 0.51 | KL 0.0000 clip 0.000 | liq 0
+upd 1000   5.9s | H 0.024 | hold    11.5h | MI 0.8652 | side S/F/L 0.21/0.65/0.15 | long entries 0.19 | EV 0.21 | KL 0.0000 clip 0.000 | liq 0
+  VALIDATION @1000: log return +0.4016 [+0.3670, +0.4362] | orders 845 | hold 2.5h | long up/down 0.17/0.04 | short up/down 0.08/0.15 | oracle +5.452 rule +3.214 long -4.978 short +1.467
+{
+  "mode": "latent",
+  "reward": "sharpe",
+  "decision_bars": 1,
+  "seed": 29,
+  "last_three_mean_log_return": 0.30005576077727253,
+  "criterion": 1.4669883824199408,
+  "beats_best_constant": false,
+  "regime_conditioned": true,
+  "passed": false,
+  "oracle": 5.452330329914567,
+  "trend_rule": 3.214108063112309,
+  "share_of_oracle": 0.0550325718768353,
+  "share_of_trend_rule": 0.09335584083838186,
+  "last_three_conditioning": {
+    "long_when_up": 0.10694896851248643,
+    "long_when_down": 0.026857045724970257,
+    "short_when_up": 0.07923650509452007,
+    "short_when_down": 0.15036121026687066
+  },
+  "hours": 2.2909773155441506
+}

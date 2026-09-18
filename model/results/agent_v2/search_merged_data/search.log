@@ -1,0 +1,49 @@
+cell gamma=0.9583 lambda=0.90 finished with 0
+cell gamma=0.9583 lambda=0.9792 finished with 0
+cell gamma=0.9583 lambda=0.95 finished with 0
+cell gamma=0.9792 lambda=0.90 finished with 0
+cell gamma=0.9792 lambda=0.9792 finished with 0
+cell gamma=0.9792 lambda=0.95 finished with 0
+cell gamma=0.9900 lambda=0.90 finished with 0
+cell gamma=0.9900 lambda=0.9792 finished with 0
+cell gamma=0.9900 lambda=0.95 finished with 0
+  gamma  lambda  window h       IQM      mean   pos  orders/q  hold h  long short
+ 0.9583  0.9000       7.3   -0.0381   -0.0799  0.40        29    27.2  0.51  0.12
+ 0.9583  0.9500      11.2   -0.1112   -0.1583  0.31        32    44.0  0.70  0.15
+ 0.9583  0.9792      16.2   -0.0474   -0.0887  0.40        36    24.8  0.46  0.08
+ 0.9792  0.9000       8.4   -0.1154   -0.1374  0.29        46    35.5  0.56  0.25
+ 0.9792  0.9500      14.3   -0.0993   -0.1230  0.23        35    45.8  0.62  0.18
+ 0.9792  0.9792      24.3   +0.0005   +0.0116  0.52        38    19.0  0.40  0.23
+ 0.9900  0.9000       9.2   -0.0562   -0.1177  0.38        19    54.5  0.83  0.10
+ 0.9900  0.9500      16.8   -0.1459   -0.2562  0.19        17    56.5  0.62  0.19
+ 0.9900  0.9792      32.7   -0.1058   -0.1709  0.29        48    32.5  0.70  0.26
+{
+ "gamma": {
+  "level_means": {
+   "0.9583": -0.06556149083389813,
+   "0.9792": -0.0713931227433086,
+   "0.9900": -0.10259447555457062
+  },
+  "best": "0.9583",
+  "gain_over_v1": 0.005831631909410467,
+  "standard_error_of_paired_quarter_difference": 0.05843141072755376,
+  "replaces_v1": false,
+  "chosen": "0.9792"
+ },
+ "lambda": {
+  "level_means": {
+   "0.90": -0.06987636123157102,
+   "0.95": -0.11878815801082819,
+   "0.9792": -0.05088456988937814
+  },
+  "best": "0.9792",
+  "gain_over_v1": 0.0,
+  "standard_error_of_paired_quarter_difference": 0.0,
+  "replaces_v1": false,
+  "chosen": "0.9792"
+ },
+ "chosen_per_hour": {
+  "gamma": 0.9792,
+  "lambda": 0.9792
+ }
+}

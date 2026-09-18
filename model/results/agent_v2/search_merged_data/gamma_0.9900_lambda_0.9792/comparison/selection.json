@@ -1,0 +1,206 @@
+{
+  "selected": {
+    "checkpoint": 6,
+    "passes": 30.005507278689464,
+    "updates": {
+      "2022_11": 1284,
+      "2023_11": 1541
+    },
+    "iqm_quarter_log_return": -0.07175779475907854,
+    "median_quarter_log_return": -0.04372436505955778,
+    "mean_quarter_log_return": -0.17643485527105765,
+    "positive_quarter_share": 0.125,
+    "liquidations": 0,
+    "median_long_entry_share": 0.7083333333333333,
+    "mean_long_share": 0.7209962855682963,
+    "mean_short_share": 0.25325032128700603
+  },
+  "checkpoints": [
+    {
+      "checkpoint": 1,
+      "passes": 5.0025406801264225,
+      "updates": {
+        "2022_11": 214,
+        "2023_11": 257
+      },
+      "iqm_quarter_log_return": -0.07301614774793601,
+      "median_quarter_log_return": -0.06277735340219937,
+      "mean_quarter_log_return": -0.045412151901712404,
+      "positive_quarter_share": 0.5,
+      "liquidations": 0,
+      "median_long_entry_share": 0.78125,
+      "mean_long_share": 0.6628456738511086,
+      "mean_short_share": 0.2960590498973651
+    },
+    {
+      "checkpoint": 2,
+      "passes": 10.005081360252845,
+      "updates": {
+        "2022_11": 428,
+        "2023_11": 514
+      },
+      "iqm_quarter_log_return": -0.12820008051581833,
+      "median_quarter_log_return": -0.12310716864339871,
+      "mean_quarter_log_return": -0.19727569906903736,
+      "positive_quarter_share": 0.25,
+      "liquidations": 0,
+      "median_long_entry_share": 0.7,
+      "mean_long_share": 0.6848220783343066,
+      "mean_short_share": 0.254680725876378
+    },
+    {
+      "checkpoint": 3,
+      "passes": 14.997885238310197,
+      "updates": {
+        "2022_11": 642,
+        "2023_11": 770
+      },
+      "iqm_quarter_log_return": -0.09603180498915057,
+      "median_quarter_log_return": -0.07353156064751745,
+      "mean_quarter_log_return": -0.14095301495059137,
+      "positive_quarter_share": 0.25,
+      "liquidations": 0,
+      "median_long_entry_share": 0.7444444444444445,
+      "mean_long_share": 0.6670953304445153,
+      "mean_short_share": 0.25795992704960097
+    },
+    {
+      "checkpoint": 4,
+      "passes": 20.00042591843662,
+      "updates": {
+        "2022_11": 856,
+        "2023_11": 1027
+      },
+      "iqm_quarter_log_return": -0.17783410200840974,
+      "median_quarter_log_return": -0.16779879414488036,
+      "mean_quarter_log_return": -0.24492146254262728,
+      "positive_quarter_share": 0.25,
+      "liquidations": 0,
+      "median_long_entry_share": 1.0,
+      "mean_long_share": 0.7379432074065226,
+      "mean_short_share": 0.23190350938312893
+    },
+    {
+      "checkpoint": 5,
+      "passes": 25.00296659856304,
+      "updates": {
+        "2022_11": 1070,
+        "2023_11": 1284
+      },
+      "iqm_quarter_log_return": -0.07273814031365909,
+      "median_quarter_log_return": -0.032957282117878996,
+      "mean_quarter_log_return": -0.22048084073689375,
+      "positive_quarter_share": 0.375,
+      "liquidations": 0,
+      "median_long_entry_share": 0.5,
+      "mean_long_share": 0.71981674474881,
+      "mean_short_share": 0.253089636309745
+    },
+    {
+      "checkpoint": 6,
+      "passes": 30.005507278689464,
+      "updates": {
+        "2022_11": 1284,
+        "2023_11": 1541
+      },
+      "iqm_quarter_log_return": -0.07175779475907854,
+      "median_quarter_log_return": -0.04372436505955778,
+      "mean_quarter_log_return": -0.17643485527105765,
+      "positive_quarter_share": 0.125,
+      "liquidations": 0,
+      "median_long_entry_share": 0.7083333333333333,
+      "mean_long_share": 0.7209962855682963,
+      "mean_short_share": 0.25325032128700603
+    }
+  ],
+  "selected_interval": {
+    "point": -0.07175779475907854,
+    "lower": -0.07175779475907854,
+    "upper": -0.07175779475907854,
+    "confidence": 0.95,
+    "replications": 50000,
+    "runs": 1,
+    "tasks": 8
+  },
+  "probability_of_backtest_overfitting": {
+    "probability": 0.5857142857142857,
+    "combinations": 70,
+    "median_logit": -0.2876820724517809,
+    "slices": 8,
+    "trials": 6
+  },
+  "passive": {
+    "2022": {
+      "long": [
+        -0.027857748095100235,
+        -0.844378626992249,
+        -0.03970360490030539,
+        -0.1700997963430953
+      ],
+      "short": [
+        0.025934084827507774,
+        0.4504229500468543,
+        0.03703153534272835,
+        0.1442902600217571
+      ],
+      "flat": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "momentum_1w": [
+        0.08285759708780077,
+        0.2524229932823344,
+        -0.48197428131273556,
+        -0.24146186003671943
+      ],
+      "momentum_26w": [
+        -0.49839468848885593,
+        0.4698637105026652,
+        0.03703153534272835,
+        0.1442902600217571
+      ]
+    },
+    "2023": {
+      "long": [
+        0.525957886610182,
+        0.05299107772092987,
+        -0.1360650426542302,
+        0.421685867000099
+      ],
+      "short": [
+        -1.1818163874724528,
+        -0.05722690268077964,
+        0.11868408529281785,
+        -0.7459775386063922
+      ],
+      "flat": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "momentum_1w": [
+        0.18722995281055665,
+        -0.12410456568194422,
+        -0.2358833388580288,
+        0.258129059731888
+      ],
+      "momentum_26w": [
+        -0.5868950854815679,
+        0.05299107772092987,
+        -0.16394598874071303,
+        0.2903919544404731
+      ]
+    }
+  },
+  "test_locked": true,
+  "test_performance_accessed": false,
+  "break_even_slippage": {
+    "paths": 8,
+    "iqm_bp": -18.36373849590222,
+    "median_bp": -7.68021134492408,
+    "share_above_zero": 0.125
+  }
+}

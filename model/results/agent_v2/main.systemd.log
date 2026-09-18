@@ -1,0 +1,21 @@
+{"event": "started", "job": [2024, 11], "pid": 226904, "at": "2026-09-15T15:55:31.546703+00:00"}
+{"event": "started", "job": [2025, 11], "pid": 226905, "at": "2026-09-15T15:55:31.547554+00:00"}
+{"event": "started", "job": [2024, 29], "pid": 226906, "at": "2026-09-15T15:55:31.548264+00:00"}
+{"event": "started", "job": [2025, 29], "pid": 226907, "at": "2026-09-15T15:55:31.548941+00:00"}
+{"event": "started", "job": [2024, 47], "pid": 226908, "at": "2026-09-15T15:55:31.549742+00:00"}
+{"event": "started", "job": [2025, 47], "pid": 226909, "at": "2026-09-15T15:55:31.550569+00:00"}
+{"event": "finished", "job": [2024, 47], "exit_code": 0, "at": "2026-09-15T17:58:47.638942+00:00", "attempt": 1}
+{"event": "started", "job": [2024, 61], "pid": 672524, "at": "2026-09-15T17:58:57.658674+00:00"}
+{"event": "finished", "job": [2024, 29], "exit_code": 0, "at": "2026-09-15T17:59:17.674446+00:00", "attempt": 1}
+{"event": "started", "job": [2025, 61], "pid": 674010, "at": "2026-09-15T17:59:27.687607+00:00"}
+{"event": "finished", "job": [2024, 11], "exit_code": 0, "at": "2026-09-15T18:01:17.842078+00:00", "attempt": 1}
+{"event": "started", "job": [2024, 83], "pid": 679891, "at": "2026-09-15T18:01:27.859042+00:00"}
+{"event": "finished", "job": [2025, 29], "exit_code": 0, "at": "2026-09-15T18:12:48.812570+00:00", "attempt": 1}
+{"event": "started", "job": [2025, 83], "pid": 726670, "at": "2026-09-15T18:12:58.826695+00:00"}
+{"event": "finished", "job": [2025, 47], "exit_code": 0, "at": "2026-09-15T18:13:08.838058+00:00", "attempt": 1}
+{"event": "finished", "job": [2025, 11], "exit_code": 0, "at": "2026-09-15T18:15:49.027988+00:00", "attempt": 1}
+{"event": "finished", "job": [2024, 61], "exit_code": 0, "at": "2026-09-15T19:52:25.853951+00:00", "attempt": 1}
+{"event": "finished", "job": [2024, 83], "exit_code": 0, "at": "2026-09-15T19:53:55.960344+00:00", "attempt": 1}
+{"event": "finished", "job": [2025, 61], "exit_code": 0, "at": "2026-09-15T20:05:36.726960+00:00", "attempt": 1}
+{"event": "finished", "job": [2025, 83], "exit_code": 0, "at": "2026-09-15T20:17:37.543991+00:00", "attempt": 1}
+scripts/run_agent.sh: line 24: --validation-passes: command not found

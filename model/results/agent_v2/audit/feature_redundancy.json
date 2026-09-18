@@ -1,0 +1,363 @@
+{
+  "span": [
+    "2017-01-01 00:00:00+00:00",
+    "2024-01-01 00:00:00+00:00"
+  ],
+  "hours": 61344,
+  "threshold": 0.8,
+  "decisions": [
+    {
+      "feature": "return_1h",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.0
+    },
+    {
+      "feature": "return_1d",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.16
+    },
+    {
+      "feature": "return_1w",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.347
+    },
+    {
+      "feature": "return_4w",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.529
+    },
+    {
+      "feature": "return_13w",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.565
+    },
+    {
+      "feature": "return_26w",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.683
+    },
+    {
+      "feature": "return_3h",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.466
+    },
+    {
+      "feature": "return_3d",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.641
+    },
+    {
+      "feature": "return_8w",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.766
+    },
+    {
+      "feature": "volatility_level",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.257
+    },
+    {
+      "feature": "volatility_regime",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.135
+    },
+    {
+      "feature": "volume_regime",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.537
+    },
+    {
+      "feature": "funding_rate",
+      "kept": true,
+      "max_abs_rho_with_kept": 0.384
+    },
+    {
+      "feature": "drawdown_4w",
+      "kept": false,
+      "reason": "redundant",
+      "with": {
+        "return_4w": 0.82
+      }
+    },
+    {
+      "feature": "trend_efficiency_1w",
+      "kept": false,
+      "reason": "redundant",
+      "with": {
+        "return_1w": 0.985
+      }
+    }
+  ],
+  "selected": [
+    "return_1h",
+    "return_1d",
+    "return_1w",
+    "return_4w",
+    "return_13w",
+    "return_26w",
+    "return_3h",
+    "return_3d",
+    "return_8w",
+    "volatility_level",
+    "volatility_regime",
+    "volume_regime",
+    "funding_rate"
+  ],
+  "spearman": {
+    "return_1h": {
+      "return_1h": 1.0,
+      "return_1d": 0.16,
+      "return_1w": 0.071,
+      "return_4w": 0.047,
+      "return_13w": 0.032,
+      "return_26w": 0.022,
+      "return_3h": 0.466,
+      "return_3d": 0.099,
+      "return_8w": 0.037,
+      "volatility_level": 0.001,
+      "volatility_regime": 0.009,
+      "volume_regime": 0.014,
+      "funding_rate": 0.008,
+      "drawdown_4w": 0.08,
+      "trend_efficiency_1w": 0.073
+    },
+    "return_1d": {
+      "return_1h": 0.16,
+      "return_1d": 1.0,
+      "return_1w": 0.347,
+      "return_4w": 0.21,
+      "return_13w": 0.14,
+      "return_26w": 0.088,
+      "return_3h": 0.298,
+      "return_3d": 0.532,
+      "return_8w": 0.156,
+      "volatility_level": -0.008,
+      "volatility_regime": -0.049,
+      "volume_regime": 0.03,
+      "funding_rate": 0.074,
+      "drawdown_4w": 0.344,
+      "trend_efficiency_1w": 0.361
+    },
+    "return_1w": {
+      "return_1h": 0.071,
+      "return_1d": 0.347,
+      "return_1w": 1.0,
+      "return_4w": 0.529,
+      "return_13w": 0.321,
+      "return_26w": 0.191,
+      "return_3h": 0.119,
+      "return_3d": 0.641,
+      "return_8w": 0.368,
+      "volatility_level": -0.04,
+      "volatility_regime": -0.023,
+      "volume_regime": 0.101,
+      "funding_rate": 0.334,
+      "drawdown_4w": 0.689,
+      "trend_efficiency_1w": 0.985
+    },
+    "return_4w": {
+      "return_1h": 0.047,
+      "return_1d": 0.21,
+      "return_1w": 0.529,
+      "return_4w": 1.0,
+      "return_13w": 0.565,
+      "return_26w": 0.331,
+      "return_3h": 0.079,
+      "return_3d": 0.361,
+      "return_8w": 0.687,
+      "volatility_level": -0.068,
+      "volatility_regime": 0.135,
+      "volume_regime": 0.37,
+      "funding_rate": 0.384,
+      "drawdown_4w": 0.82,
+      "trend_efficiency_1w": 0.501
+    },
+    "return_13w": {
+      "return_1h": 0.032,
+      "return_1d": 0.14,
+      "return_1w": 0.321,
+      "return_4w": 0.565,
+      "return_13w": 1.0,
+      "return_26w": 0.683,
+      "return_3h": 0.054,
+      "return_3d": 0.227,
+      "return_8w": 0.766,
+      "volatility_level": 0.079,
+      "volatility_regime": 0.103,
+      "volume_regime": 0.186,
+      "funding_rate": 0.369,
+      "drawdown_4w": 0.509,
+      "trend_efficiency_1w": 0.314
+    },
+    "return_26w": {
+      "return_1h": 0.022,
+      "return_1d": 0.088,
+      "return_1w": 0.191,
+      "return_4w": 0.331,
+      "return_13w": 0.683,
+      "return_26w": 1.0,
+      "return_3h": 0.037,
+      "return_3d": 0.136,
+      "return_8w": 0.471,
+      "volatility_level": 0.257,
+      "volatility_regime": 0.092,
+      "volume_regime": 0.153,
+      "funding_rate": 0.321,
+      "drawdown_4w": 0.322,
+      "trend_efficiency_1w": 0.187
+    },
+    "return_3h": {
+      "return_1h": 0.466,
+      "return_1d": 0.298,
+      "return_1w": 0.119,
+      "return_4w": 0.079,
+      "return_13w": 0.054,
+      "return_26w": 0.037,
+      "return_3h": 1.0,
+      "return_3d": 0.173,
+      "return_8w": 0.062,
+      "volatility_level": -0.0,
+      "volatility_regime": 0.007,
+      "volume_regime": 0.02,
+      "funding_rate": 0.004,
+      "drawdown_4w": 0.133,
+      "trend_efficiency_1w": 0.123
+    },
+    "return_3d": {
+      "return_1h": 0.099,
+      "return_1d": 0.532,
+      "return_1w": 0.641,
+      "return_4w": 0.361,
+      "return_13w": 0.227,
+      "return_26w": 0.136,
+      "return_3h": 0.173,
+      "return_3d": 1.0,
+      "return_8w": 0.258,
+      "volatility_level": -0.022,
+      "volatility_regime": -0.048,
+      "volume_regime": 0.044,
+      "funding_rate": 0.247,
+      "drawdown_4w": 0.534,
+      "trend_efficiency_1w": 0.651
+    },
+    "return_8w": {
+      "return_1h": 0.037,
+      "return_1d": 0.156,
+      "return_1w": 0.368,
+      "return_4w": 0.687,
+      "return_13w": 0.766,
+      "return_26w": 0.471,
+      "return_3h": 0.062,
+      "return_3d": 0.258,
+      "return_8w": 1.0,
+      "volatility_level": -0.006,
+      "volatility_regime": 0.126,
+      "volume_regime": 0.279,
+      "funding_rate": 0.367,
+      "drawdown_4w": 0.577,
+      "trend_efficiency_1w": 0.352
+    },
+    "volatility_level": {
+      "return_1h": 0.001,
+      "return_1d": -0.008,
+      "return_1w": -0.04,
+      "return_4w": -0.068,
+      "return_13w": 0.079,
+      "return_26w": 0.257,
+      "return_3h": -0.0,
+      "return_3d": -0.022,
+      "return_8w": -0.006,
+      "volatility_level": 1.0,
+      "volatility_regime": -0.071,
+      "volume_regime": 0.049,
+      "funding_rate": -0.017,
+      "drawdown_4w": -0.001,
+      "trend_efficiency_1w": -0.02
+    },
+    "volatility_regime": {
+      "return_1h": 0.009,
+      "return_1d": -0.049,
+      "return_1w": -0.023,
+      "return_4w": 0.135,
+      "return_13w": 0.103,
+      "return_26w": 0.092,
+      "return_3h": 0.007,
+      "return_3d": -0.048,
+      "return_8w": 0.126,
+      "volatility_level": -0.071,
+      "volatility_regime": 1.0,
+      "volume_regime": 0.537,
+      "funding_rate": 0.014,
+      "drawdown_4w": -0.031,
+      "trend_efficiency_1w": -0.041
+    },
+    "volume_regime": {
+      "return_1h": 0.014,
+      "return_1d": 0.03,
+      "return_1w": 0.101,
+      "return_4w": 0.37,
+      "return_13w": 0.186,
+      "return_26w": 0.153,
+      "return_3h": 0.02,
+      "return_3d": 0.044,
+      "return_8w": 0.279,
+      "volatility_level": 0.049,
+      "volatility_regime": 0.537,
+      "volume_regime": 1.0,
+      "funding_rate": 0.086,
+      "drawdown_4w": 0.18,
+      "trend_efficiency_1w": 0.076
+    },
+    "funding_rate": {
+      "return_1h": 0.008,
+      "return_1d": 0.074,
+      "return_1w": 0.334,
+      "return_4w": 0.384,
+      "return_13w": 0.369,
+      "return_26w": 0.321,
+      "return_3h": 0.004,
+      "return_3d": 0.247,
+      "return_8w": 0.367,
+      "volatility_level": -0.017,
+      "volatility_regime": 0.014,
+      "volume_regime": 0.086,
+      "funding_rate": 1.0,
+      "drawdown_4w": 0.371,
+      "trend_efficiency_1w": 0.32
+    },
+    "drawdown_4w": {
+      "return_1h": 0.08,
+      "return_1d": 0.344,
+      "return_1w": 0.689,
+      "return_4w": 0.82,
+      "return_13w": 0.509,
+      "return_26w": 0.322,
+      "return_3h": 0.133,
+      "return_3d": 0.534,
+      "return_8w": 0.577,
+      "volatility_level": -0.001,
+      "volatility_regime": -0.031,
+      "volume_regime": 0.18,
+      "funding_rate": 0.371,
+      "drawdown_4w": 1.0,
+      "trend_efficiency_1w": 0.681
+    },
+    "trend_efficiency_1w": {
+      "return_1h": 0.073,
+      "return_1d": 0.361,
+      "return_1w": 0.985,
+      "return_4w": 0.501,
+      "return_13w": 0.314,
+      "return_26w": 0.187,
+      "return_3h": 0.123,
+      "return_3d": 0.651,
+      "return_8w": 0.352,
+      "volatility_level": -0.02,
+      "volatility_regime": -0.041,
+      "volume_regime": 0.076,
+      "funding_rate": 0.32,
+      "drawdown_4w": 0.681,
+      "trend_efficiency_1w": 1.0
+    }
+  }
+}
