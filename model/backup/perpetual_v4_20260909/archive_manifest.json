@@ -1,0 +1,14 @@
+{
+  "archived_at": "2026-09-09",
+  "reason": "superseded by the self-contained agent package, which vendors the ledger, causal features, GAE and evaluation it needs",
+  "contents": [
+    "src/perpetual",
+    "tests/test_perpetual.py",
+    "v4 scripts"
+  ],
+  "results_location": "backup/perpetual_v4_v5_before_v6_20260908/results/perpetual_v4",
+  "source_sha256": "bab9fc914a17a987906136ec1ce5a93ed37c0b0400031e66107fb84bdb636033",
+  "note": "the agent builds its own market cache from data/bitmex_xbtusd_1m_2016_2026_08_01 into results/agent/cache and no longer reads results/perpetual_v4/cache",
+  "test_locked": true,
+  "file_count": 13
+}

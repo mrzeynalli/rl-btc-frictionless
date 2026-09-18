@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 380" width="940" height="380" font-family="ui-sans-serif, system-ui, sans-serif">
+<rect width="940" height="380" fill="#ffffff"/>
+<text x="60" y="26" font-size="15" font-weight="600" fill="#444444">How long positions were held - zero cost arm</text>
+<text x="60" y="44" font-size="11.5" fill="#666666">28169 round trips pooled over 10 seeds;  median 1 h, 8% lasted 6 h or more</text>
+<line x1="70" y1="322.0" x2="710" y2="322.0" stroke="#dddddd" stroke-width="1"/>
+<text x="62" y="326.0" font-size="11" text-anchor="end" fill="#444444">0%</text>
+<line x1="70" y1="257.0" x2="710" y2="257.0" stroke="#dddddd" stroke-width="1"/>
+<text x="62" y="261.0" font-size="11" text-anchor="end" fill="#444444">15%</text>
+<line x1="70" y1="192.0" x2="710" y2="192.0" stroke="#dddddd" stroke-width="1"/>
+<text x="62" y="196.0" font-size="11" text-anchor="end" fill="#444444">30%</text>
+<line x1="70" y1="127.0" x2="710" y2="127.0" stroke="#dddddd" stroke-width="1"/>
+<text x="62" y="131.0" font-size="11" text-anchor="end" fill="#444444">45%</text>
+<line x1="70" y1="62.0" x2="710" y2="62.0" stroke="#dddddd" stroke-width="1"/>
+<text x="62" y="66.0" font-size="11" text-anchor="end" fill="#444444">60%</text>
+<rect x="73.0" y="95.9" width="39.7" height="226.1" fill="#a34b2a" fill-opacity="0.9"/>
+<text x="92.9" y="338" font-size="9.5" text-anchor="middle" fill="#444444">1</text>
+<rect x="118.7" y="234.8" width="39.7" height="87.2" fill="#a34b2a" fill-opacity="0.9"/>
+<text x="138.6" y="338" font-size="9.5" text-anchor="middle" fill="#444444">2</text>
+<rect x="164.4" y="277.7" width="39.7" height="44.3" fill="#a34b2a" fill-opacity="0.9"/>
+<text x="184.3" y="338" font-size="9.5" text-anchor="middle" fill="#444444">3</text>
+<rect x="210.1" y="282.0" width="39.7" height="40.0" fill="#a34b2a" fill-opacity="0.9"/>
+<text x="230.0" y="338" font-size="9.5" text-anchor="middle" fill="#444444">4-5</text>
+<rect x="255.9" y="303.9" width="39.7" height="18.1" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="275.7" y="338" font-size="9.5" text-anchor="middle" fill="#444444">6-7</text>
+<rect x="301.6" y="314.4" width="39.7" height="7.6" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="321.4" y="338" font-size="9.5" text-anchor="middle" fill="#444444">8-11</text>
+<rect x="347.3" y="315.6" width="39.7" height="6.4" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="367.1" y="338" font-size="9.5" text-anchor="middle" fill="#444444">12-17</text>
+<rect x="393.0" y="319.9" width="39.7" height="2.1" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="412.9" y="338" font-size="9.5" text-anchor="middle" fill="#444444">18-23</text>
+<rect x="438.7" y="320.8" width="39.7" height="1.2" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="458.6" y="338" font-size="9.5" text-anchor="middle" fill="#444444">24-35</text>
+<rect x="484.4" y="321.3" width="39.7" height="0.7" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="504.3" y="338" font-size="9.5" text-anchor="middle" fill="#444444">36-47</text>
+<rect x="530.1" y="321.6" width="39.7" height="0.4" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="550.0" y="338" font-size="9.5" text-anchor="middle" fill="#444444">48-71</text>
+<rect x="575.9" y="321.9" width="39.7" height="0.1" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="595.7" y="338" font-size="9.5" text-anchor="middle" fill="#444444">72-119</text>
+<rect x="621.6" y="322.0" width="39.7" height="0.0" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="641.4" y="338" font-size="9.5" text-anchor="middle" fill="#444444">120-239</text>
+<rect x="667.3" y="322.0" width="39.7" height="0.0" fill="#1f4e79" fill-opacity="0.9"/>
+<text x="687.1" y="338" font-size="9.5" text-anchor="middle" fill="#444444">240+</text>
+<text x="390" y="356" font-size="11" text-anchor="middle" fill="#444444">holding period, hours</text>
+<line x1="730" y1="76" x2="754" y2="76" stroke="#a34b2a" stroke-width="3"/>
+<text x="760" y="80" font-size="11" fill="#444444">below the 6 h break-even horizon</text>
+<line x1="730" y1="94" x2="754" y2="94" stroke="#1f4e79" stroke-width="3"/>
+<text x="760" y="98" font-size="11" fill="#444444">6 h or longer</text>
+</svg>

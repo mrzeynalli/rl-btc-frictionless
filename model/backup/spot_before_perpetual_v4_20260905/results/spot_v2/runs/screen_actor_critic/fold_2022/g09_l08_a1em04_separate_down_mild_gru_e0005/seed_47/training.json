@@ -1,0 +1,423 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-09-03T22:58:12.678564+00:00",
+  "specification": {
+    "split": "fold_2022",
+    "config_id": "g09_l08_a1em04_separate_down_mild_gru_e0005",
+    "seed": 47,
+    "updates": 75,
+    "evaluation_interval": 75,
+    "encoder_type": "gru",
+    "critic_mode": "separate",
+    "reward_mode": "accumulated_downside",
+    "downside_alpha": 0.25,
+    "downside_beta": 5.0,
+    "episode_hour_options": [
+      720,
+      1440,
+      2160,
+      2880,
+      3600
+    ],
+    "market": "BTCUSDT Spot",
+    "actions": [
+      "BUY",
+      "SELL",
+      "HOLD"
+    ],
+    "funding": false,
+    "ppo": {
+      "environments": 32,
+      "rollout_steps": 128,
+      "minibatches": 2,
+      "actor_epochs": 4,
+      "extra_critic_epochs": 4,
+      "gamma": 0.9,
+      "gae_lambda": 0.8,
+      "clip_range": 0.2,
+      "value_coefficient": 1.0,
+      "entropy_coefficient": 0.02,
+      "entropy_final_coefficient": 0.005,
+      "entropy_anneal_updates": 225,
+      "actor_learning_rate": 0.0001,
+      "critic_learning_rate": 0.0001,
+      "max_gradient_norm": 0.5,
+      "normalise_advantages": true,
+      "normalise_returns": true,
+      "burn_in_hours": 240,
+      "execution_kappa": 0.0,
+      "measure_gradient_conflict": true
+    }
+  },
+  "split": {
+    "name": "fold_2022",
+    "kind": "walk_forward",
+    "train_start_inclusive": "2017-08-17T04:00:00+00:00",
+    "train_end_exclusive": "2022-01-01T00:00:00+00:00",
+    "evaluation_start_inclusive": "2022-01-01T00:00:00+00:00",
+    "evaluation_end_exclusive": "2023-01-01T00:00:00+00:00",
+    "train_decisions": 31493,
+    "evaluation_decisions": 8760,
+    "evaluation_warmup_hours": 240,
+    "normaliser": {
+      "fitted_on": {
+        "split": "fold_2022",
+        "start_inclusive": "2017-08-17T04:00:00+00:00",
+        "end_exclusive": "2022-01-01T00:00:00+00:00",
+        "decisions": 31493
+      },
+      "clip_sigma": 8.0,
+      "fast": {
+        "log_return_5m": {
+          "mean": 6.0009203227450724e-06,
+          "std": 0.00283893181543167
+        },
+        "log_high_low_range": {
+          "mean": 0.0032868583724733704,
+          "std": 0.003421412818224338
+        },
+        "log_quote_volume_change": {
+          "mean": 6.13311326511845e-05,
+          "std": 0.6885075344919449
+        },
+        "taker_buy_imbalance": {
+          "mean": 0.007385008538964336,
+          "std": 0.2712766084951164
+        }
+      },
+      "slow": {
+        "momentum_3h": {
+          "mean": 0.00022484861024259285,
+          "std": 0.01494256529392503
+        },
+        "momentum_5h": {
+          "mean": 0.0003755509771189414,
+          "std": 0.018943479146859732
+        },
+        "momentum_12h": {
+          "mean": 0.0008908615467037002,
+          "std": 0.028697084162604376
+        },
+        "momentum_1d": {
+          "mean": 0.0017608297100882141,
+          "std": 0.04166683579021028
+        },
+        "momentum_3d": {
+          "mean": 0.00468745900421578,
+          "std": 0.0699731921458197
+        },
+        "momentum_10d": {
+          "mean": 0.015216358347898624,
+          "std": 0.13257571851183586
+        },
+        "realised_volatility_6h": {
+          "mean": 0.01912507151339108,
+          "std": 0.014655410405406586
+        },
+        "realised_volatility_24h": {
+          "mean": 0.03997919743805523,
+          "std": 0.02706383483573082
+        },
+        "quote_volume_ratio_24h": {
+          "mean": -0.1157460728936679,
+          "std": 0.48637606806043376
+        },
+        "taker_buy_imbalance_1h": {
+          "mean": 0.002059202530738642,
+          "std": 0.1417450738929495
+        }
+      }
+    }
+  },
+  "market_audit": {
+    "market": "BTCUSDT Spot",
+    "funding_features": false,
+    "decisions_total": 71161,
+    "first_execution_utc": "2017-08-27T05:00:00+00:00",
+    "last_execution_utc": "2026-07-21T22:00:00+00:00",
+    "fast_feature_names": [
+      "log_return_5m",
+      "log_high_low_range",
+      "log_quote_volume_change",
+      "taker_buy_imbalance"
+    ],
+    "slow_feature_names": [
+      "momentum_3h",
+      "momentum_5h",
+      "momentum_12h",
+      "momentum_1d",
+      "momentum_3d",
+      "momentum_10d",
+      "realised_volatility_6h",
+      "realised_volatility_24h",
+      "quote_volume_ratio_24h",
+      "taker_buy_imbalance_1h"
+    ],
+    "position_is_separate_from_market_features": true,
+    "observation_bars_per_decision": 12,
+    "native_off_grid_bars_excluded": 241,
+    "canonical_missing_bars": 1944,
+    "decision_segments": 27,
+    "gap_policy": "drop feature windows touching gaps; reset recurrent and portfolio state",
+    "features_end_before_execution_price_starts": true,
+    "warmup_hours_required": 240
+  },
+  "model": {
+    "class": "MarketActorCritic",
+    "parameters": 10404,
+    "encoder_type": "gru",
+    "critic_mode": "separate",
+    "fast_input": [
+      12,
+      4
+    ],
+    "fast_hidden": 32,
+    "slow_market_features": 10,
+    "portfolio_critic_features": 7,
+    "actor_position_independent": true,
+    "actions": [
+      "BUY",
+      "SELL",
+      "HOLD"
+    ],
+    "funding": false
+  },
+  "validation_curve": [
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 8760,
+        "total_return": -0.34016185130403154,
+        "total_log_return": -0.41576070328380726,
+        "mean_hourly_log_return": -4.746126749815152e-05,
+        "annualised_return": -0.34016185130403154,
+        "annualised_volatility": 0.3928172232244413,
+        "annualised_downside_deviation": 0.2885511131365466,
+        "sharpe": -1.0584075206047088,
+        "max_drawdown": -0.4756646033781352,
+        "turnover_total": 165.0,
+        "turnover_per_hour": 0.018835616438356163,
+        "trades": 165,
+        "average_hours_between_trades": 53.09090909090909,
+        "mean_net_exposure": 0.4473744292237443,
+        "share_btc": 0.4473744292237443,
+        "share_cash": 0.5526255707762557,
+        "action_frequency": {
+          "BUY": 0.009474885844748858,
+          "SELL": 0.009360730593607305,
+          "HOLD": 0.9811643835616438
+        },
+        "price_pnl": -0.2726929470042827,
+        "cost_pnl": -0.06599999999999999,
+        "segment_resets": 1
+      },
+      "policy_diagnostics": {
+        "executable_entropy_mean": 0.45435086416945114,
+        "top_two_probability_margin_mean": 0.5793598155520442,
+        "raw_market_score_dispersion": 1.0195655822753906
+      },
+      "starting_position_diagnostics": {
+        "permanent_convergence_hours": 117,
+        "hourly_position_agreement": 0.9866438356164383,
+        "return_spread": 0.03237314749609865,
+        "by_start": {
+          "CASH": {
+            "name": "CASH",
+            "hours": 8760,
+            "total_return": -0.34016185130403154,
+            "total_log_return": -0.41576070328380726,
+            "mean_hourly_log_return": -4.746126749815152e-05,
+            "annualised_return": -0.34016185130403154,
+            "annualised_volatility": 0.3928172232244413,
+            "annualised_downside_deviation": 0.2885511131365466,
+            "sharpe": -1.0584075206047088,
+            "max_drawdown": -0.4756646033781352,
+            "turnover_total": 165.0,
+            "turnover_per_hour": 0.018835616438356163,
+            "trades": 165,
+            "average_hours_between_trades": 53.09090909090909,
+            "mean_net_exposure": 0.4473744292237443,
+            "share_btc": 0.4473744292237443,
+            "share_cash": 0.5526255707762557,
+            "action_frequency": {
+              "BUY": 0.009474885844748858,
+              "SELL": 0.009360730593607305,
+              "HOLD": 0.9811643835616438
+            },
+            "price_pnl": -0.2726929470042827,
+            "cost_pnl": -0.06599999999999999,
+            "segment_resets": 1,
+            "longest_uninterrupted_position_hours": 2271,
+            "position_transition_matrix": {
+              "rows": [
+                "CASH",
+                "BTC"
+              ],
+              "columns": [
+                "CASH",
+                "BTC"
+              ],
+              "counts": [
+                [
+                  4759,
+                  83
+                ],
+                [
+                  82,
+                  3836
+                ]
+              ]
+            },
+            "log_return_before_convergence": 0.0,
+            "log_return_after_convergence": -0.4157607032838073
+          },
+          "BTC": {
+            "name": "BTC",
+            "hours": 8760,
+            "total_return": -0.3725349988001302,
+            "total_log_return": -0.4660673845119674,
+            "mean_hourly_log_return": -5.320403932785016e-05,
+            "annualised_return": -0.3725349988001302,
+            "annualised_volatility": 0.39745295416616966,
+            "annualised_downside_deviation": 0.29271032898287574,
+            "sharpe": -1.1726353512448948,
+            "max_drawdown": -0.4756646033781353,
+            "turnover_total": 166.0,
+            "turnover_per_hour": 0.018949771689497717,
+            "trades": 166,
+            "average_hours_between_trades": 52.7710843373494,
+            "mean_net_exposure": 0.46073059360730595,
+            "share_btc": 0.46073059360730595,
+            "share_cash": 0.539269406392694,
+            "action_frequency": {
+              "BUY": 0.009474885844748858,
+              "SELL": 0.009474885844748858,
+              "HOLD": 0.9810502283105023
+            },
+            "price_pnl": -0.32077030103906445,
+            "cost_pnl": -0.06639999999999999,
+            "segment_resets": 1,
+            "longest_uninterrupted_position_hours": 2271,
+            "position_transition_matrix": {
+              "rows": [
+                "CASH",
+                "BTC"
+              ],
+              "columns": [
+                "CASH",
+                "BTC"
+              ],
+              "counts": [
+                [
+                  4641,
+                  83
+                ],
+                [
+                  83,
+                  3953
+                ]
+              ]
+            },
+            "log_return_before_convergence": -0.04990660120682042,
+            "log_return_after_convergence": -0.416160783305147
+          }
+        }
+      },
+      "update": 75,
+      "training": {
+        "explained_variance_pre_update": -0.013310438923541223,
+        "explained_variance_post_update": -0.009723394333884139,
+        "critic_prediction_std_post": 0.06925449520349503,
+        "entropy": 0.37809066101908684,
+        "entropy_coefficient": 0.015044642857142857,
+        "turnover_per_step": 0.149658203125,
+        "downside_penalty_per_step": 4.379626305455158e-05,
+        "approximate_kl": 8.792413427727297e-05,
+        "clip_fraction": 0.00103759765625,
+        "recurrent_gradient_cosine": null,
+        "sampled_action_share": [
+          0.0751953125,
+          0.074462890625,
+          0.850341796875
+        ],
+        "episode_length_counts": {
+          "720": 82,
+          "1440": 84,
+          "2160": 73
+        },
+        "regime_sample_counts": [
+          40,
+          40,
+          40,
+          40,
+          40,
+          39
+        ]
+      }
+    }
+  ],
+  "locked_2026_accessed": false,
+  "updates_completed": 75,
+  "elapsed_seconds": 548.51,
+  "last_training_summary": {
+    "policy_loss": -0.0002960444544441998,
+    "value_loss": 0.10834216326475143,
+    "entropy": 0.37809066101908684,
+    "clip_fraction": 0.00103759765625,
+    "approximate_kl": 8.792413427727297e-05,
+    "gradient_norm": 0.13948483485728502,
+    "explained_variance_pre_update": -0.013310438923541223,
+    "explained_variance_post_update": -0.009723394333884139,
+    "critic_prediction_std_pre": 0.07066084444522858,
+    "critic_prediction_std_post": 0.06925449520349503,
+    "advantage_std": 0.465712308883667,
+    "return_mean": -0.06271708011627197,
+    "return_std": 0.46264347434043884,
+    "entropy_coefficient": 0.015044642857142857,
+    "recurrent_gradient_cosine": null,
+    "actor_learning_rate": 0.0001,
+    "critic_learning_rate": 0.0001,
+    "return_scale": 1.326366547209123,
+    "sampled_action_share": [
+      0.0751953125,
+      0.074462890625,
+      0.850341796875
+    ],
+    "mean_reward": -0.007987930439412594,
+    "turnover_per_step": 0.149658203125,
+    "downside_penalty_per_step": 4.379626305455158e-05,
+    "starting_position_counts": [
+      120,
+      119
+    ],
+    "episode_length_counts": {
+      "720": 82,
+      "1440": 84,
+      "2160": 73
+    },
+    "regime_sample_counts": [
+      40,
+      40,
+      40,
+      40,
+      40,
+      39
+    ],
+    "completed_episodes": 0,
+    "episode_log_growth_mean": NaN,
+    "update": 75,
+    "environment_steps": 307200,
+    "elapsed_seconds": 543.56
+  },
+  "finished_at_utc": "2026-09-03T23:07:21.191284+00:00",
+  "seconds_per_update": 7.313,
+  "critic_learning_diagnostics": {
+    "definition": "explained variance of PPO value targets; 1 is perfect, 0 is no better than a constant",
+    "post_update_final": -0.009723394333884139,
+    "post_update_max": 0.039402052963165124,
+    "post_update_positive_share": 0.25333333333333335,
+    "post_update_final_quarter_mean": -0.0003463788100582541,
+    "prediction_std_final": 0.06925449520349503,
+    "prediction_nonconstant_share": 1.0
+  }
+}

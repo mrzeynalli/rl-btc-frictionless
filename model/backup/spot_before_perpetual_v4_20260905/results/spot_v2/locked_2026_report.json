@@ -1,0 +1,464 @@
+{
+  "status": "complete",
+  "created_at_utc": "2026-09-04T19:56:04.092844+00:00",
+  "test_label": "locked 2026 test, previously exposed to project-level diagnosis",
+  "period": {
+    "name": "locked_2026",
+    "kind": "locked_previously_exposed",
+    "train_start_inclusive": "2017-08-17T04:00:00+00:00",
+    "train_end_exclusive": "2026-01-01T00:00:00+00:00",
+    "evaluation_start_inclusive": "2026-01-01T00:00:00+00:00",
+    "evaluation_end_exclusive": "2026-07-22T00:00:00+00:00"
+  },
+  "selected_configuration": {
+    "encoder_type": "gru",
+    "critic_mode": "separate",
+    "reward_label": "down_strong",
+    "reward_mode": "accumulated_downside",
+    "downside_alpha": 0.5,
+    "downside_beta": 10.0,
+    "episode_hours": "720,1440,2160,2880,3600",
+    "ppo": {
+      "environments": 32,
+      "rollout_steps": 128,
+      "minibatches": 2,
+      "actor_epochs": 4,
+      "extra_critic_epochs": 4,
+      "gamma": 0.75,
+      "gae_lambda": 0.75,
+      "value_coefficient": 1.0,
+      "entropy_coefficient": 0.02,
+      "entropy_final_coefficient": 0.005,
+      "entropy_anneal_updates": 225,
+      "actor_learning_rate": 0.0003,
+      "critic_learning_rate": 0.0001,
+      "burn_in_hours": 240,
+      "execution_kappa": 0.0,
+      "measure_gradient_conflict": true
+    },
+    "config_id": "g075_l075_a3em04_separate_down_strong_gru_e0005"
+  },
+  "cost_sensitivity": {
+    "4": {
+      "name": "locked_ensemble_4bp",
+      "hours": 4847,
+      "total_return": 0.03994166792197129,
+      "total_log_return": 0.03916462304369439,
+      "mean_hourly_log_return": 8.080178057292013e-06,
+      "annualised_return": 0.07334759684064629,
+      "annualised_volatility": 0.06025295291473585,
+      "annualised_downside_deviation": 0.025056731354105927,
+      "sharpe": 1.1747533748601897,
+      "max_drawdown": -0.026255039595486696,
+      "turnover_total": 12.0,
+      "turnover_per_hour": 0.0024757582009490406,
+      "trades": 12,
+      "average_hours_between_trades": 403.9166666666667,
+      "mean_net_exposure": 0.0012378791004745203,
+      "share_btc": 0.0012378791004745203,
+      "share_cash": 0.9987621208995254,
+      "action_frequency": {
+        "BUY": 0.0012378791004745203,
+        "SELL": 0.0012378791004745203,
+        "HOLD": 0.997524241799051
+      },
+      "price_pnl": 0.044976104527699845,
+      "cost_pnl": -0.0048000000000000004,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.017716444932141584,
+      "correlation_to_bitcoin": 0.13416855752101245,
+      "annualised_log_alpha_to_bitcoin": 0.07971824140247592
+    },
+    "6": {
+      "name": "locked_ensemble_6bp",
+      "hours": 4847,
+      "total_return": 0.03745647243641459,
+      "total_log_return": 0.03677201796445634,
+      "mean_hourly_log_return": 7.586552086745686e-06,
+      "annualised_return": 0.06871628682481323,
+      "annualised_volatility": 0.060037192111546955,
+      "annualised_downside_deviation": 0.02547113952704536,
+      "sharpe": 1.1069504409269384,
+      "max_drawdown": -0.02723360636470884,
+      "turnover_total": 12.0,
+      "turnover_per_hour": 0.0024757582009490406,
+      "trades": 12,
+      "average_hours_between_trades": 403.9166666666667,
+      "mean_net_exposure": 0.0012378791004745203,
+      "share_btc": 0.0012378791004745203,
+      "share_cash": 0.9987621208995254,
+      "action_frequency": {
+        "BUY": 0.0012378791004745203,
+        "SELL": 0.0012378791004745203,
+        "HOLD": 0.997524241799051
+      },
+      "price_pnl": 0.044976104527699845,
+      "cost_pnl": -0.0072,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.017706848655493462,
+      "correlation_to_bitcoin": 0.1345777957494386,
+      "annualised_log_alpha_to_bitcoin": 0.075389237697365
+    },
+    "8": {
+      "name": "locked_ensemble_8bp",
+      "hours": 4847,
+      "total_return": 0.034976722027368456,
+      "total_log_return": 0.03437893566959757,
+      "mean_hourly_log_return": 7.092827660325473e-06,
+      "annualised_return": 0.06410404235215417,
+      "annualised_volatility": 0.059834996706834113,
+      "annualised_downside_deviation": 0.0259015009865822,
+      "sharpe": 1.0384085188284893,
+      "max_drawdown": -0.028211386253907178,
+      "turnover_total": 12.0,
+      "turnover_per_hour": 0.0024757582009490406,
+      "trades": 12,
+      "average_hours_between_trades": 403.9166666666667,
+      "mean_net_exposure": 0.0012378791004745203,
+      "share_btc": 0.0012378791004745203,
+      "share_cash": 0.9987621208995254,
+      "action_frequency": {
+        "BUY": 0.0012378791004745203,
+        "SELL": 0.0012378791004745203,
+        "HOLD": 0.997524241799051
+      },
+      "price_pnl": 0.044976104527699845,
+      "cost_pnl": -0.009600000000000001,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.01769725114613669,
+      "correlation_to_bitcoin": 0.13495937256989457,
+      "annualised_log_alpha_to_bitcoin": 0.071059370897041
+    },
+    "10": {
+      "name": "locked_ensemble_10bp",
+      "hours": 4847,
+      "total_return": 0.03250240584719433,
+      "total_log_return": 0.031985375968684136,
+      "mean_hourly_log_return": 6.599004738742343e-06,
+      "annualised_return": 0.05951078871581306,
+      "annualised_volatility": 0.059646513277785584,
+      "annualised_downside_deviation": 0.026347047341814242,
+      "sharpe": 0.9691644713943799,
+      "max_drawdown": -0.02918837973772992,
+      "turnover_total": 12.0,
+      "turnover_per_hour": 0.0024757582009490406,
+      "trades": 12,
+      "average_hours_between_trades": 403.9166666666667,
+      "mean_net_exposure": 0.0012378791004745203,
+      "share_btc": 0.0012378791004745203,
+      "share_cash": 0.9987621208995254,
+      "action_frequency": {
+        "BUY": 0.0012378791004745203,
+        "SELL": 0.0012378791004745203,
+        "HOLD": 0.997524241799051
+      },
+      "price_pnl": 0.044976104527699845,
+      "cost_pnl": -0.012,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.017687652403847294,
+      "correlation_to_bitcoin": 0.13531241380391826,
+      "annualised_log_alpha_to_bitcoin": 0.06672864065721902
+    }
+  },
+  "individual_seeds_4bp": [
+    {
+      "name": "seed_11",
+      "hours": 4847,
+      "total_return": 0.025712827818539896,
+      "total_log_return": 0.025387812656982055,
+      "mean_hourly_log_return": 5.237840449140098e-06,
+      "annualised_return": 0.046952415398390235,
+      "annualised_volatility": 0.047147350219591655,
+      "annualised_downside_deviation": 0.012483443663844726,
+      "sharpe": 0.9731932361153309,
+      "max_drawdown": -0.01000962463949473,
+      "turnover_total": 6.0,
+      "turnover_per_hour": 0.0012378791004745203,
+      "trades": 6,
+      "average_hours_between_trades": 807.8333333333334,
+      "mean_net_exposure": 0.0006189395502372602,
+      "share_btc": 0.0006189395502372602,
+      "share_cash": 0.9993810604497627,
+      "action_frequency": {
+        "BUY": 0.0006189395502372602,
+        "SELL": 0.0006189395502372602,
+        "HOLD": 0.9987621208995254
+      },
+      "price_pnl": 0.02840905395317761,
+      "cost_pnl": -0.0024,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.010831463502961951,
+      "correlation_to_bitcoin": 0.10482922113628125,
+      "annualised_log_alpha_to_bitcoin": 0.05134669326707927
+    },
+    {
+      "name": "seed_29",
+      "hours": 4847,
+      "total_return": 0.0031182289200100133,
+      "total_log_return": 0.00311337732717943,
+      "mean_hourly_log_return": 6.423307875344398e-07,
+      "annualised_return": 0.005642677971176013,
+      "annualised_volatility": 0.020048447095129984,
+      "annualised_downside_deviation": 0.012483443663844726,
+      "sharpe": 0.28066102437273144,
+      "max_drawdown": -0.01000962463949473,
+      "turnover_total": 6.0,
+      "turnover_per_hour": 0.0012378791004745203,
+      "trades": 6,
+      "average_hours_between_trades": 807.8333333333334,
+      "mean_net_exposure": 0.0006189395502372602,
+      "share_btc": 0.0006189395502372602,
+      "share_cash": 0.9993810604497627,
+      "action_frequency": {
+        "BUY": 0.0006189395502372602,
+        "SELL": 0.0006189395502372602,
+        "HOLD": 0.9987621208995254
+      },
+      "price_pnl": 0.005624676462108846,
+      "cost_pnl": -0.0024,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.0020703658892900077,
+      "correlation_to_bitcoin": 0.047121474617683984,
+      "annualised_log_alpha_to_bitcoin": 0.006671075989270299
+    },
+    {
+      "name": "seed_47",
+      "hours": 4847,
+      "total_return": 0.07490933859346449,
+      "total_log_return": 0.0722363218310034,
+      "mean_hourly_log_return": 1.4903305514958407e-05,
+      "annualised_return": 0.13945827980293446,
+      "annualised_volatility": 0.07025359467131008,
+      "annualised_downside_deviation": 0.025931476521770597,
+      "sharpe": 1.8583099828819212,
+      "max_drawdown": -0.026255039595486696,
+      "turnover_total": 24.0,
+      "turnover_per_hour": 0.004951516401898081,
+      "trades": 24,
+      "average_hours_between_trades": 201.95833333333334,
+      "mean_net_exposure": 0.0024757582009490406,
+      "share_btc": 0.0024757582009490406,
+      "share_cash": 0.997524241799051,
+      "action_frequency": {
+        "BUY": 0.0024757582009490406,
+        "SELL": 0.0024757582009490406,
+        "HOLD": 0.9950484835981019
+      },
+      "price_pnl": 0.0832116169766055,
+      "cost_pnl": -0.009600000000000001,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.024117949569950923,
+      "correlation_to_bitcoin": 0.1566478144144858,
+      "annualised_log_alpha_to_bitcoin": 0.14271765092748426
+    },
+    {
+      "name": "seed_71",
+      "hours": 4847,
+      "total_return": -0.05433974064775904,
+      "total_log_return": -0.055871908311397475,
+      "mean_hourly_log_return": -1.1527111267051264e-05,
+      "annualised_return": -0.09604662360056304,
+      "annualised_volatility": 0.07310180437491205,
+      "annualised_downside_deviation": 0.057315413195230244,
+      "sharpe": -1.3813269804052024,
+      "max_drawdown": -0.07289944982961394,
+      "turnover_total": 12.0,
+      "turnover_per_hour": 0.0024757582009490406,
+      "trades": 12,
+      "average_hours_between_trades": 403.9166666666667,
+      "mean_net_exposure": 0.0012378791004745203,
+      "share_btc": 0.0012378791004745203,
+      "share_cash": 0.9987621208995254,
+      "action_frequency": {
+        "BUY": 0.0012378791004745203,
+        "SELL": 0.0012378791004745203,
+        "HOLD": 0.997524241799051
+      },
+      "price_pnl": -0.0495943583159959,
+      "cost_pnl": -0.0048,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.025438479310363343,
+      "correlation_to_bitcoin": 0.15878722432344108,
+      "annualised_log_alpha_to_bitcoin": -0.08814674673632629
+    },
+    {
+      "name": "seed_101",
+      "hours": 4847,
+      "total_return": -0.08834746877207289,
+      "total_log_return": -0.09249635796600365,
+      "mean_hourly_log_return": -1.9083218066020973e-05,
+      "annualised_return": -0.15394337607166209,
+      "annualised_volatility": 0.11931291805076227,
+      "annualised_downside_deviation": 0.08971298374499868,
+      "sharpe": -1.4010971568662904,
+      "max_drawdown": -0.12017252279412427,
+      "turnover_total": 66.0,
+      "turnover_per_hour": 0.013616670105219723,
+      "trades": 66,
+      "average_hours_between_trades": 73.43939393939394,
+      "mean_net_exposure": 0.05446668042087889,
+      "share_btc": 0.05446668042087889,
+      "share_cash": 0.9455333195791211,
+      "action_frequency": {
+        "BUY": 0.006808335052609861,
+        "SELL": 0.006808335052609861,
+        "HOLD": 0.9863833298947803
+      },
+      "price_pnl": -0.06216123042282673,
+      "cost_pnl": -0.0264,
+      "segment_resets": 1,
+      "bitcoin_total_return": -0.243521116974321,
+      "beta_to_bitcoin": 0.06820954900055903,
+      "correlation_to_bitcoin": 0.26086163889278585,
+      "annualised_log_alpha_to_bitcoin": -0.13276522259513865
+    }
+  ],
+  "ensemble_agreement": {
+    "all_five_agreement": 0.00020631318341242006,
+    "four_of_five_or_better": 0.04311945533319579,
+    "mean_pairwise_agreement": 0.40819063338147304,
+    "mean_seed_score_std": 0.42632800340652466,
+    "individual_seed_raw_action_frequency": [
+      [
+        0.0006189395502372602,
+        0.41427687229213944,
+        0.5851041881576232
+      ],
+      [
+        0.00020631318341242006,
+        0.9991747472663504,
+        0.0006189395502372602
+      ],
+      [
+        0.002682071384361461,
+        0.9973179286156385,
+        0.0
+      ],
+      [
+        0.0022694450175366207,
+        0.0008252527336496802,
+        0.9969053022488137
+      ],
+      [
+        0.004332576851660821,
+        0.04311945533319579,
+        0.9525479678151434
+      ]
+    ]
+  },
+  "starting_position_diagnostics": {
+    "permanent_convergence_hours": 137,
+    "hourly_position_agreement": 0.9717350938724985,
+    "return_spread": 0.05940819925741847,
+    "by_start": {
+      "CASH": {
+        "name": "CASH",
+        "hours": 4847,
+        "total_return": 0.03994166792197129,
+        "total_log_return": 0.03916462304369439,
+        "mean_hourly_log_return": 8.080178057292013e-06,
+        "annualised_return": 0.07334759684064629,
+        "annualised_volatility": 0.06025295291473585,
+        "annualised_downside_deviation": 0.025056731354105927,
+        "sharpe": 1.1747533748601897,
+        "max_drawdown": -0.026255039595486696,
+        "turnover_total": 12.0,
+        "turnover_per_hour": 0.0024757582009490406,
+        "trades": 12,
+        "average_hours_between_trades": 403.9166666666667,
+        "mean_net_exposure": 0.0012378791004745203,
+        "share_btc": 0.0012378791004745203,
+        "share_cash": 0.9987621208995254,
+        "action_frequency": {
+          "BUY": 0.0012378791004745203,
+          "SELL": 0.0012378791004745203,
+          "HOLD": 0.997524241799051
+        },
+        "price_pnl": 0.044976104527699845,
+        "cost_pnl": -0.004799999999999999,
+        "segment_resets": 1,
+        "longest_uninterrupted_position_hours": 3348,
+        "position_transition_matrix": {
+          "rows": [
+            "CASH",
+            "BTC"
+          ],
+          "columns": [
+            "CASH",
+            "BTC"
+          ],
+          "counts": [
+            [
+              4835,
+              6
+            ],
+            [
+              6,
+              0
+            ]
+          ]
+        },
+        "log_return_before_convergence": 0.0,
+        "log_return_after_convergence": 0.03916462304369439
+      },
+      "BTC": {
+        "name": "BTC",
+        "hours": 4847,
+        "total_return": 0.09934986717938976,
+        "total_log_return": 0.09471897524042312,
+        "mean_hourly_log_return": 1.954177331141389e-05,
+        "annualised_return": 0.1867113787500847,
+        "annualised_volatility": 0.07403510052614365,
+        "annualised_downside_deviation": 0.03547348453081069,
+        "sharpe": 2.3122266734484356,
+        "max_drawdown": -0.03208726515594795,
+        "turnover_total": 13.0,
+        "turnover_per_hour": 0.002682071384361461,
+        "trades": 13,
+        "average_hours_between_trades": 372.84615384615387,
+        "mean_net_exposure": 0.02950278522797607,
+        "share_btc": 0.02950278522797607,
+        "share_cash": 0.9704972147720239,
+        "action_frequency": {
+          "BUY": 0.0012378791004745203,
+          "SELL": 0.0014441922838869404,
+          "HOLD": 0.9973179286156385
+        },
+        "price_pnl": 0.10144353901830727,
+        "cost_pnl": -0.0052,
+        "segment_resets": 1,
+        "longest_uninterrupted_position_hours": 3348,
+        "position_transition_matrix": {
+          "rows": [
+            "CASH",
+            "BTC"
+          ],
+          "columns": [
+            "CASH",
+            "BTC"
+          ],
+          "counts": [
+            [
+              4697,
+              6
+            ],
+            [
+              7,
+              137
+            ]
+          ]
+        },
+        "log_return_before_convergence": 0.05595443221806843,
+        "log_return_after_convergence": 0.0387645430223547
+      }
+    }
+  }
+}

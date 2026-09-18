@@ -1,0 +1,202 @@
+{
+  "year": 2024,
+  "selected_updates": 300,
+  "cost_sensitivity": {
+    "6": {
+      "total_return_btc": 0.0,
+      "total_log_return_btc": 0.0,
+      "total_return_usd": 1.207411608999811,
+      "collateral_btc_hold_return_usd": 1.207411608999811,
+      "daily_sharpe_btc": 0.0,
+      "max_drawdown_btc": 0.0,
+      "decisions": 105408,
+      "days": 366,
+      "orders": 0,
+      "completed_round_trips": 0,
+      "position_changes": 0,
+      "median_position_spell_hours": 8784.0,
+      "median_holding_spell_hours": 0.0,
+      "side_share": {
+        "short": 0.0,
+        "flat": 1.0,
+        "long": 0.0
+      },
+      "fees_btc": 0.0,
+      "funding_btc": 0.0,
+      "turnover": 0.0,
+      "liquidations": 0,
+      "test_locked": true,
+      "test_performance_accessed": false,
+      "return_btc_after_final_close": 0.0,
+      "final_close_is_proxy": true,
+      "period": [
+        "2024-01-01 00:00:00+00:00",
+        "2025-01-01 00:00:00+00:00"
+      ]
+    },
+    "8": {
+      "total_return_btc": 0.0,
+      "total_log_return_btc": 0.0,
+      "total_return_usd": 1.207411608999811,
+      "collateral_btc_hold_return_usd": 1.207411608999811,
+      "daily_sharpe_btc": 0.0,
+      "max_drawdown_btc": 0.0,
+      "decisions": 105408,
+      "days": 366,
+      "orders": 0,
+      "completed_round_trips": 0,
+      "position_changes": 0,
+      "median_position_spell_hours": 8784.0,
+      "median_holding_spell_hours": 0.0,
+      "side_share": {
+        "short": 0.0,
+        "flat": 1.0,
+        "long": 0.0
+      },
+      "fees_btc": 0.0,
+      "funding_btc": 0.0,
+      "turnover": 0.0,
+      "liquidations": 0,
+      "test_locked": true,
+      "test_performance_accessed": false,
+      "return_btc_after_final_close": 0.0,
+      "final_close_is_proxy": true,
+      "period": [
+        "2024-01-01 00:00:00+00:00",
+        "2025-01-01 00:00:00+00:00"
+      ]
+    },
+    "10": {
+      "total_return_btc": 0.0,
+      "total_log_return_btc": 0.0,
+      "total_return_usd": 1.207411608999811,
+      "collateral_btc_hold_return_usd": 1.207411608999811,
+      "daily_sharpe_btc": 0.0,
+      "max_drawdown_btc": 0.0,
+      "decisions": 105408,
+      "days": 366,
+      "orders": 0,
+      "completed_round_trips": 0,
+      "position_changes": 0,
+      "median_position_spell_hours": 8784.0,
+      "median_holding_spell_hours": 0.0,
+      "side_share": {
+        "short": 0.0,
+        "flat": 1.0,
+        "long": 0.0
+      },
+      "fees_btc": 0.0,
+      "funding_btc": 0.0,
+      "turnover": 0.0,
+      "liquidations": 0,
+      "test_locked": true,
+      "test_performance_accessed": false,
+      "return_btc_after_final_close": 0.0,
+      "final_close_is_proxy": true,
+      "period": [
+        "2024-01-01 00:00:00+00:00",
+        "2025-01-01 00:00:00+00:00"
+      ]
+    }
+  },
+  "baselines": {
+    "flat": {
+      "total_return_btc": 0.0,
+      "total_log_return_btc": 0.0,
+      "total_return_usd": 1.207411608999811,
+      "collateral_btc_hold_return_usd": 1.207411608999811,
+      "daily_sharpe_btc": 0.0,
+      "max_drawdown_btc": 0.0,
+      "decisions": 105408,
+      "days": 366,
+      "orders": 0,
+      "completed_round_trips": 0,
+      "position_changes": 0,
+      "median_position_spell_hours": 8784.0,
+      "median_holding_spell_hours": 0.0,
+      "side_share": {
+        "short": 0.0,
+        "flat": 1.0,
+        "long": 0.0
+      },
+      "fees_btc": 0.0,
+      "funding_btc": 0.0,
+      "turnover": 0.0,
+      "liquidations": 0,
+      "test_locked": true,
+      "test_performance_accessed": false,
+      "return_btc_after_final_close": 0.0,
+      "final_close_is_proxy": true,
+      "period": [
+        "2024-01-01 00:00:00+00:00",
+        "2025-01-01 00:00:00+00:00"
+      ]
+    },
+    "long": {
+      "total_return_btc": 0.4748718175781348,
+      "total_log_return_btc": 0.3885710826785898,
+      "total_return_usd": 2.2556491719086265,
+      "collateral_btc_hold_return_usd": 1.207411608999811,
+      "daily_sharpe_btc": 1.436776359929985,
+      "max_drawdown_btc": -0.2213438847016438,
+      "decisions": 105408,
+      "days": 366,
+      "orders": 1,
+      "completed_round_trips": 0,
+      "position_changes": 1,
+      "median_position_spell_hours": 8784.0,
+      "median_holding_spell_hours": 8784.0,
+      "side_share": {
+        "short": 0.0,
+        "flat": 0.0,
+        "long": 1.0
+      },
+      "fees_btc": 0.0004999500049995,
+      "funding_btc": -0.07147685055291286,
+      "turnover": 1.0,
+      "liquidations": 0,
+      "test_locked": true,
+      "test_performance_accessed": false,
+      "return_btc_after_final_close": 0.474599959557215,
+      "final_close_is_proxy": true,
+      "period": [
+        "2024-01-01 00:00:00+00:00",
+        "2025-01-01 00:00:00+00:00"
+      ]
+    },
+    "short": {
+      "total_return_btc": -0.4760718175901354,
+      "total_log_return_btc": -0.6464006605238992,
+      "total_return_usd": 0.15652515213370566,
+      "collateral_btc_hold_return_usd": 1.207411608999811,
+      "daily_sharpe_btc": -1.0456361612214993,
+      "max_drawdown_btc": -0.5831858350527015,
+      "decisions": 105408,
+      "days": 366,
+      "orders": 1,
+      "completed_round_trips": 0,
+      "position_changes": 1,
+      "median_position_spell_hours": 8784.0,
+      "median_holding_spell_hours": 8784.0,
+      "side_share": {
+        "short": 1.0,
+        "flat": 0.0,
+        "long": 0.0
+      },
+      "fees_btc": 0.0005000500050005002,
+      "funding_btc": 0.07147685055291286,
+      "turnover": 1.0,
+      "liquidations": 0,
+      "test_locked": true,
+      "test_performance_accessed": false,
+      "return_btc_after_final_close": -0.4763436212448877,
+      "final_close_is_proxy": true,
+      "period": [
+        "2024-01-01 00:00:00+00:00",
+        "2025-01-01 00:00:00+00:00"
+      ]
+    }
+  },
+  "test_locked": true,
+  "test_performance_accessed": false
+}

@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-08T12:53:11.601753+00:00",
+  "service": "cryptorl-perpetual-v6.service",
+  "main_pid": 46396,
+  "active_state_verified": "active/running",
+  "service_started_at": "Tue 2026-09-08 14:52:23 CEST",
+  "source_sha256": "4c75612227c002ca20c7df10cacc24fa84d982d101dbc02cb0107526274d8e8f",
+  "stage": "A",
+  "workers": 2,
+  "threads_per_worker": 1,
+  "jobs": 21,
+  "variant": "lstm_plain",
+  "seeds": [
+    11,
+    29,
+    47,
+    71,
+    101,
+    137,
+    179
+  ],
+  "changes_from_v5": {
+    "gamma": 0.99825,
+    "gae_lambda": 0.99825,
+    "credit_window_hours": 23.8,
+    "rollout": 1024,
+    "initial_persistence": 0.9965,
+    "initial_flat_persistence": 0.995,
+    "architectures": "18 -> 1",
+    "new_diagnostics": [
+      "state_action_mutual_information",
+      "state_action_mutual_information_flat",
+      "switch_probability_mean",
+      "switch_probability_sd",
+      "policy_implied_holding_hours"
+    ]
+  },
+  "measured_update_seconds": 16,
+  "measured_peak_rss_gb_per_worker": 1.35,
+  "survives_ssh_disconnect": true,
+  "survives_server_reboot_automatically": false,
+  "resume_checkpoints_every_updates": 10,
+  "predecessor_archive": "backup/perpetual_v4_v5_before_v6_20260908",
+  "test_locked": true,
+  "test_performance_accessed": false
+}

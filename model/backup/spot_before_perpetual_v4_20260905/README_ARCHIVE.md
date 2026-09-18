@@ -1,0 +1,1 @@
+Archived before the perpetual v4 redesign, 5 September 2026. Source, configurations, tests and Spot results are preserved. archive_manifest.json records SHA-256 hashes. Run archived modules with PYTHONPATH pointing to this src directory; their retired Spot datasets are not restored. BitMEX collectors remain active in model/src/collector.

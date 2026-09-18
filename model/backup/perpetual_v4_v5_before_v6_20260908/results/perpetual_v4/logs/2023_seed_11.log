@@ -1,0 +1,48 @@
+{"fold": "2023", "seed": 11, "update": 10, "reward": -0.05083685368299484, "critic_ev": -0.00036472192788838953, "elapsed_seconds": 39.58620652498212, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 20, "reward": -0.025174008682370186, "critic_ev": 0.0003201274351469774, "elapsed_seconds": 80.82096385100158, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 30, "reward": -0.007292996160686016, "critic_ev": 0.007756451524905894, "elapsed_seconds": 122.93784429400694, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 40, "reward": -0.0035496987402439117, "critic_ev": 0.023467851913715032, "elapsed_seconds": 162.51863723999122, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 50, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 50, "reward": -0.002055793534964323, "critic_ev": 0.05866927108571607, "elapsed_seconds": 284.97839681396727, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 60, "reward": -0.002285836497321725, "critic_ev": 0.4779231885753321, "elapsed_seconds": 334.3255242310115, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 70, "reward": -0.00058574671857059, "critic_ev": 0.22475394997091847, "elapsed_seconds": 378.0221739700064, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 80, "reward": -0.0002851357567124069, "critic_ev": 0.08309004763800276, "elapsed_seconds": 420.82913274801103, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 90, "reward": -0.00032145949080586433, "critic_ev": 0.10625577012983078, "elapsed_seconds": 460.9115922069759, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 100, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 100, "reward": -0.00020150582713540643, "critic_ev": 0.6810724216544017, "elapsed_seconds": 583.1682283519767, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 110, "reward": -0.00015776979853399098, "critic_ev": 0.42685580408398915, "elapsed_seconds": 638.4433069259976, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 120, "reward": -5.918841270613484e-05, "critic_ev": 0.8528289588344213, "elapsed_seconds": 680.6106577920145, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 130, "reward": -1.2037227861583233e-05, "critic_ev": 0.9370266897103685, "elapsed_seconds": 736.7794603609946, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 140, "reward": -9.046088234754279e-05, "critic_ev": 0.572682330040851, "elapsed_seconds": 780.2084387699724, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 150, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 150, "reward": -7.297110641957261e-06, "critic_ev": 0.45119230045433767, "elapsed_seconds": 903.5565386679955, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 160, "reward": -9.337757364846766e-05, "critic_ev": 0.551980115843435, "elapsed_seconds": 946.4532509180135, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 170, "reward": 0.0, "critic_ev": 0.8602636849103733, "elapsed_seconds": 990.5168847739697, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 180, "reward": 0.0, "critic_ev": 0.8994017343653602, "elapsed_seconds": 1031.71259482397, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 190, "reward": 0.0, "critic_ev": 0.7215694924973138, "elapsed_seconds": 1073.0521971670096, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 200, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 200, "reward": -5.5465214245487005e-05, "critic_ev": 0.21305774407996814, "elapsed_seconds": 1192.0876830309862, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 210, "reward": 0.00039267216925509274, "critic_ev": -0.1378443348603755, "elapsed_seconds": 1230.7075338190189, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 220, "reward": -6.678335921606049e-06, "critic_ev": 0.8086864926372781, "elapsed_seconds": 1273.2184718369972, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 230, "reward": -1.4656679923064075e-05, "critic_ev": 0.7525017975964242, "elapsed_seconds": 1316.8171077179722, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 240, "reward": -7.632801134604961e-05, "critic_ev": 0.10166703493653484, "elapsed_seconds": 1359.5569781530066, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 250, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 250, "reward": 0.0, "critic_ev": 0.8268374934870015, "elapsed_seconds": 1485.4111709179706, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 260, "reward": -0.0007183741545304656, "critic_ev": 0.08002741804944824, "elapsed_seconds": 1526.1642677710042, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 270, "reward": -0.00012017261906294152, "critic_ev": 0.6670148666623119, "elapsed_seconds": 1571.8823609299725, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 280, "reward": 0.0, "critic_ev": 0.8886766321336919, "elapsed_seconds": 1612.6444420199841, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 290, "reward": -1.4657233805337455e-05, "critic_ev": 0.27883199374593926, "elapsed_seconds": 1652.463957047963, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 300, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 300, "reward": -6.911061063874513e-05, "critic_ev": 0.09048347537708024, "elapsed_seconds": 1764.955194664013, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 310, "reward": -0.0001539311051601544, "critic_ev": 0.10803503746101861, "elapsed_seconds": 1805.1488258679747, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 320, "reward": -0.00014866734272800386, "critic_ev": 0.040887483526031554, "elapsed_seconds": 1844.0040238180081, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 330, "reward": 0.0, "critic_ev": 0.7132414274620761, "elapsed_seconds": 1887.1838958599837, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 340, "reward": 0.0, "critic_ev": 0.8010772654718388, "elapsed_seconds": 1936.478286379017, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 350, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 350, "reward": 0.0, "critic_ev": 0.5597752937612307, "elapsed_seconds": 2059.686311425001, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 360, "reward": 0.0, "critic_ev": 0.43637619634697034, "elapsed_seconds": 2106.0350893959985, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 370, "reward": 0.0, "critic_ev": 0.29833837193085366, "elapsed_seconds": 2152.525258391979, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 380, "reward": 0.0, "critic_ev": 0.8400530669850143, "elapsed_seconds": 2200.501029836014, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 390, "reward": 0.0, "critic_ev": 0.4941509126301833, "elapsed_seconds": 2245.279248441977, "test_locked": true}
+{"fold": "2023", "seed": 11, "update": 400, "validation_return_btc": 0.0, "orders": 0}
+{"fold": "2023", "seed": 11, "update": 400, "reward": 0.0, "critic_ev": 0.7046773000597453, "elapsed_seconds": 2372.581512936973, "test_locked": true}

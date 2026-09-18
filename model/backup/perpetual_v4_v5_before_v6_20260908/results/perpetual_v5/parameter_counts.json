@@ -1,0 +1,20 @@
+{
+  "gru_plain": 89355,
+  "lstm_plain": 109643,
+  "gru_dropout": 89355,
+  "lstm_dropout": 109643,
+  "gru_layernorm": 89611,
+  "lstm_layernorm": 109899,
+  "gru_batchnorm": 89611,
+  "lstm_batchnorm": 109899,
+  "gru_attention": 97803,
+  "lstm_attention": 118091,
+  "gru_layernorm_dropout": 89611,
+  "lstm_layernorm_dropout": 109899,
+  "gru_layernorm_dropout_attention": 98059,
+  "lstm_layernorm_dropout_attention": 118347,
+  "gru_batchnorm_dropout_attention": 98059,
+  "lstm_batchnorm_dropout_attention": 118347,
+  "gru_layernorm_dropout_ppo_only": 89611,
+  "lstm_layernorm_dropout_ppo_only": 109899
+}

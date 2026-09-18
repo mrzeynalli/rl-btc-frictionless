@@ -1,0 +1,11 @@
+{
+  "enabled_in_primary_baseline": false,
+  "mode": "causal_shadow_seed_weighting",
+  "decay_candidates": [0.95, 0.99],
+  "temperature_candidates": [2.0, 10.0],
+  "shrinkage_candidates": [0.25, 0.50],
+  "weight_floor_candidates": [0.02, 0.05],
+  "update_interval_hours": [24],
+  "selection_data": "walk-forward development folds only",
+  "seed_identity_interpretation": "none"
+}

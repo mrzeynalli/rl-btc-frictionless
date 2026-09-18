@@ -1,0 +1,16 @@
+{
+  "mode": "drift",
+  "seed": 29,
+  "last_three_mean_log_return": -0.9334579124101613,
+  "criterion": 0.14131614268547224,
+  "passed": false,
+  "oracle": 0.6119386366219679,
+  "share_of_oracle": -1.5254109751315075,
+  "final_conditioning": {
+    "long_when_up": 0.00041756559259517015,
+    "long_when_down": 0.26975324563666064,
+    "short_when_up": 0.001774653768529473,
+    "short_when_down": 0.6310291462470983
+  },
+  "hours": 1.631382193730549
+}

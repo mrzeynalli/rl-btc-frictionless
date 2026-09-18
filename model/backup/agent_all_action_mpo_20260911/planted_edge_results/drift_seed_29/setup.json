@@ -1,0 +1,42 @@
+{
+  "mode": "drift",
+  "seed": 29,
+  "market_seed": 7,
+  "updates": 1000,
+  "edge": {
+    "expected_move_per_position_bp": 78.8792508786568,
+    "round_trip_cost_bp": 12.000000000000002,
+    "edge_to_cost_ratio": 6.5732709065547335,
+    "oracle_sharpe": 3.0,
+    "unconditional_sharpe": 0.627,
+    "mean_regime_hours": 48.0
+  },
+  "references": {
+    "oracle": 0.6119386366219679,
+    "constant_long": 0.14131614268547224,
+    "constant_short": -0.16604035457997884
+  },
+  "training_drift": {
+    "episode_windows": 2463,
+    "rising_share": 0.5980511571254568,
+    "mean_log_change": 0.048587296749044454,
+    "btc_2017_2023_rising_share": 0.573
+  },
+  "pass_if_last_three_mean_above": 0.14131614268547224,
+  "training_window": [
+    "2010-01-14 21:20:00+00:00",
+    "2017-01-12 21:20:00+00:00"
+  ],
+  "validation_window": [
+    "2017-01-19 20:00:00+00:00",
+    "2017-04-20 02:40:00+00:00"
+  ],
+  "widths_actor": {
+    "hidden": 128,
+    "head_width": 128
+  },
+  "widths_critic": {
+    "hidden": 256,
+    "head_width": 256
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "capacity": "large",
+  "widths_actor": {
+    "hidden": 128,
+    "local_width": 64,
+    "position_hidden": 32,
+    "head_width": 128
+  },
+  "widths_critic": {
+    "hidden": 256,
+    "local_width": 64,
+    "position_hidden": 32,
+    "head_width": 256
+  },
+  "updates": 600,
+  "seed": 11,
+  "edge": {
+    "expected_move_per_position_bp": 78.87925087865682,
+    "round_trip_cost_bp": 12.000000000000002,
+    "edge_to_cost_ratio": 6.573270906554734,
+    "oracle_sharpe": 3.0,
+    "mean_regime_hours": 48.0
+  },
+  "references": {
+    "oracle": 0.41521130972781584,
+    "constant_long": -0.19059770472175228
+  },
+  "validation_window": [
+    "2020-11-15 10:40:00+00:00",
+    "2021-02-13 17:20:00+00:00"
+  ]
+}
+parameters 882,251
+upd    1  37.5s | gateH 0.0233 a 0.00484 | dirH 0.693 | hold    23.7h | MIflat 0.0000 | flat 0.489 | turn 0.00314 | EV 0.02 | rew +0.00017
+upd   10  37.0s | gateH 0.0136 a 0.00404 | dirH 0.692 | hold    46.8h | MIflat 0.0000 | flat 0.528 | turn 0.00170 | EV 0.66 | rew -0.00067
+upd   20  36.2s | gateH 0.0137 a 0.00394 | dirH 0.690 | hold    40.8h | MIflat 0.0001 | flat 0.597 | turn 0.00338 | EV 0.56 | rew -0.00004
+upd   30  38.2s | gateH 0.0180 a 0.00338 | dirH 0.690 | hold    26.7h | MIflat 0.0005 | flat 0.402 | turn 0.00414 | EV 0.75 | rew -0.00073
+upd   40  38.2s | gateH 0.0069 a 0.00364 | dirH 0.692 | hold   103.7h | MIflat 0.0000 | flat 0.663 | turn 0.00158 | EV 0.69 | rew +0.00045
+upd   50  37.1s | gateH 0.0093 a 0.00408 | dirH 0.687 | hold    57.7h | MIflat 0.0001 | flat 0.431 | turn 0.00171 | EV 0.65 | rew +0.00050
+upd   60  38.2s | gateH 0.0028 a 0.00608 | dirH 0.692 | hold   165.8h | MIflat 0.0003 | flat 0.619 | turn 0.00025 | EV 0.87 | rew -0.00015
+upd   70  39.7s | gateH 0.0039 a 0.00893 | dirH 0.682 | hold   145.8h | MIflat 0.0005 | flat 0.266 | turn 0.00169 | EV 0.22 | rew +0.00047
+upd   80  37.5s | gateH 0.0154 a 0.01192 | dirH 0.687 | hold    32.5h | MIflat 0.0005 | flat 0.250 | turn 0.00207 | EV 0.54 | rew +0.00084
+upd   90  38.2s | gateH 0.0059 a 0.01282 | dirH 0.688 | hold    83.4h | MIflat 0.0022 | flat 0.167 | turn 0.00097 | EV 0.55 | rew -0.00005
+upd  100  39.0s | gateH 0.0632 a 0.00765 | dirH 0.647 | hold     5.0h | MIflat 0.0016 | flat 0.196 | turn 0.01964 | EV 0.50 | rew -0.00014
+  VALIDATION @100: log return median +0.0123 [-0.0681, +0.0927] | orders 182 | hold 2.6h | oracle +0.415 | long -0.191
+upd  110  39.8s | gateH 0.0207 a 0.00594 | dirH 0.671 | hold    20.0h | MIflat 0.0010 | flat 0.126 | turn 0.00425 | EV 0.41 | rew -0.00017
+upd  120  40.9s | gateH 0.0042 a 0.00615 | dirH 0.680 | hold   148.5h | MIflat 0.0001 | flat 0.456 | turn 0.00073 | EV 0.79 | rew -0.00005
+upd  130  40.5s | gateH 0.0078 a 0.00654 | dirH 0.687 | hold    63.1h | MIflat 0.0003 | flat 0.269 | turn 0.00218 | EV 0.56 | rew -0.00024
+upd  140  37.3s | gateH 0.0011 a 0.00701 | dirH 0.692 | hold   772.3h | MIflat 0.0000 | flat 0.000 | turn 0.00000 | EV 0.74 | rew +0.00019
+upd  150  38.1s | gateH 0.0518 a 0.00660 | dirH 0.665 | hold     7.0h | MIflat 0.0007 | flat 0.103 | turn 0.01782 | EV 0.60 | rew -0.00010
+upd  160  38.3s | gateH 0.0307 a 0.00552 | dirH 0.652 | hold    12.5h | MIflat 0.0012 | flat 0.062 | turn 0.00958 | EV 0.82 | rew -0.00090
+upd  170  38.6s | gateH 0.0532 a 0.00507 | dirH 0.659 | hold     3.4h | MIflat 0.0035 | flat 0.009 | turn 0.00024 | EV 0.71 | rew -0.00092
+upd  180  37.8s | gateH 0.0073 a 0.00379 | dirH 0.611 | hold    48.1h | MIflat 0.0048 | flat 0.005 | turn 0.00316 | EV 0.84 | rew +0.00005
+upd  190  37.0s | gateH 0.0045 a 0.00370 | dirH 0.598 | hold    82.8h | MIflat 0.0182 | flat 0.010 | turn 0.00242 | EV 0.67 | rew -0.00073
+upd  200  41.0s | gateH 0.0154 a 0.00374 | dirH 0.578 | hold    21.9h | MIflat 0.0041 | flat 0.014 | turn 0.00423 | EV 0.58 | rew +0.00045
+  VALIDATION @200: log return median +0.1206 [+0.1109, +0.1302] | orders 53 | hold 2.5h | oracle +0.415 | long -0.191
+upd  210  39.4s | gateH 0.0138 a 0.00344 | dirH 0.508 | hold    17.1h | MIflat 0.0248 | flat 0.011 | turn 0.00739 | EV 0.61 | rew -0.00031
+upd  220  39.2s | gateH 0.0177 a 0.00364 | dirH 0.585 | hold    10.7h | MIflat 0.0025 | flat 0.005 | turn 0.00535 | EV 0.57 | rew +0.00014
+upd  230  38.6s | gateH 0.0057 a 0.00386 | dirH 0.563 | hold    49.3h | MIflat 0.0232 | flat 0.006 | turn 0.00194 | EV 0.66 | rew -0.00031
+upd  240  38.4s | gateH 0.0009 a 0.00436 | dirH 0.607 | hold   448.9h | MIflat 0.0000 | flat 0.000 | turn 0.00000 | EV 0.89 | rew +0.00058
+upd  250  36.9s | gateH 0.0141 a 0.00444 | dirH 0.653 | hold    21.9h | MIflat 0.0116 | flat 0.007 | turn 0.00389 | EV 0.34 | rew +0.00036
+upd  260  38.2s | gateH 0.0011 a 0.00518 | dirH 0.657 | hold   363.5h | MIflat 0.0000 | flat 0.000 | turn 0.00049 | EV 0.78 | rew -0.00056
+upd  270  37.0s | gateH 0.0058 a 0.00580 | dirH 0.682 | hold    47.6h | MIflat 0.0350 | flat 0.005 | turn 0.00219 | EV 0.63 | rew -0.00069
+upd  280  37.8s | gateH 0.0296 a 0.00400 | dirH 0.621 | hold    10.0h | MIflat 0.0401 | flat 0.016 | turn 0.01165 | EV 0.66 | rew +0.00082
+upd  290  42.8s | gateH 0.0087 a 0.00369 | dirH 0.635 | hold    32.1h | MIflat 0.0051 | flat 0.005 | turn 0.00363 | EV 0.71 | rew +0.00027
+upd  300  40.3s | gateH 0.0056 a 0.00393 | dirH 0.653 | hold    53.6h | MIflat 0.0077 | flat 0.012 | turn 0.00170 | EV 0.72 | rew +0.00014
+  VALIDATION @300: log return median +0.1429 [+0.1347, +0.1510] | orders 11 | hold 126.5h | oracle +0.415 | long -0.191
+upd  310  39.4s | gateH 0.0028 a 0.00434 | dirH 0.657 | hold   103.6h | MIflat 0.0133 | flat 0.002 | turn 0.00121 | EV 0.67 | rew -0.00093
+upd  320  40.3s | gateH 0.0035 a 0.00482 | dirH 0.673 | hold   105.4h | MIflat 0.0137 | flat 0.002 | turn 0.00146 | EV 0.81 | rew -0.00027
+upd  330  41.8s | gateH 0.0031 a 0.00538 | dirH 0.665 | hold    93.2h | MIflat 0.0041 | flat 0.001 | turn 0.00194 | EV 0.61 | rew +0.00014
+upd  340  39.4s | gateH 0.0035 a 0.00633 | dirH 0.684 | hold    83.6h | MIflat 0.0091 | flat 0.003 | turn 0.00218 | EV 0.73 | rew -0.00097
+upd  350  40.4s | gateH 0.0061 a 0.00854 | dirH 0.678 | hold    31.8h | MIflat 0.0165 | flat 0.013 | turn 0.00218 | EV 0.59 | rew +0.00024
+upd  360  38.2s | gateH 0.0230 a 0.00791 | dirH 0.645 | hold     9.9h | MIflat 0.0182 | flat 0.011 | turn 0.00947 | EV 0.57 | rew -0.00009
+upd  370  36.4s | gateH 0.0196 a 0.00750 | dirH 0.614 | hold    11.9h | MIflat 0.0076 | flat 0.013 | turn 0.00606 | EV 0.74 | rew +0.00017
+upd  380  39.3s | gateH 0.0008 a 0.00867 | dirH 0.656 | hold   451.8h | MIflat 0.0092 | flat 0.001 | turn 0.00024 | EV 0.86 | rew +0.00096
+upd  390  41.4s | gateH 0.0049 a 0.01004 | dirH 0.646 | hold    57.7h | MIflat 0.0051 | flat 0.001 | turn 0.00218 | EV 0.51 | rew -0.00042
+upd  400  37.6s | gateH 0.0019 a 0.01375 | dirH 0.675 | hold   138.0h | MIflat 0.0476 | flat 0.001 | turn 0.00146 | EV 0.90 | rew -0.00061
+  VALIDATION @400: log return median +0.1464 [+0.1346, +0.1583] | orders 12 | hold 66.7h | oracle +0.415 | long -0.191
+upd  410  39.1s | gateH 0.0089 a 0.01510 | dirH 0.659 | hold    32.3h | MIflat 0.0460 | flat 0.005 | turn 0.00436 | EV 0.56 | rew +0.00092
+upd  420  40.2s | gateH 0.0036 a 0.01754 | dirH 0.644 | hold    88.6h | MIflat 0.0028 | flat 0.002 | turn 0.00145 | EV 0.84 | rew -0.00090
+upd  430  36.7s | gateH 0.0040 a 0.02166 | dirH 0.631 | hold    68.0h | MIflat 0.0059 | flat 0.001 | turn 0.00170 | EV 0.69 | rew +0.00088
+upd  440  37.6s | gateH 0.0308 a 0.01397 | dirH 0.591 | hold     7.0h | MIflat 0.0017 | flat 0.016 | turn 0.01092 | EV 0.86 | rew +0.00026
+upd  450  38.7s | gateH 0.0120 a 0.01193 | dirH 0.629 | hold    19.0h | MIflat 0.0012 | flat 0.007 | turn 0.00607 | EV 0.78 | rew +0.00064
+upd  460  36.8s | gateH 0.0090 a 0.01222 | dirH 0.652 | hold    26.1h | MIflat 0.0077 | flat 0.003 | turn 0.00387 | EV 0.77 | rew -0.00023
+upd  470  40.6s | gateH 0.0019 a 0.01294 | dirH 0.650 | hold   135.3h | MIflat 0.0031 | flat 0.001 | turn 0.00121 | EV 0.84 | rew +0.00059
+upd  480  38.4s | gateH 0.0018 a 0.01416 | dirH 0.645 | hold   151.7h | MIflat 0.0020 | flat 0.001 | turn 0.00073 | EV 0.90 | rew -0.00016
+upd  490  36.9s | gateH 0.0051 a 0.01569 | dirH 0.652 | hold    60.7h | MIflat 0.0008 | flat 0.000 | turn 0.00146 | EV 0.86 | rew +0.00052
+upd  500  36.1s | gateH 0.0039 a 0.01808 | dirH 0.649 | hold    70.3h | MIflat 0.0017 | flat 0.001 | turn 0.00097 | EV 0.91 | rew +0.00056
+  VALIDATION @500: log return median +0.1440 [+0.1418, +0.1462] | orders 17 | hold 44.8h | oracle +0.415 | long -0.191
+upd  510  39.5s | gateH 0.0135 a 0.01683 | dirH 0.588 | hold    16.3h | MIflat 0.0002 | flat 0.004 | turn 0.00473 | EV 0.90 | rew -0.00044
+upd  520  36.0s | gateH 0.0040 a 0.01815 | dirH 0.581 | hold    59.4h | MIflat 0.0006 | flat 0.001 | turn 0.00218 | EV 0.78 | rew +0.00016
+upd  530  37.5s | gateH 0.0062 a 0.01990 | dirH 0.566 | hold    35.9h | MIflat 0.0007 | flat 0.001 | turn 0.00170 | EV 0.86 | rew +0.00028
+upd  540  39.2s | gateH 0.0095 a 0.02063 | dirH 0.578 | hold    20.0h | MIflat 0.0003 | flat 0.005 | turn 0.00559 | EV 0.68 | rew +0.00085
+upd  550  38.0s | gateH 0.0135 a 0.02111 | dirH 0.570 | hold    14.9h | MIflat 0.0001 | flat 0.004 | turn 0.00654 | EV 0.92 | rew +0.00009
+upd  560  42.3s | gateH 0.0065 a 0.02217 | dirH 0.580 | hold    27.6h | MIflat 0.0002 | flat 0.003 | turn 0.00486 | EV 0.89 | rew -0.00009
+upd  570  36.5s | gateH 0.0005 a 0.02533 | dirH 0.593 | hold   615.1h | MIflat 0.0000 | flat 0.000 | turn 0.00048 | EV 0.93 | rew +0.00085
+upd  580  38.9s | gateH 0.0061 a 0.03059 | dirH 0.612 | hold    33.2h | MIflat 0.0005 | flat 0.003 | turn 0.00218 | EV 0.83 | rew -0.00026
+upd  590  37.3s | gateH 0.0119 a 0.03551 | dirH 0.615 | hold    18.2h | MIflat 0.0003 | flat 0.003 | turn 0.00486 | EV 0.83 | rew -0.00016
+upd  600  35.7s | gateH 0.0152 a 0.04744 | dirH 0.603 | hold    14.9h | MIflat 0.0002 | flat 0.004 | turn 0.00510 | EV 0.76 | rew +0.00063
+  VALIDATION @600: log return median +0.1429 [+0.1380, +0.1477] | orders 34 | hold 4.6h | oracle +0.415 | long -0.191
+finished in 6.56 h

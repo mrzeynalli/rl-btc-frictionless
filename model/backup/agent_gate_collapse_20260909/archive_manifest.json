@@ -1,0 +1,13 @@
+{
+  "archived_at": "2026-09-09",
+  "reason": "first agent run, stopped at ~290 updates; superseded by the gate-entropy-floor architecture and the 5,000-update budget",
+  "runs": {
+    "2024/seed_11": 293,
+    "2023/seed_11": 285
+  },
+  "updates_planned": 400,
+  "finding": "Both runs collapsed through the GATE while direction entropy stayed at 0.64-0.68 and its dual never engaged: 2023 seed 11 to 100% long, 2024 seed 11 to 100% flat. Diagnosis: the entropy target was on the direction, the one factor that never moved. Also established that the counterfactual objective cannot rescue a collapsed policy (cf_actor_loss falls to 1e-7 as the softmax Jacobian carries pi_b), and that 400 updates gave 12,800 actor gradient steps against a 156,240 reference.",
+  "superseded_by": "gate entropy dual at 0.0138 nats, 5,000 updates, actor 128 / critic 256, sequence 256, annealed lr, per-pass advantages",
+  "test_locked": true,
+  "file_count": 41
+}

@@ -1,0 +1,16 @@
+{
+  "software_checks_passed": 34,
+  "archive_files_verified": 2783,
+  "archive_hash_errors": [],
+  "cache_last_minute": "2025-12-31 23:59:00+00:00",
+  "utc_decision_alignment_verified": true,
+  "source_sha256": "bab9fc914a17a987906136ec1ce5a93ed37c0b0400031e66107fb84bdb636033",
+  "python": "3.13.5",
+  "torch": "2.13.0+cu130",
+  "numpy": "2.5.1",
+  "pandas": "3.0.3",
+  "test_locked": true,
+  "test_performance_accessed": false,
+  "synthetic_learning_passed": true,
+  "development_smoke_passed": true
+}

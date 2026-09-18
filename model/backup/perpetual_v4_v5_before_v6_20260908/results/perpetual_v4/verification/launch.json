@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-09-06T08:39:58.890155+00:00",
+  "service": "cryptorl-perpetual-v4.service",
+  "host_service_confirmed_active": true,
+  "workers": 2,
+  "cpu_threads_per_worker": 2,
+  "memory_max_bytes": 6442450944,
+  "active_runs": [
+    {
+      "fold": "2023",
+      "seed": 11,
+      "updates_completed": 16,
+      "checkpoint_bytes": 1021027,
+      "elapsed_seconds": 62.75490896997508
+    },
+    {
+      "fold": "2023",
+      "seed": 29,
+      "updates_completed": 16,
+      "checkpoint_bytes": 1019299,
+      "elapsed_seconds": 63.14089332299773
+    }
+  ],
+  "source_sha256": "bab9fc914a17a987906136ec1ce5a93ed37c0b0400031e66107fb84bdb636033",
+  "test_locked": true,
+  "test_performance_accessed": false
+}

@@ -1,0 +1,177 @@
+{"event": "started", "job": ["gru_plain", 2023, 11], "pid": 343394, "at": "2026-09-06T20:42:16.268398+00:00"}
+{"event": "started", "job": ["lstm_plain", 2023, 11], "pid": 343395, "at": "2026-09-06T20:42:16.269465+00:00"}
+{"event": "started", "job": ["gru_dropout", 2023, 11], "pid": 343396, "at": "2026-09-06T20:42:16.270563+00:00"}
+{"event": "finished", "job": ["lstm_plain", 2023, 11], "exit_code": 0, "at": "2026-09-06T21:35:18.678433+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_dropout", 2023, 11], "pid": 432073, "at": "2026-09-06T21:35:28.694298+00:00"}
+{"event": "finished", "job": ["gru_dropout", 2023, 11], "exit_code": 0, "at": "2026-09-06T22:20:50.920389+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm", 2023, 11], "pid": 498772, "at": "2026-09-06T22:21:00.935507+00:00"}
+{"event": "finished", "job": ["gru_plain", 2023, 11], "exit_code": 0, "at": "2026-09-06T22:21:10.946302+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm", 2023, 11], "pid": 499558, "at": "2026-09-06T22:21:20.958551+00:00"}
+{"event": "finished", "job": ["lstm_dropout", 2023, 11], "exit_code": 0, "at": "2026-09-06T22:27:41.296446+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm", 2023, 11], "pid": 514926, "at": "2026-09-06T22:27:51.313262+00:00"}
+{"event": "finished", "job": ["lstm_layernorm", 2023, 11], "exit_code": 0, "at": "2026-09-06T23:12:13.557914+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm", 2023, 11], "pid": 579179, "at": "2026-09-06T23:12:23.566050+00:00"}
+{"event": "finished", "job": ["gru_layernorm", 2023, 11], "exit_code": 0, "at": "2026-09-06T23:58:55.918427+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_attention", 2023, 11], "pid": 651729, "at": "2026-09-06T23:59:05.934371+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm", 2023, 11], "exit_code": 0, "at": "2026-09-07T00:03:36.207933+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_attention", 2023, 11], "pid": 658348, "at": "2026-09-07T00:03:46.219762+00:00"}
+{"event": "finished", "job": ["gru_batchnorm", 2023, 11], "exit_code": 0, "at": "2026-09-07T00:06:16.374402+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout", 2023, 11], "pid": 662809, "at": "2026-09-07T00:06:26.387672+00:00"}
+{"event": "finished", "job": ["lstm_attention", 2023, 11], "exit_code": 0, "at": "2026-09-07T01:25:40.809999+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout", 2023, 11], "pid": 802255, "at": "2026-09-07T01:25:50.818956+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout", 2023, 11], "exit_code": 0, "at": "2026-09-07T01:47:01.955922+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_attention", 2023, 11], "pid": 827980, "at": "2026-09-07T01:47:11.965828+00:00"}
+{"event": "finished", "job": ["gru_attention", 2023, 11], "exit_code": 0, "at": "2026-09-07T02:08:23.142119+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_attention", 2023, 11], "pid": 857396, "at": "2026-09-07T02:08:33.158813+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout", 2023, 11], "exit_code": 0, "at": "2026-09-07T02:18:23.760717+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm_dropout_attention", 2023, 11], "pid": 881794, "at": "2026-09-07T02:18:33.772929+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_attention", 2023, 11], "exit_code": 0, "at": "2026-09-07T03:30:58.029554+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm_dropout_attention", 2023, 11], "pid": 1021189, "at": "2026-09-07T03:31:08.044212+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_attention", 2023, 11], "exit_code": 0, "at": "2026-09-07T03:54:59.457914+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_ppo_only", 2023, 11], "pid": 1051302, "at": "2026-09-07T03:55:09.468016+00:00"}
+{"event": "finished", "job": ["gru_batchnorm_dropout_attention", 2023, 11], "exit_code": 0, "at": "2026-09-07T04:28:21.638449+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_ppo_only", 2023, 11], "pid": 1113706, "at": "2026-09-07T04:28:31.653006+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm_dropout_attention", 2023, 11], "exit_code": 0, "at": "2026-09-07T04:56:03.387594+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_plain", 2024, 11], "pid": 1147839, "at": "2026-09-07T04:56:13.396992+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_ppo_only", 2023, 11], "exit_code": 0, "at": "2026-09-07T05:09:34.205317+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_plain", 2024, 11], "pid": 1169595, "at": "2026-09-07T05:09:44.214345+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_ppo_only", 2023, 11], "exit_code": 0, "at": "2026-09-07T05:10:04.231459+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_dropout", 2024, 11], "pid": 1170708, "at": "2026-09-07T05:10:14.241406+00:00"}
+{"event": "finished", "job": ["lstm_plain", 2024, 11], "exit_code": 0, "at": "2026-09-07T06:02:27.646333+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_dropout", 2024, 11], "pid": 1251072, "at": "2026-09-07T06:02:37.662933+00:00"}
+{"event": "finished", "job": ["gru_plain", 2024, 11], "exit_code": 0, "at": "2026-09-07T06:35:39.889947+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm", 2024, 11], "pid": 1313909, "at": "2026-09-07T06:35:49.908720+00:00"}
+{"event": "finished", "job": ["gru_dropout", 2024, 11], "exit_code": 0, "at": "2026-09-07T06:51:00.919635+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm", 2024, 11], "pid": 1332656, "at": "2026-09-07T06:51:10.931749+00:00"}
+{"event": "finished", "job": ["lstm_dropout", 2024, 11], "exit_code": 0, "at": "2026-09-07T06:53:41.087297+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm", 2024, 11], "pid": 1335689, "at": "2026-09-07T06:53:51.101479+00:00"}
+{"event": "finished", "job": ["lstm_layernorm", 2024, 11], "exit_code": 0, "at": "2026-09-07T07:48:44.927939+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm", 2024, 11], "pid": 1426825, "at": "2026-09-07T07:48:54.938731+00:00"}
+{"event": "finished", "job": ["gru_layernorm", 2024, 11], "exit_code": 0, "at": "2026-09-07T08:18:37.020210+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_attention", 2024, 11], "pid": 1479043, "at": "2026-09-07T08:18:47.032933+00:00"}
+{"event": "finished", "job": ["gru_batchnorm", 2024, 11], "exit_code": 0, "at": "2026-09-07T08:37:08.386959+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_attention", 2024, 11], "pid": 1508074, "at": "2026-09-07T08:37:18.398767+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm", 2024, 11], "exit_code": 0, "at": "2026-09-07T08:42:38.768067+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout", 2024, 11], "pid": 1514433, "at": "2026-09-07T08:42:48.785744+00:00"}
+{"event": "finished", "job": ["lstm_attention", 2024, 11], "exit_code": 0, "at": "2026-09-07T10:01:44.616999+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout", 2024, 11], "pid": 1633593, "at": "2026-09-07T10:01:54.637681+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout", 2024, 11], "exit_code": 0, "at": "2026-09-07T10:27:16.707972+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_attention", 2024, 11], "pid": 1687050, "at": "2026-09-07T10:27:26.719472+00:00"}
+{"event": "finished", "job": ["gru_attention", 2024, 11], "exit_code": 0, "at": "2026-09-07T10:32:47.125908+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_attention", 2024, 11], "pid": 1694535, "at": "2026-09-07T10:32:57.137394+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout", 2024, 11], "exit_code": 0, "at": "2026-09-07T10:58:29.200552+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm_dropout_attention", 2024, 11], "pid": 1725398, "at": "2026-09-07T10:58:39.212016+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_attention", 2024, 11], "exit_code": 0, "at": "2026-09-07T11:58:53.879275+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm_dropout_attention", 2024, 11], "pid": 1821570, "at": "2026-09-07T11:59:03.891452+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_attention", 2024, 11], "exit_code": 0, "at": "2026-09-07T12:42:27.305014+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_ppo_only", 2024, 11], "pid": 1897493, "at": "2026-09-07T12:42:37.319127+00:00"}
+{"event": "finished", "job": ["gru_batchnorm_dropout_attention", 2024, 11], "exit_code": 0, "at": "2026-09-07T13:16:00.136176+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_ppo_only", 2024, 11], "pid": 1949156, "at": "2026-09-07T13:16:10.154839+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm_dropout_attention", 2024, 11], "exit_code": 0, "at": "2026-09-07T13:28:51.320439+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_plain", 2025, 11], "pid": 1976060, "at": "2026-09-07T13:29:01.338435+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_ppo_only", 2024, 11], "exit_code": 0, "at": "2026-09-07T14:00:24.033685+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_plain", 2025, 11], "pid": 2014552, "at": "2026-09-07T14:00:34.048571+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_ppo_only", 2024, 11], "exit_code": 0, "at": "2026-09-07T14:02:24.229583+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_dropout", 2025, 11], "pid": 2017253, "at": "2026-09-07T14:02:34.249704+00:00"}
+{"event": "finished", "job": ["lstm_plain", 2025, 11], "exit_code": 0, "at": "2026-09-07T14:58:39.051911+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_dropout", 2025, 11], "pid": 2107882, "at": "2026-09-07T14:58:49.068288+00:00"}
+{"event": "finished", "job": ["gru_plain", 2025, 11], "exit_code": 0, "at": "2026-09-07T15:17:20.634453+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm", 2025, 11], "pid": 2144451, "at": "2026-09-07T15:17:30.648339+00:00"}
+{"event": "finished", "job": ["gru_dropout", 2025, 11], "exit_code": 0, "at": "2026-09-07T15:51:43.784921+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm", 2025, 11], "pid": 2195181, "at": "2026-09-07T15:51:53.802874+00:00"}
+{"event": "finished", "job": ["lstm_dropout", 2025, 11], "exit_code": 0, "at": "2026-09-07T15:55:44.157155+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm", 2025, 11], "pid": 2199789, "at": "2026-09-07T15:55:54.170453+00:00"}
+{"event": "finished", "job": ["lstm_layernorm", 2025, 11], "exit_code": 0, "at": "2026-09-07T16:46:28.723582+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm", 2025, 11], "pid": 2283358, "at": "2026-09-07T16:46:38.742393+00:00"}
+{"event": "finished", "job": ["gru_layernorm", 2025, 11], "exit_code": 0, "at": "2026-09-07T17:03:00.140833+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_attention", 2025, 11], "pid": 2304606, "at": "2026-09-07T17:03:10.159118+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm", 2025, 11], "exit_code": 0, "at": "2026-09-07T17:39:13.341262+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_attention", 2025, 11], "pid": 2370952, "at": "2026-09-07T17:39:23.356187+00:00"}
+{"event": "finished", "job": ["gru_batchnorm", 2025, 11], "exit_code": 0, "at": "2026-09-07T17:41:03.495149+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout", 2025, 11], "pid": 2373066, "at": "2026-09-07T17:41:13.511088+00:00"}
+{"event": "finished", "job": ["lstm_attention", 2025, 11], "exit_code": 0, "at": "2026-09-07T19:07:21.313223+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout", 2025, 11], "pid": 2506169, "at": "2026-09-07T19:07:31.326699+00:00"}
+{"event": "finished", "job": ["gru_attention", 2025, 11], "exit_code": 0, "at": "2026-09-07T19:15:32.132112+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_attention", 2025, 11], "pid": 2525014, "at": "2026-09-07T19:15:42.145679+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout", 2025, 11], "exit_code": 0, "at": "2026-09-07T19:25:53.234698+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_attention", 2025, 11], "pid": 2550538, "at": "2026-09-07T19:26:03.259351+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout", 2025, 11], "exit_code": 0, "at": "2026-09-07T20:02:06.726409+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm_dropout_attention", 2025, 11], "pid": 2594559, "at": "2026-09-07T20:02:16.749036+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_attention", 2025, 11], "exit_code": 0, "at": "2026-09-07T20:52:11.447248+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm_dropout_attention", 2025, 11], "pid": 2678499, "at": "2026-09-07T20:52:21.463115+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_attention", 2025, 11], "exit_code": 0, "at": "2026-09-07T21:29:04.987126+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_ppo_only", 2025, 11], "pid": 2744946, "at": "2026-09-07T21:29:15.000153+00:00"}
+{"event": "finished", "job": ["gru_batchnorm_dropout_attention", 2025, 11], "exit_code": 0, "at": "2026-09-07T22:13:59.116039+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_ppo_only", 2025, 11], "pid": 2810305, "at": "2026-09-07T22:14:09.129523+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm_dropout_attention", 2025, 11], "exit_code": 0, "at": "2026-09-07T22:17:59.564383+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_plain", 2023, 29], "pid": 2820401, "at": "2026-09-07T22:18:09.579605+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_ppo_only", 2025, 11], "exit_code": 0, "at": "2026-09-07T22:42:31.890397+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_plain", 2023, 29], "pid": 2857167, "at": "2026-09-07T22:42:41.911100+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_ppo_only", 2025, 11], "exit_code": 0, "at": "2026-09-07T22:54:03.029211+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_dropout", 2023, 29], "pid": 2871668, "at": "2026-09-07T22:54:13.043395+00:00"}
+{"event": "finished", "job": ["lstm_plain", 2023, 29], "exit_code": 0, "at": "2026-09-07T23:33:36.915395+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_dropout", 2023, 29], "pid": 2942566, "at": "2026-09-07T23:33:46.930627+00:00"}
+{"event": "finished", "job": ["gru_plain", 2023, 29], "exit_code": 0, "at": "2026-09-07T23:56:19.141259+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm", 2023, 29], "pid": 2970027, "at": "2026-09-07T23:56:29.167736+00:00"}
+{"event": "finished", "job": ["lstm_dropout", 2023, 29], "exit_code": 0, "at": "2026-09-08T00:25:52.097691+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm", 2023, 29], "pid": 3028323, "at": "2026-09-08T00:26:02.112205+00:00"}
+{"event": "finished", "job": ["gru_dropout", 2023, 29], "exit_code": 0, "at": "2026-09-08T00:31:32.602519+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm", 2023, 29], "pid": 3034833, "at": "2026-09-08T00:31:42.619135+00:00"}
+{"event": "finished", "job": ["lstm_layernorm", 2023, 29], "exit_code": 0, "at": "2026-09-08T01:16:06.929723+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm", 2023, 29], "pid": 3100953, "at": "2026-09-08T01:16:16.947281+00:00"}
+{"event": "finished", "job": ["gru_layernorm", 2023, 29], "exit_code": 0, "at": "2026-09-08T01:35:48.930448+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_attention", 2023, 29], "pid": 3136546, "at": "2026-09-08T01:35:58.954206+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm", 2023, 29], "exit_code": 0, "at": "2026-09-08T02:09:12.131933+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_attention", 2023, 29], "pid": 3181283, "at": "2026-09-08T02:09:22.147026+00:00"}
+{"event": "finished", "job": ["gru_batchnorm", 2023, 29], "exit_code": 0, "at": "2026-09-08T02:09:22.147155+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout", 2023, 29], "pid": 3181755, "at": "2026-09-08T02:09:32.161144+00:00"}
+{"event": "finished", "job": ["lstm_attention", 2023, 29], "exit_code": 0, "at": "2026-09-08T03:34:01.348726+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout", 2023, 29], "pid": 3348576, "at": "2026-09-08T03:34:11.370294+00:00"}
+{"event": "finished", "job": ["gru_attention", 2023, 29], "exit_code": 0, "at": "2026-09-08T03:48:02.838465+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_attention", 2023, 29], "pid": 3365984, "at": "2026-09-08T03:48:12.861101+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout", 2023, 29], "exit_code": 0, "at": "2026-09-08T03:52:43.360066+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_attention", 2023, 29], "pid": 3371393, "at": "2026-09-08T03:52:53.377537+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout", 2023, 29], "exit_code": 0, "at": "2026-09-08T04:27:37.456205+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm_dropout_attention", 2023, 29], "pid": 3435787, "at": "2026-09-08T04:27:47.471739+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_attention", 2023, 29], "exit_code": 0, "at": "2026-09-08T05:22:03.767401+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm_dropout_attention", 2023, 29], "pid": 3521714, "at": "2026-09-08T05:22:13.787722+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_attention", 2023, 29], "exit_code": 0, "at": "2026-09-08T06:08:19.034375+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm_dropout_ppo_only", 2023, 29], "pid": 3586111, "at": "2026-09-08T06:08:29.053886+00:00"}
+{"event": "finished", "job": ["gru_batchnorm_dropout_attention", 2023, 29], "exit_code": 0, "at": "2026-09-08T06:46:13.405650+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm_dropout_ppo_only", 2023, 29], "pid": 3650182, "at": "2026-09-08T06:46:23.429643+00:00"}
+{"event": "finished", "job": ["lstm_batchnorm_dropout_attention", 2023, 29], "exit_code": 0, "at": "2026-09-08T06:50:43.942289+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_plain", 2024, 29], "pid": 3656607, "at": "2026-09-08T06:50:53.959427+00:00"}
+{"event": "finished", "job": ["gru_layernorm_dropout_ppo_only", 2023, 29], "exit_code": 0, "at": "2026-09-08T07:24:27.815448+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_plain", 2024, 29], "pid": 3717927, "at": "2026-09-08T07:24:37.840362+00:00"}
+{"event": "finished", "job": ["lstm_layernorm_dropout_ppo_only", 2023, 29], "exit_code": 0, "at": "2026-09-08T07:27:48.211823+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_dropout", 2024, 29], "pid": 3723208, "at": "2026-09-08T07:27:58.232151+00:00"}
+{"event": "finished", "job": ["lstm_plain", 2024, 29], "exit_code": 0, "at": "2026-09-08T08:18:24.260988+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_dropout", 2024, 29], "pid": 3801078, "at": "2026-09-08T08:18:34.286326+00:00"}
+{"event": "finished", "job": ["gru_plain", 2024, 29], "exit_code": 0, "at": "2026-09-08T08:33:15.956971+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_layernorm", 2024, 29], "pid": 3830810, "at": "2026-09-08T08:33:25.974565+00:00"}
+{"event": "finished", "job": ["gru_dropout", 2024, 29], "exit_code": 0, "at": "2026-09-08T09:09:50.062364+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_layernorm", 2024, 29], "pid": 3879565, "at": "2026-09-08T09:10:00.080863+00:00"}
+{"event": "finished", "job": ["lstm_dropout", 2024, 29], "exit_code": 0, "at": "2026-09-08T09:11:00.194410+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_batchnorm", 2024, 29], "pid": 3882366, "at": "2026-09-08T09:11:10.227783+00:00"}
+{"event": "finished", "job": ["lstm_layernorm", 2024, 29], "exit_code": 0, "at": "2026-09-08T10:03:26.654108+00:00", "attempt": 1}
+{"event": "started", "job": ["lstm_batchnorm", 2024, 29], "pid": 3967125, "at": "2026-09-08T10:03:36.679990+00:00"}
+{"event": "finished", "job": ["gru_layernorm", 2024, 29], "exit_code": 0, "at": "2026-09-08T10:14:58.159226+00:00", "attempt": 1}
+{"event": "started", "job": ["gru_attention", 2024, 29], "pid": 3991243, "at": "2026-09-08T10:15:08.179570+00:00"}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/root/research/model/src/perpetual_v5/experiment.py", line 220, in <module>
+    main()
+    ~~~~^^
+  File "/root/research/model/src/perpetual_v5/experiment.py", line 208, in main
+    run(args.output, replace(Config(), updates=args.updates, threads=args.threads), args.workers)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/research/model/src/perpetual_v5/experiment.py", line 190, in run
+    dispatch(output, jobs, base, workers)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/research/model/src/perpetual_v5/experiment.py", line 97, in dispatch
+    time.sleep(10)
+    ~~~~~~~~~~^^^^
+  File "/root/research/model/src/perpetual_v5/experiment.py", line 60, in stop
+    raise InterruptedError(f'coordinator received signal {signum}')
+InterruptedError: coordinator received signal 15

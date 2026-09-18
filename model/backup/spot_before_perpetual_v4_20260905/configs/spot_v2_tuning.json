@@ -1,0 +1,67 @@
+{
+  "protocol_version": "btc_spot_buy_sell_hold_v2",
+  "market": "Binance BTCUSDT Spot",
+  "actions": ["BUY", "SELL", "HOLD"],
+  "inventory_states": ["CASH", "BTC"],
+  "funding": false,
+  "training_blocks_hours": [720, 1440, 2160, 2880, 3600],
+  "training_block_sampling": "balanced across falling/sideways/rising and lower/higher variation strata, using training data only",
+  "randomized_initial_inventory": ["CASH", "BTC"],
+  "critic_learning_rate": 0.0001,
+  "screen_folds": [2022, 2024],
+  "screen_seeds": [11, 47, 101],
+  "development_folds": [2020, 2021, 2022, 2023, 2024, 2025],
+  "development_seeds": [11, 29, 47, 71, 101],
+  "stages": [
+    {
+      "name": "temporal_reward",
+      "updates": 60,
+      "gamma_gae_lambda": [[0.75, 0.75], [0.80, 0.75], [0.80, 0.80], [0.90, 0.80], [0.95, 0.90], [0.99, 0.95]],
+      "reward": [
+        {"name": "net", "mode": "net_return", "alpha": 0.0, "beta": 0.0},
+        {"name": "down_mild", "mode": "accumulated_downside", "alpha": 0.25, "beta": 5.0},
+        {"name": "down_strong", "mode": "accumulated_downside", "alpha": 0.50, "beta": 10.0}
+      ],
+      "fixed": {"encoder": "GRU", "critic_mode": "detached", "actor_learning_rate": 0.0001, "entropy_floor": 0.005},
+      "advance": 6
+    },
+    {
+      "name": "actor_critic",
+      "updates": 75,
+      "actor_learning_rate": [0.0001, 0.0003],
+      "critic_mode": ["shared", "detached", "separate"],
+      "advance": 6
+    },
+    {
+      "name": "architecture_entropy",
+      "updates": 100,
+      "encoder": ["GRU", "LSTM"],
+      "entropy_floor": [0.0025, 0.005, 0.01],
+      "advance": 4
+    },
+    {
+      "name": "development_full",
+      "updates": 225,
+      "folds": "all six expanding walk-forward development folds",
+      "seeds": "all five paired seeds"
+    },
+    {
+      "name": "locked_test",
+      "updates": 225,
+      "period": ["2026-01-01", "2026-07-22"],
+      "access": "once after the specification is frozen; previously exposed to project-level diagnosis"
+    }
+  ],
+  "ppo": {
+    "environments": 32,
+    "rollout_steps": 128,
+    "actor_epochs": 4,
+    "extra_critic_epochs": 4,
+    "entropy_start": 0.02,
+    "critic_learning_rate": 0.0001,
+    "burn_in_hours": 240
+  },
+  "selection": "paired periods and seeds; mean net log return, Sharpe, drawdown, positive consistency, seed variability, starting-inventory spread, cost sensitivity, and critic explained variance",
+  "cost_sensitivity_bp": [4, 6, 8, 10],
+  "ensemble": "equal-weight mean of the five raw, position-independent order logits"
+}

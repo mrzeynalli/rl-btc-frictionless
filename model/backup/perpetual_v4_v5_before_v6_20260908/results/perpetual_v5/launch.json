@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-06T20:43:06.288729+00:00",
+  "service": "cryptorl-perpetual-v5.service",
+  "main_pid": 343319,
+  "service_started_at": "2026-09-06T22:42:13+02:00",
+  "active_state_verified": "active/running",
+  "source_sha256": "425821c1a959401ad8d71cd4f5a942ed2fe90550cfb349c57fbe6036f8e99038",
+  "workers": 3,
+  "threads_per_worker": 1,
+  "jobs": 378,
+  "seeds": [
+    11,
+    29,
+    47,
+    71,
+    101,
+    137,
+    179
+  ],
+  "survives_ssh_disconnect": true,
+  "survives_server_reboot_automatically": false,
+  "resume_checkpoints_every_updates": 10,
+  "test_locked": true,
+  "test_performance_accessed": false
+}

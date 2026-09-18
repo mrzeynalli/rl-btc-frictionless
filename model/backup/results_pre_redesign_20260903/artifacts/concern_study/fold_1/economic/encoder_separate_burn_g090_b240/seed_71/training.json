@@ -1,0 +1,963 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-09-02T17:16:44.926806+00:00",
+  "specification": {
+    "split": "fold_1",
+    "arm": "economic",
+    "cost_rate": 0.00039999999999999996,
+    "config_id": "encoder_separate_burn_g090_b240",
+    "seed": 71,
+    "updates": 225,
+    "episode_hours": 512,
+    "evaluation_interval": 25,
+    "position_ladder": "ternary",
+    "funding_features": true,
+    "ppo": {
+      "environments": 32,
+      "rollout_steps": 128,
+      "minibatches": 2,
+      "epochs": 4,
+      "gamma": 0.9,
+      "gae_lambda": 0.5,
+      "clip_range": 0.2,
+      "value_clip_range": null,
+      "value_coefficient": 0.5,
+      "entropy_coefficient": 0.1,
+      "learning_rate": 0.0003,
+      "max_gradient_norm": 0.5,
+      "normalise_advantages": true,
+      "normalise_returns": true,
+      "adaptive_learning_rate": false,
+      "target_kl": 0.02,
+      "learning_rate_minimum": 1e-05,
+      "learning_rate_maximum": 0.03,
+      "learning_rate_factor": 1.5,
+      "critic_learning_rate_multiplier": 1.0,
+      "entropy_final_coefficient": null,
+      "entropy_anneal_updates": null,
+      "burn_in_hours": 240,
+      "critic_encoder": "separate",
+      "measure_gradient_conflict": false
+    }
+  },
+  "split": {
+    "name": "fold_1",
+    "kind": "walk_forward",
+    "train_start_inclusive": "2021-06-01T00:00:00+00:00",
+    "train_end_exclusive": "2023-06-01T00:00:00+00:00",
+    "evaluation_start_inclusive": "2023-06-01T00:00:00+00:00",
+    "evaluation_end_exclusive": "2023-12-01T00:00:00+00:00",
+    "train_decisions": 17520,
+    "evaluation_decisions": 4392,
+    "evaluation_warmup_hours": 240,
+    "normaliser": {
+      "fitted_on": {
+        "split": "fold_1",
+        "start_inclusive": "2021-06-01T00:00:00+00:00",
+        "end_exclusive": "2023-06-01T00:00:00+00:00",
+        "decisions": 17520
+      },
+      "clip_sigma": 8.0,
+      "fast": {
+        "log_return_5m": {
+          "mean": -1.4531997962861258e-06,
+          "std": 0.0020349492379584965
+        },
+        "log_high_low_range": {
+          "mean": 0.0025531774212290003,
+          "std": 0.0024799735034508196
+        },
+        "log_quote_volume_change": {
+          "mean": 5.580488324676186e-07,
+          "std": 0.6243952662383753
+        },
+        "taker_buy_imbalance": {
+          "mean": -0.002041595556177324,
+          "std": 0.19901666559439019
+        }
+      },
+      "slow": {
+        "momentum_3h": {
+          "mean": -5.238869071201383e-05,
+          "std": 0.011667462170586954
+        },
+        "momentum_5h": {
+          "mean": -8.760908857339812e-05,
+          "std": 0.014995702699624885
+        },
+        "momentum_1d": {
+          "mean": -0.0003861285946134867,
+          "std": 0.03339798630484031
+        },
+        "momentum_3d": {
+          "mean": -0.0010449512563092526,
+          "std": 0.05782139277321451
+        },
+        "momentum_10d": {
+          "mean": -0.004246876199304165,
+          "std": 0.10533539206105336
+        },
+        "realised_volatility_24h": {
+          "mean": 0.03092864301064355,
+          "std": 0.015407392305438727
+        },
+        "last_settled_funding_rate": {
+          "mean": 6.672622773972206e-05,
+          "std": 0.00010695844394406928
+        },
+        "settlement_at_next_execution": {
+          "mean": 0.125,
+          "std": 0.33071891388307384
+        },
+        "hours_to_next_settlement": {
+          "mean": 0.5625,
+          "std": 0.28641098093474
+        },
+        "expected_funding_charge": {
+          "mean": 8.340768835616443e-06,
+          "std": 4.378346647740169e-05
+        }
+      }
+    }
+  },
+  "model": {
+    "parameters": 10372,
+    "hidden_size": 32,
+    "slow_features": 13,
+    "critic_encoder": "separate",
+    "initialisation": [
+      {
+        "tensor": "weight_ih_l0",
+        "gate": "reset",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "weight_ih_l0",
+        "gate": "update",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "weight_ih_l0",
+        "gate": "candidate",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "weight_hh_l0",
+        "gate": "reset",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "weight_hh_l0",
+        "gate": "update",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "weight_hh_l0",
+        "gate": "candidate",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "bias_ih_l0",
+        "method": "zeros"
+      },
+      {
+        "tensor": "bias_hh_l0",
+        "method": "zeros"
+      },
+      {
+        "tensor": "actor_hidden",
+        "method": "orthogonal",
+        "gain": 1.4142135623730951
+      },
+      {
+        "tensor": "actor_output",
+        "method": "orthogonal",
+        "gain": 0.01
+      },
+      {
+        "tensor": "critic_hidden",
+        "method": "orthogonal",
+        "gain": 1.4142135623730951
+      },
+      {
+        "tensor": "critic_output",
+        "method": "orthogonal",
+        "gain": 1.0
+      },
+      {
+        "tensor": "critic_weight_ih_l0",
+        "gate": "reset",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "critic_weight_ih_l0",
+        "gate": "update",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "critic_weight_ih_l0",
+        "gate": "candidate",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "critic_weight_hh_l0",
+        "gate": "reset",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "critic_weight_hh_l0",
+        "gate": "update",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "critic_weight_hh_l0",
+        "gate": "candidate",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "critic_bias_ih_l0",
+        "method": "zeros"
+      },
+      {
+        "tensor": "critic_bias_hh_l0",
+        "method": "zeros"
+      }
+    ]
+  },
+  "validation_curve": [
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.2494403090815822,
+        "total_log_return": 0.22269569830828972,
+        "annualised_return": 0.5592025119062272,
+        "annualised_log_return": 0.4441744802323811,
+        "annualised_volatility": 0.36923769630568193,
+        "sharpe": 1.2029499822917893,
+        "sortino": 1.2114002396714443,
+        "max_drawdown": -0.2501283408364895,
+        "calmar": 2.2356623405253444,
+        "hit_rate": 0.5045558086560364,
+        "turnover_total": 479.0,
+        "turnover_per_hour": 0.10906193078324226,
+        "position_changes": 242,
+        "average_holding_hours": 18.14876033057851,
+        "share_long": 0.9699453551912568,
+        "share_flat": 0.0004553734061930783,
+        "share_short": 0.02959927140255009,
+        "price_pnl": 0.455697364330943,
+        "funding_pnl": -0.007213030000000287,
+        "cost_pnl": -0.1916,
+        "hypothetical_cost_pnl": -0.1916
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.513377535575555,
+        "total_log_return": 0.4143439314886902,
+        "annualised_return": 1.2851317663639947,
+        "annualised_log_return": 0.8264236884883711,
+        "annualised_volatility": 0.36888865974709634,
+        "sharpe": 2.2403065712428054,
+        "sortino": 2.261749166571087,
+        "max_drawdown": -0.19669137505884005,
+        "calmar": 6.533747430356561,
+        "hit_rate": 0.5107061503416856,
+        "turnover_total": 479.0,
+        "turnover_per_hour": 0.10906193078324226,
+        "position_changes": 242,
+        "average_holding_hours": 18.14876033057851,
+        "share_long": 0.9699453551912568,
+        "share_flat": 0.0004553734061930783,
+        "share_short": 0.02959927140255009,
+        "price_pnl": 0.455697364330943,
+        "funding_pnl": -0.007213030000000287,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.1916
+      },
+      "maximum_action_probability": 0.4540777471262575,
+      "action_probability_std": 0.09461914668749387,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.4540777471262575,
+        "action_probability_entropy_mean": 1.0589672786922424,
+        "top_two_margin_mean": 0.1416534923682013,
+        "top_two_margin_median": 0.15149375796318054,
+        "share_top_two_margin_below_0.01": 0.027777777777777776,
+        "share_top_two_margin_below_0.05": 0.08265027322404371,
+        "share_top_two_margin_below_0.10": 0.17691256830601093
+      },
+      "update": 25,
+      "training": {
+        "entropy": 1.0731552988290787,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.0,
+        "approximate_kl": 3.0014907679287717e-05,
+        "explained_variance": -0.023910705696054357,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.04729728773236275,
+        "turnover_per_step": 0.918701171875,
+        "sampled_action_share": [
+          0.324951171875,
+          0.24462890625,
+          0.430419921875
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.39252895900530005,
+        "total_log_return": 0.33112148901619864,
+        "annualised_return": 0.935631386108275,
+        "annualised_log_return": 0.6604335709885929,
+        "annualised_volatility": 0.36543438129538597,
+        "sharpe": 1.8072562539066481,
+        "sortino": 1.9201026195474984,
+        "max_drawdown": -0.1961968632276161,
+        "calmar": 4.768839678251178,
+        "hit_rate": 0.5096908167974158,
+        "turnover_total": 197.0,
+        "turnover_per_hour": 0.04485428051001821,
+        "position_changes": 113,
+        "average_holding_hours": 38.86725663716814,
+        "share_long": 0.7581967213114754,
+        "share_flat": 0.013205828779599272,
+        "share_short": 0.22859744990892533,
+        "price_pnl": 0.44875458333015716,
+        "funding_pnl": -0.0052762300000004925,
+        "cost_pnl": -0.0788,
+        "hypothetical_cost_pnl": -0.0788
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.5066339913873747,
+        "total_log_return": 0.40987801780858457,
+        "annualised_return": 1.264867515175582,
+        "annualised_log_return": 0.8175162650280511,
+        "annualised_volatility": 0.36562991446086635,
+        "sharpe": 2.2359118679703944,
+        "sortino": 2.367283617894986,
+        "max_drawdown": -0.17536915280992227,
+        "calmar": 7.212599792544681,
+        "hit_rate": 0.5131518227964929,
+        "turnover_total": 197.0,
+        "turnover_per_hour": 0.04485428051001821,
+        "position_changes": 113,
+        "average_holding_hours": 38.86725663716814,
+        "share_long": 0.7581967213114754,
+        "share_flat": 0.013205828779599272,
+        "share_short": 0.22859744990892533,
+        "price_pnl": 0.44875458333015716,
+        "funding_pnl": -0.0052762300000004925,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.0788
+      },
+      "maximum_action_probability": 0.4200886520395948,
+      "action_probability_std": 0.0729825516855507,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.4200886520395948,
+        "action_probability_entropy_mean": 1.07483153358085,
+        "top_two_margin_mean": 0.09980883739739385,
+        "top_two_margin_median": 0.09815838932991028,
+        "share_top_two_margin_below_0.01": 0.020947176684881604,
+        "share_top_two_margin_below_0.05": 0.16643897996357013,
+        "share_top_two_margin_below_0.10": 0.5145719489981785
+      },
+      "update": 50,
+      "training": {
+        "entropy": 1.0820459723472595,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.0,
+        "approximate_kl": 2.9704511689487845e-05,
+        "explained_variance": -0.01971438339952125,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.042706217616796494,
+        "turnover_per_step": 0.812744140625,
+        "sampled_action_share": [
+          0.303955078125,
+          0.310546875,
+          0.385498046875
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.06239033675037797,
+        "total_log_return": 0.06052140401943032,
+        "annualised_return": 0.12830001672348934,
+        "annualised_log_return": 0.12071208998410964,
+        "annualised_volatility": 0.334516946108103,
+        "sharpe": 0.36085493242874506,
+        "sortino": 0.3635860229293124,
+        "max_drawdown": -0.18935622873286184,
+        "calmar": 0.6775589986241816,
+        "hit_rate": 0.49689791314156795,
+        "turnover_total": 285.0,
+        "turnover_per_hour": 0.06489071038251366,
+        "position_changes": 253,
+        "average_holding_hours": 17.359683794466402,
+        "share_long": 0.19558287795992715,
+        "share_flat": 0.19262295081967212,
+        "share_short": 0.6117941712204007,
+        "price_pnl": 0.18007721066954796,
+        "funding_pnl": 0.022563289999998515,
+        "cost_pnl": -0.11399999999999999,
+        "hypothetical_cost_pnl": -0.11399999999999999
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.19067266623201662,
+        "total_log_return": 0.17451841316213218,
+        "annualised_return": 0.41635004804725995,
+        "annualised_log_return": 0.3480831737933237,
+        "annualised_volatility": 0.33451027484248524,
+        "sharpe": 1.0405754321215688,
+        "sortino": 1.0219338642555973,
+        "max_drawdown": -0.16260496118732748,
+        "calmar": 2.5605002762960467,
+        "hit_rate": 0.5008460236886633,
+        "turnover_total": 285.0,
+        "turnover_per_hour": 0.06489071038251366,
+        "position_changes": 253,
+        "average_holding_hours": 17.359683794466402,
+        "share_long": 0.19558287795992715,
+        "share_flat": 0.19262295081967212,
+        "share_short": 0.6117941712204007,
+        "price_pnl": 0.18007721066954796,
+        "funding_pnl": 0.022563289999998515,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.11399999999999999
+      },
+      "maximum_action_probability": 0.4861285028901148,
+      "action_probability_std": 0.13486489174029728,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.4861285028901148,
+        "action_probability_entropy_mean": 1.0136197673540972,
+        "top_two_margin_mean": 0.15860741132215506,
+        "top_two_margin_median": 0.14686912298202515,
+        "share_top_two_margin_below_0.01": 0.027777777777777776,
+        "share_top_two_margin_below_0.05": 0.14458105646630237,
+        "share_top_two_margin_below_0.10": 0.3214936247723133
+      },
+      "update": 75,
+      "training": {
+        "entropy": 1.0283773690462112,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.0,
+        "approximate_kl": 4.71773419121746e-05,
+        "explained_variance": -0.025350219966918663,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.02282635308802128,
+        "turnover_per_step": 0.682373046875,
+        "sampled_action_share": [
+          0.346923828125,
+          0.34228515625,
+          0.310791015625
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.22654636793530414,
+        "total_log_return": 0.2042023890856331,
+        "annualised_return": 0.502738211249723,
+        "annualised_log_return": 0.4072889181216179,
+        "annualised_volatility": 0.35160098626336167,
+        "sharpe": 1.1583838897896153,
+        "sortino": 1.2373685488022732,
+        "max_drawdown": -0.1966389219955491,
+        "calmar": 2.5566566687194427,
+        "hit_rate": 0.5,
+        "turnover_total": 217.0,
+        "turnover_per_hour": 0.049408014571948995,
+        "position_changes": 138,
+        "average_holding_hours": 31.82608695652174,
+        "share_long": 0.1762295081967213,
+        "share_flat": 0.04143897996357013,
+        "share_short": 0.7823315118397086,
+        "price_pnl": 0.29478082787945503,
+        "funding_pnl": 0.027272579999998492,
+        "cost_pnl": -0.08679999999999999,
+        "hypothetical_cost_pnl": -0.08679999999999999
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.3378131660380155,
+        "total_log_return": 0.29103631521302886,
+        "annualised_return": 0.7868999877514544,
+        "annualised_log_return": 0.5804822680478444,
+        "annualised_volatility": 0.3513754127200683,
+        "sharpe": 1.6520287050087359,
+        "sortino": 1.7588341275447386,
+        "max_drawdown": -0.16317604229310367,
+        "calmar": 4.822399028026378,
+        "hit_rate": 0.5019002375296913,
+        "turnover_total": 217.0,
+        "turnover_per_hour": 0.049408014571948995,
+        "position_changes": 138,
+        "average_holding_hours": 31.82608695652174,
+        "share_long": 0.1762295081967213,
+        "share_flat": 0.04143897996357013,
+        "share_short": 0.7823315118397086,
+        "price_pnl": 0.29478082787945503,
+        "funding_pnl": 0.027272579999998492,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.08679999999999999
+      },
+      "maximum_action_probability": 0.5870564139307305,
+      "action_probability_std": 0.20386329999356426,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.5870564139307305,
+        "action_probability_entropy_mean": 0.9078647064023845,
+        "top_two_margin_mean": 0.3059989912791656,
+        "top_two_margin_median": 0.31878358125686646,
+        "share_top_two_margin_below_0.01": 0.008879781420765027,
+        "share_top_two_margin_below_0.05": 0.048724954462659384,
+        "share_top_two_margin_below_0.10": 0.10245901639344263
+      },
+      "update": 100,
+      "training": {
+        "entropy": 0.96896181255579,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.0,
+        "approximate_kl": 3.793834912357852e-05,
+        "explained_variance": 0.0010625909897161723,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.014117730781435966,
+        "turnover_per_step": 0.62255859375,
+        "sampled_action_share": [
+          0.408935546875,
+          0.315673828125,
+          0.275390625
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.2459555829457003,
+        "total_log_return": 0.21990277201373548,
+        "annualised_return": 0.5505409802212398,
+        "annualised_log_return": 0.4386038895355926,
+        "annualised_volatility": 0.33069598354439245,
+        "sharpe": 1.326305462904767,
+        "sortino": 1.3027408845081672,
+        "max_drawdown": -0.18735893660232183,
+        "calmar": 2.9384292535230863,
+        "hit_rate": 0.5039745627980922,
+        "turnover_total": 335.0,
+        "turnover_per_hour": 0.07627504553734062,
+        "position_changes": 276,
+        "average_holding_hours": 15.91304347826087,
+        "share_long": 0.24157559198542805,
+        "share_flat": 0.2839253187613843,
+        "share_short": 0.4744990892531876,
+        "price_pnl": 0.36519156729203806,
+        "funding_pnl": 0.016211529999998864,
+        "cost_pnl": -0.134,
+        "hypothetical_cost_pnl": -0.134
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.42468092714788397,
+        "total_log_return": 0.35394787787543713,
+        "annualised_return": 1.0257937809477,
+        "annualised_log_return": 0.7059616143417188,
+        "annualised_volatility": 0.33036158280152794,
+        "sharpe": 2.1369361665936837,
+        "sortino": 2.04812352057462,
+        "max_drawdown": -0.16942303756635158,
+        "calmar": 6.054629852483703,
+        "hit_rate": 0.5074721780604133,
+        "turnover_total": 335.0,
+        "turnover_per_hour": 0.07627504553734062,
+        "position_changes": 276,
+        "average_holding_hours": 15.91304347826087,
+        "share_long": 0.24157559198542805,
+        "share_flat": 0.2839253187613843,
+        "share_short": 0.4744990892531876,
+        "price_pnl": 0.36519156729203806,
+        "funding_pnl": 0.016211529999998864,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.134
+      },
+      "maximum_action_probability": 0.5542380481225545,
+      "action_probability_std": 0.18808387342198382,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.5542380481225545,
+        "action_probability_entropy_mean": 0.9319804661654433,
+        "top_two_margin_mean": 0.24808603742300703,
+        "top_two_margin_median": 0.22457167506217957,
+        "share_top_two_margin_below_0.01": 0.01707650273224044,
+        "share_top_two_margin_below_0.05": 0.0942622950819672,
+        "share_top_two_margin_below_0.10": 0.1923952641165756
+      },
+      "update": 125,
+      "training": {
+        "entropy": 0.9335542842745781,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 6.103515625e-05,
+        "approximate_kl": 0.0005391551821958274,
+        "explained_variance": 0.021000920546967228,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.024303153157234192,
+        "turnover_per_step": 0.596435546875,
+        "sampled_action_share": [
+          0.370849609375,
+          0.326171875,
+          0.302978515625
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.24463592186249183,
+        "total_log_return": 0.21884305491106162,
+        "annualised_return": 0.5472671505826503,
+        "annualised_log_return": 0.4364902461340846,
+        "annualised_volatility": 0.3407801180154896,
+        "sharpe": 1.2808559627127214,
+        "sortino": 1.2884766527855251,
+        "max_drawdown": -0.21793978956917892,
+        "calmar": 2.5110933238234385,
+        "hit_rate": 0.5046898638426627,
+        "turnover_total": 435.0,
+        "turnover_per_hour": 0.09904371584699453,
+        "position_changes": 342,
+        "average_holding_hours": 12.842105263157896,
+        "share_long": 0.34084699453551914,
+        "share_flat": 0.24749544626593806,
+        "share_short": 0.4116575591985428,
+        "price_pnl": 0.408605882343974,
+        "funding_pnl": 0.013435479999998778,
+        "cost_pnl": -0.174,
+        "hypothetical_cost_pnl": -0.174
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.4812138313795966,
+        "total_log_return": 0.39286190796916337,
+        "annualised_return": 1.1892894290448268,
+        "annualised_log_return": 0.7835770295559815,
+        "annualised_volatility": 0.3405874606056264,
+        "sharpe": 2.3006631781529454,
+        "sortino": 2.250647244323113,
+        "max_drawdown": -0.2021209695615519,
+        "calmar": 5.884047714715976,
+        "hit_rate": 0.5092284417549168,
+        "turnover_total": 435.0,
+        "turnover_per_hour": 0.09904371584699453,
+        "position_changes": 342,
+        "average_holding_hours": 12.842105263157896,
+        "share_long": 0.34084699453551914,
+        "share_flat": 0.24749544626593806,
+        "share_short": 0.4116575591985428,
+        "price_pnl": 0.408605882343974,
+        "funding_pnl": 0.013435479999998778,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.174
+      },
+      "maximum_action_probability": 0.5639803029922514,
+      "action_probability_std": 0.19515085260410733,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.5639803029922514,
+        "action_probability_entropy_mean": 0.9220826020412355,
+        "top_two_margin_mean": 0.26942332441798106,
+        "top_two_margin_median": 0.2407553493976593,
+        "share_top_two_margin_below_0.01": 0.01616575591985428,
+        "share_top_two_margin_below_0.05": 0.08902550091074682,
+        "share_top_two_margin_below_0.10": 0.18465391621129326
+      },
+      "update": 150,
+      "training": {
+        "entropy": 0.9132807552814484,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.01116943359375,
+        "approximate_kl": 0.0012647943658521399,
+        "explained_variance": 0.06728972169435343,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": 0.004744027741253376,
+        "turnover_per_step": 0.59619140625,
+        "sampled_action_share": [
+          0.3525390625,
+          0.297607421875,
+          0.349853515625
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.14339946289816718,
+        "total_log_return": 0.13400581010664517,
+        "annualised_return": 0.306405337115796,
+        "annualised_log_return": 0.2672793480269152,
+        "annualised_volatility": 0.3431447381448315,
+        "sharpe": 0.778911398938906,
+        "sortino": 0.7840894102459867,
+        "max_drawdown": -0.21104328983848442,
+        "calmar": 1.4518601247653693,
+        "hit_rate": 0.4989038521766364,
+        "turnover_total": 655.0,
+        "turnover_per_hour": 0.14913479052823314,
+        "position_changes": 523,
+        "average_holding_hours": 8.397705544933078,
+        "share_long": 0.25136612021857924,
+        "share_flat": 0.27299635701275043,
+        "share_short": 0.47563752276867033,
+        "price_pnl": 0.4084069948508958,
+        "funding_pnl": 0.01719618999999878,
+        "cost_pnl": -0.262,
+        "hypothetical_cost_pnl": -0.262
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.48597940924526206,
+        "total_log_return": 0.3960740897024325,
+        "annualised_return": 1.2033608199149048,
+        "annualised_log_return": 0.7899838401168735,
+        "annualised_volatility": 0.3426362419749787,
+        "sharpe": 2.3056050217085993,
+        "sortino": 2.217959997857319,
+        "max_drawdown": -0.16377632249753804,
+        "calmar": 7.34758725537383,
+        "hit_rate": 0.5067334794863765,
+        "turnover_total": 655.0,
+        "turnover_per_hour": 0.14913479052823314,
+        "position_changes": 523,
+        "average_holding_hours": 8.397705544933078,
+        "share_long": 0.25136612021857924,
+        "share_flat": 0.27299635701275043,
+        "share_short": 0.47563752276867033,
+        "price_pnl": 0.4084069948508958,
+        "funding_pnl": 0.01719618999999878,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.262
+      },
+      "maximum_action_probability": 0.5868447578778466,
+      "action_probability_std": 0.21430565719917855,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.5868447578778466,
+        "action_probability_entropy_mean": 0.8845165120211917,
+        "top_two_margin_mean": 0.29979456633410817,
+        "top_two_margin_median": 0.2624327838420868,
+        "share_top_two_margin_below_0.01": 0.02117486338797814,
+        "share_top_two_margin_below_0.05": 0.0976775956284153,
+        "share_top_two_margin_below_0.10": 0.18169398907103826
+      },
+      "update": 175,
+      "training": {
+        "entropy": 0.8485607132315636,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.01153564453125,
+        "approximate_kl": 0.0014651510355179198,
+        "explained_variance": 0.07887000754358786,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.006433344446122646,
+        "turnover_per_step": 0.586181640625,
+        "sampled_action_share": [
+          0.38037109375,
+          0.2744140625,
+          0.34521484375
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.046089353884537054,
+        "total_log_return": 0.04505878635808046,
+        "annualised_return": 0.09403352706279677,
+        "annualised_log_return": 0.08987134983988725,
+        "annualised_volatility": 0.31436533246659115,
+        "sharpe": 0.2858818723258495,
+        "sortino": 0.2419087175047105,
+        "max_drawdown": -0.1832420110577776,
+        "calmar": 0.5131657665181774,
+        "hit_rate": 0.512087912087912,
+        "turnover_total": 625.0,
+        "turnover_per_hour": 0.142304189435337,
+        "position_changes": 536,
+        "average_holding_hours": 8.194029850746269,
+        "share_long": 0.29735883424408016,
+        "share_flat": 0.4820127504553734,
+        "share_short": 0.22062841530054644,
+        "price_pnl": 0.3124956976403185,
+        "funding_pnl": 0.007402049999999216,
+        "cost_pnl": -0.24999999999999997,
+        "hypothetical_cost_pnl": -0.24999999999999997
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.3432556261184996,
+        "total_log_return": 0.2950962390553939,
+        "annualised_return": 0.8014284443105377,
+        "annualised_log_return": 0.5885799303563867,
+        "annualised_volatility": 0.31404826744561143,
+        "sharpe": 1.8741702832616969,
+        "sortino": 1.464216378708312,
+        "max_drawdown": -0.1573513388608927,
+        "calmar": 5.09324197755346,
+        "hit_rate": 0.5213186813186813,
+        "turnover_total": 625.0,
+        "turnover_per_hour": 0.142304189435337,
+        "position_changes": 536,
+        "average_holding_hours": 8.194029850746269,
+        "share_long": 0.29735883424408016,
+        "share_flat": 0.4820127504553734,
+        "share_short": 0.22062841530054644,
+        "price_pnl": 0.3124956976403185,
+        "funding_pnl": 0.007402049999999216,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.24999999999999997
+      },
+      "maximum_action_probability": 0.5778615094639891,
+      "action_probability_std": 0.20672361689184557,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.5778615094639891,
+        "action_probability_entropy_mean": 0.8959941780584044,
+        "top_two_margin_mean": 0.280351706860224,
+        "top_two_margin_median": 0.2601408511400223,
+        "share_top_two_margin_below_0.01": 0.01639344262295082,
+        "share_top_two_margin_below_0.05": 0.08674863387978142,
+        "share_top_two_margin_below_0.10": 0.1755464480874317
+      },
+      "update": 200,
+      "training": {
+        "entropy": 0.8751350715756416,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.016845703125,
+        "approximate_kl": 0.0019721425633179024,
+        "explained_variance": 0.09286622809538347,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.0012543648481369019,
+        "turnover_per_step": 0.548583984375,
+        "sampled_action_share": [
+          0.29150390625,
+          0.347412109375,
+          0.361083984375
+        ]
+      }
+    },
+    {
+      "economic": {
+        "name": "economic",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": -0.2302433802228131,
+        "total_log_return": -0.2616808923090986,
+        "annualised_return": -0.40662685861156533,
+        "annualised_log_return": -0.5219318343869999,
+        "annualised_volatility": 0.3384769478252947,
+        "sharpe": -1.5420011251590335,
+        "sortino": -1.5059109294770012,
+        "max_drawdown": -0.28050805284387115,
+        "calmar": -1.449608503175098,
+        "hit_rate": 0.4853273137697517,
+        "turnover_total": 821.0,
+        "turnover_per_hour": 0.18693078324225865,
+        "position_changes": 637,
+        "average_holding_hours": 6.8948194662480375,
+        "share_long": 0.28711293260473586,
+        "share_flat": 0.29394353369763204,
+        "share_short": 0.41894353369763204,
+        "price_pnl": 0.07906893841826612,
+        "funding_pnl": 0.01644518999999872,
+        "cost_pnl": -0.32839999999999997,
+        "hypothetical_cost_pnl": -0.32839999999999997
+      },
+      "zero_cost": {
+        "name": "zero_cost",
+        "hours": 4392,
+        "years": 0.5013698630136987,
+        "total_return": 0.0691255918233824,
+        "total_log_return": 0.0668411104772978,
+        "annualised_return": 0.14261211353983683,
+        "annualised_log_return": 0.13331696898477427,
+        "annualised_volatility": 0.3377783463852142,
+        "sharpe": 0.39468773061235546,
+        "sortino": 0.36466701129338547,
+        "max_drawdown": -0.19165098031231753,
+        "calmar": 0.7441241015696023,
+        "hit_rate": 0.4966139954853273,
+        "turnover_total": 821.0,
+        "turnover_per_hour": 0.18693078324225865,
+        "position_changes": 637,
+        "average_holding_hours": 6.8948194662480375,
+        "share_long": 0.28711293260473586,
+        "share_flat": 0.29394353369763204,
+        "share_short": 0.41894353369763204,
+        "price_pnl": 0.07906893841826612,
+        "funding_pnl": 0.01644518999999872,
+        "cost_pnl": -0.0,
+        "hypothetical_cost_pnl": -0.32839999999999997
+      },
+      "maximum_action_probability": 0.5971196545304931,
+      "action_probability_std": 0.2235216217381595,
+      "policy_diagnostics": {
+        "maximum_action_probability_mean": 0.5971196545304931,
+        "action_probability_entropy_mean": 0.8643648364073026,
+        "top_two_margin_mean": 0.31433772605136445,
+        "top_two_margin_median": 0.2765720933675766,
+        "share_top_two_margin_below_0.01": 0.02459016393442623,
+        "share_top_two_margin_below_0.05": 0.09631147540983606,
+        "share_top_two_margin_below_0.10": 0.18237704918032788
+      },
+      "update": 225,
+      "training": {
+        "entropy": 0.8082385882735252,
+        "entropy_coefficient": 0.1,
+        "clip_fraction": 0.0081787109375,
+        "approximate_kl": 0.0013991423984407447,
+        "explained_variance": 0.10979317310006864,
+        "recurrent_gradient_cosine": null,
+        "mean_reward": -0.007610376924276352,
+        "turnover_per_step": 0.57470703125,
+        "sampled_action_share": [
+          0.463623046875,
+          0.256591796875,
+          0.27978515625
+        ]
+      }
+    }
+  ],
+  "test_performance_accessed": false,
+  "elapsed_seconds": 1257.44,
+  "updates_completed": 225,
+  "finished_at_utc": "2026-09-02T17:37:42.366410+00:00",
+  "seconds_per_update": 5.589
+}

@@ -1,0 +1,16 @@
+{
+  "mode": "symmetric",
+  "seed": 29,
+  "last_three_mean_log_return": -0.8214908648067866,
+  "criterion": 0.15901275256730935,
+  "passed": false,
+  "oracle": 0.41521130972781584,
+  "share_of_oracle": -1.978488652790551,
+  "final_conditioning": {
+    "long_when_up": 0.007776897166633644,
+    "long_when_down": 0.0668301269961021,
+    "short_when_up": 0.8975133742817515,
+    "short_when_down": 0.8776876650320634
+  },
+  "hours": 1.6684712468311127
+}

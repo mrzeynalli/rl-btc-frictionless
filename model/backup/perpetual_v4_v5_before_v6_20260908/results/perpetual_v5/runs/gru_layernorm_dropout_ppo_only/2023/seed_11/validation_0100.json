@@ -1,0 +1,38 @@
+{
+  "total_return_btc": 0.4832341880434934,
+  "total_log_return_btc": 0.39422496575494637,
+  "total_return_usd": 2.7984871664747786,
+  "collateral_btc_hold_return_usd": 1.560949037646774,
+  "daily_sharpe_btc": 1.5186846386975705,
+  "max_drawdown_btc": -0.20746400686892963,
+  "decisions": 105120,
+  "days": 365,
+  "orders": 1,
+  "completed_round_trips": 0,
+  "position_changes": 1,
+  "median_position_spell_hours": 4380.0,
+  "median_holding_spell_hours": 8447.166666666666,
+  "side_share": {
+    "short": 0.0,
+    "flat": 0.03571156773211568,
+    "long": 0.9642884322678843
+  },
+  "fees_btc": 0.0004999380738727311,
+  "funding_btc": -0.02098698286840858,
+  "turnover": 0.9999761353602368,
+  "liquidations": 0,
+  "test_locked": true,
+  "test_performance_accessed": false,
+  "return_btc_after_final_close": 0.4829370653079641,
+  "final_close_is_proxy": true,
+  "period": [
+    "2023-01-01 00:00:00+00:00",
+    "2024-01-01 00:00:00+00:00"
+  ],
+  "mean_probabilities": [
+    0.012585648397613483,
+    0.03864123016445493,
+    0.9487731217779148
+  ],
+  "update": 100
+}

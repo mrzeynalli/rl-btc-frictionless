@@ -1,0 +1,223 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-09-03T08:13:32.240927+00:00",
+  "specification": {
+    "split": "july_2026_holdout",
+    "arm": "economic",
+    "cost_rate": 0.00039999999999999996,
+    "config_id": "locked_ensemble_g090_e010_b240_detached",
+    "seed": 101,
+    "updates": 225,
+    "episode_hours": 512,
+    "evaluation_interval": 25,
+    "position_ladder": "ternary",
+    "funding_features": true,
+    "ppo": {
+      "environments": 32,
+      "rollout_steps": 128,
+      "minibatches": 2,
+      "epochs": 4,
+      "gamma": 0.9,
+      "gae_lambda": 0.5,
+      "clip_range": 0.2,
+      "value_clip_range": null,
+      "value_coefficient": 0.5,
+      "entropy_coefficient": 0.1,
+      "learning_rate": 0.0003,
+      "max_gradient_norm": 0.5,
+      "normalise_advantages": true,
+      "normalise_returns": true,
+      "adaptive_learning_rate": false,
+      "target_kl": 0.02,
+      "learning_rate_minimum": 1e-05,
+      "learning_rate_maximum": 0.03,
+      "learning_rate_factor": 1.5,
+      "critic_learning_rate_multiplier": 1.0,
+      "entropy_final_coefficient": null,
+      "entropy_anneal_updates": null,
+      "burn_in_hours": 240,
+      "critic_encoder": "detached",
+      "measure_gradient_conflict": false
+    }
+  },
+  "split": {
+    "name": "july_2026_holdout",
+    "kind": "holdout",
+    "train_start_inclusive": "2021-06-01T00:00:00+00:00",
+    "train_end_exclusive": "2026-07-01T00:00:00+00:00",
+    "evaluation_start_inclusive": "2026-07-01T00:00:00+00:00",
+    "evaluation_end_exclusive": "2026-08-01T00:00:00+00:00",
+    "train_decisions": 44544,
+    "evaluation_decisions": 743,
+    "evaluation_warmup_hours": 240,
+    "normaliser": {
+      "fitted_on": {
+        "split": "july_2026_holdout",
+        "start_inclusive": "2021-06-01T00:00:00+00:00",
+        "end_exclusive": "2026-07-01T00:00:00+00:00",
+        "decisions": 44544
+      },
+      "clip_sigma": 8.0,
+      "fast": {
+        "log_return_5m": {
+          "mean": 8.65600105878244e-07,
+          "std": 0.0017283389732019971
+        },
+        "log_high_low_range": {
+          "mean": 0.002093594483448887,
+          "std": 0.002080797815871342
+        },
+        "log_quote_volume_change": {
+          "mean": -3.416040498126652e-06,
+          "std": 0.6416400474304447
+        },
+        "taker_buy_imbalance": {
+          "mean": -0.005342114479295602,
+          "std": 0.22809563075315714
+        }
+      },
+      "slow": {
+        "momentum_3h": {
+          "mean": 3.1330607549552354e-05,
+          "std": 0.009864649429711807
+        },
+        "momentum_5h": {
+          "mean": 5.234486945834767e-05,
+          "std": 0.012686442292622339
+        },
+        "momentum_1d": {
+          "mean": 0.000266320079925234,
+          "std": 0.027942250042487807
+        },
+        "momentum_3d": {
+          "mean": 0.000834718330108642,
+          "std": 0.048131174999628074
+        },
+        "momentum_10d": {
+          "mean": 0.0027386121507717224,
+          "std": 0.08832599800621896
+        },
+        "realised_volatility_24h": {
+          "mean": 0.025939210885008085,
+          "std": 0.013708500656086725
+        },
+        "last_settled_funding_rate": {
+          "mean": 6.669180697739001e-05,
+          "std": 9.643816773657471e-05
+        },
+        "settlement_at_next_execution": {
+          "mean": 0.125,
+          "std": 0.33071891388307384
+        },
+        "hours_to_next_settlement": {
+          "mean": 0.5625,
+          "std": 0.28641098093474
+        },
+        "expected_funding_charge": {
+          "mean": 8.336288613505527e-06,
+          "std": 4.060783176282805e-05
+        }
+      }
+    }
+  },
+  "model": {
+    "parameters": 6724,
+    "hidden_size": 32,
+    "slow_features": 13,
+    "critic_encoder": "detached",
+    "initialisation": [
+      {
+        "tensor": "weight_ih_l0",
+        "gate": "reset",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "weight_ih_l0",
+        "gate": "update",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "weight_ih_l0",
+        "gate": "candidate",
+        "method": "xavier_uniform"
+      },
+      {
+        "tensor": "weight_hh_l0",
+        "gate": "reset",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "weight_hh_l0",
+        "gate": "update",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "weight_hh_l0",
+        "gate": "candidate",
+        "method": "orthogonal"
+      },
+      {
+        "tensor": "bias_ih_l0",
+        "method": "zeros"
+      },
+      {
+        "tensor": "bias_hh_l0",
+        "method": "zeros"
+      },
+      {
+        "tensor": "actor_hidden",
+        "method": "orthogonal",
+        "gain": 1.4142135623730951
+      },
+      {
+        "tensor": "actor_output",
+        "method": "orthogonal",
+        "gain": 0.01
+      },
+      {
+        "tensor": "critic_hidden",
+        "method": "orthogonal",
+        "gain": 1.4142135623730951
+      },
+      {
+        "tensor": "critic_output",
+        "method": "orthogonal",
+        "gain": 1.0
+      }
+    ]
+  },
+  "validation_curve": [],
+  "test_performance_accessed": false,
+  "elapsed_seconds": 532.18,
+  "updates_completed": 225,
+  "last_training_summary": {
+    "policy_loss": -0.00033013965003192425,
+    "value_loss": 0.12663067784160376,
+    "entropy": 0.9106213450431824,
+    "clip_fraction": 0.0,
+    "approximate_kl": 0.00011337760224705562,
+    "gradient_norm": 0.07377639412879944,
+    "explained_variance": -0.0030068161426928253,
+    "advantage_std": 0.5031278133392334,
+    "return_mean": -0.16631187498569489,
+    "return_std": 0.5023731589317322,
+    "entropy_coefficient": 0.1,
+    "recurrent_gradient_cosine": null,
+    "learning_rate": 0.0003,
+    "return_scale": 1.006845464577991,
+    "sampled_action_share": [
+      0.211669921875,
+      0.373291015625,
+      0.4150390625
+    ],
+    "mean_reward": -0.006941827945411205,
+    "turnover_per_step": 0.513427734375,
+    "completed_episodes": 0,
+    "episode_log_growth_mean": NaN,
+    "update": 225,
+    "environment_steps": 921600,
+    "elapsed_seconds": 532.18
+  },
+  "finished_at_utc": "2026-09-03T08:22:24.426150+00:00",
+  "seconds_per_update": 2.365
+}
