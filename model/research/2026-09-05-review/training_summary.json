@@ -1,0 +1,256 @@
+{
+  "training_records": 2047,
+  "update_entries": 624617,
+  "errors": [],
+  "legacy_hourly_ppo_clips": {
+    "rows": 186000,
+    "positive_clip_rows": 7897
+  },
+  "families": {
+    "results/spot_v2/development_full": {
+      "records": 120,
+      "updates": 27000,
+      "statuses": {
+        "completed": 120
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": 0.01444614077437099,
+        "explained_variance_post_update": 0.020571948497973877,
+        "critic_prediction_std_post": 0.06864007938254092,
+        "return_std": 0.4482797609775194,
+        "entropy": 0.04071487674082164,
+        "entropy_coefficient": 0.009034598214285715,
+        "approximate_kl": 7.838374900107478e-05,
+        "clip_fraction": 0.0002877371651785714,
+        "gradient_norm": 0.15837757582786643,
+        "turnover_per_step": 0.023951939174107144,
+        "mean_reward": 0.0004915069890297932
+      }
+    },
+    "results/spot_v2/locked_test": {
+      "records": 5,
+      "updates": 1125,
+      "statuses": {
+        "completed": 5
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": -0.02995000214329242,
+        "explained_variance_post_update": -0.019939656006769522,
+        "critic_prediction_std_post": 0.05807708190487964,
+        "return_std": 0.4339141654781997,
+        "entropy": 0.012158771887438238,
+        "entropy_coefficient": 0.006841517857142858,
+        "approximate_kl": 4.0546249644129216e-05,
+        "clip_fraction": 0.00026266915457589287,
+        "gradient_norm": 0.1373341167948508,
+        "turnover_per_step": 0.012952532087053572,
+        "mean_reward": 8.331860304419283e-05
+      }
+    },
+    "results/spot_v2/screen_actor_critic": {
+      "records": 216,
+      "updates": 16200,
+      "statuses": {
+        "completed": 216
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": -0.0054180095192715005,
+        "explained_variance_post_update": -0.0013130186950926432,
+        "critic_prediction_std_post": 0.08960213760534921,
+        "return_std": 0.4970319221417109,
+        "entropy": 0.43420196272846723,
+        "entropy_coefficient": 0.015613839285714285,
+        "approximate_kl": 5.792131509628639e-05,
+        "clip_fraction": 0.00013393825954861112,
+        "gradient_norm": 0.1327737218493389,
+        "turnover_per_step": 0.18947347005208334,
+        "mean_reward": -0.009304343916786213
+      }
+    },
+    "results/spot_v2/screen_architecture_entropy": {
+      "records": 216,
+      "updates": 21600,
+      "statuses": {
+        "completed": 216
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": -0.008307208102830053,
+        "explained_variance_post_update": -0.0033711818113652406,
+        "critic_prediction_std_post": 0.07280007995665073,
+        "return_std": 0.33957046836614607,
+        "entropy": 0.08200516027398408,
+        "entropy_coefficient": 0.014174107142857145,
+        "approximate_kl": 6.527930896481847e-05,
+        "clip_fraction": 0.0004248046875,
+        "gradient_norm": 0.12737800471484662,
+        "turnover_per_step": 0.038305664062499994,
+        "mean_reward": -0.000847744713537395
+      }
+    },
+    "results/spot_v2/screen_temporal_reward": {
+      "records": 108,
+      "updates": 6480,
+      "statuses": {
+        "completed": 108
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": -0.006441180137015216,
+        "explained_variance_post_update": -0.0035322126767289297,
+        "critic_prediction_std_post": 0.10493275399009387,
+        "return_std": 0.5808818807204564,
+        "entropy": 0.6181444458663463,
+        "entropy_coefficient": 0.016517857142857143,
+        "approximate_kl": 4.78517674006677e-05,
+        "clip_fraction": 0.0,
+        "gradient_norm": 0.1440431635826826,
+        "turnover_per_step": 0.34054361979166664,
+        "mean_reward": -0.018042417755350468
+      }
+    },
+    "results/spot_v2_smoke": {
+      "records": 3,
+      "updates": 61,
+      "statuses": {
+        "completed": 3
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": -0.050142105338625016,
+        "explained_variance_post_update": -0.035127713156131564,
+        "critic_prediction_std_post": 0.23015737107821874,
+        "return_std": 0.46699738928249906,
+        "entropy": 0.6929575566734586,
+        "entropy_coefficient": 0.006551724137931035,
+        "approximate_kl": 1.432257704436779e-06,
+        "clip_fraction": 0.0,
+        "gradient_norm": 0.36285934650472235,
+        "turnover_per_step": 0.49288504464285715,
+        "mean_reward": -0.05610993344868932
+      }
+    },
+    "results/spot_v3_1m/train_pre_2026": {
+      "records": 5,
+      "updates": 1125,
+      "statuses": {
+        "completed": 5
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": 0.0003452626232938659,
+        "explained_variance_post_update": 0.0029388969234478107,
+        "critic_prediction_std_post": 0.08442952816507646,
+        "return_std": 0.7884879484772682,
+        "entropy": 0.4574809641178165,
+        "entropy_coefficient": 0.029860134999981153,
+        "approximate_kl": 6.922397509307692e-05,
+        "clip_fraction": 0.0,
+        "gradient_norm": 0.3004377896182372,
+        "turnover_per_step": 0.19063459123883927,
+        "mean_reward": -0.006495223551090541
+      }
+    },
+    "results/spot_v3_1m/smoke": {
+      "records": 1,
+      "updates": 2,
+      "statuses": {
+        "completed": 1
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance_pre_update": -0.05087597789829734,
+        "explained_variance_post_update": -0.03740110904448901,
+        "critic_prediction_std_post": 0.3099771589040756,
+        "return_std": 0.7504596710205078,
+        "entropy": 0.6931021139025688,
+        "entropy_coefficient": 0.019862337999877782,
+        "approximate_kl": 8.86557245394215e-06,
+        "clip_fraction": 0.0,
+        "gradient_norm": 0.26226688735187054,
+        "turnover_per_step": 0.506591796875,
+        "mean_reward": -0.01903048064559698
+      }
+    },
+    "backup/artifacts/btc1h_gru_ddr": {
+      "records": 320,
+      "updates": 92000,
+      "statuses": {
+        "completed": 320
+      },
+      "median_of_run_final_quarter_means": {
+        "return_std": 0.0059024025965482,
+        "entropy": 1.0510610862572989,
+        "gradient_norm": 0.035343960660199326,
+        "turnover_per_step": 0.5159505208333333,
+        "mean_reward": 0.0002316361351525605
+      }
+    },
+    "backup/artifacts/btc1h_gru_ppo_equity": {
+      "records": 320,
+      "updates": 186000,
+      "statuses": {
+        "completed": 320
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance": 0.00687702790493224,
+        "entropy": 1.0278057794769606,
+        "approximate_kl": 1.2929665244882927e-05,
+        "clip_fraction": 0.0,
+        "gradient_norm": 0.2586563211741547,
+        "turnover_per_step": 0.6834684244791667,
+        "mean_reward": -0.0017868701487896033
+      }
+    },
+    "backup/artifacts/v2_probe": {
+      "records": 23,
+      "updates": 2733,
+      "statuses": {
+        "completed": 17,
+        "running": 6
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance": 0.012246540223686974,
+        "return_std": 0.9655250037038648,
+        "entropy": 0.9082179816590773,
+        "approximate_kl": 0.019377087024032656,
+        "clip_fraction": 0.09731808224239864,
+        "gradient_norm": 0.5976697318255901,
+        "turnover_per_step": 0.7757139463682432,
+        "mean_reward": 0.01636676791098875
+      }
+    },
+    "backup/position_independent_v1_20260903": {
+      "records": 145,
+      "updates": 32625,
+      "statuses": {
+        "completed": 145
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance": 0.035120626123982715,
+        "return_std": 0.5129903256893158,
+        "entropy": 0.2213122854674501,
+        "entropy_coefficient": 0.0012276785714285716,
+        "approximate_kl": 0.00014319831182417277,
+        "clip_fraction": 0.0007945469447544643,
+        "gradient_norm": 0.1276721979957074,
+        "turnover_per_step": 0.0881386021205357,
+        "mean_reward": 0.0012323474386773472
+      }
+    },
+    "backup/results_pre_redesign_20260903/artifacts": {
+      "records": 565,
+      "updates": 237666,
+      "statuses": {
+        "completed": 561,
+        "running": 4
+      },
+      "median_of_run_final_quarter_means": {
+        "explained_variance": 0.0442912337724858,
+        "return_std": 0.8980812378724417,
+        "entropy": 0.7197196645538012,
+        "entropy_coefficient": 0.09999999999999999,
+        "approximate_kl": 0.0007414770786029597,
+        "clip_fraction": 0.005067952473958333,
+        "gradient_norm": 0.21358858620903143,
+        "turnover_per_step": 0.5331595284598214,
+        "mean_reward": 0.007637908732119415
+      }
+    }
+  }
+}

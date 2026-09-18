@@ -20,3 +20,27 @@ __pycache__/
 
 # tooling
 .claude/
+
+# New BitMEX bulk archive (reproducible; keep large market data out of Git).
+/model/data/bitmex_xbtusd_*/
+/model/results/bitmex_data_import/*.log
+/model/results/bitmex_data_import/smoke/
+
+# Generated market cache, model weights, dense trajectories and process output.
+# The cache is rebuilt from data/ by agent.data.prepare and is not source.
+/model/results/agent/cache/
+/model/results/agent/cache_v2_13_features/
+/model/results/agent_v2/cache/
+/model/data/binance_um_btcusdt_1m/
+/model/results/agent/**/*.pt
+/model/results/agent/**/*.csv.gz
+/model/results/agent/.experiment.lock
+/model/results/agent/logs/
+/model/results/agent/service.log
+
+# Archived generations: keep the manifests and written records, not the weights.
+/model/backup/**/*.pt
+/model/backup/**/*.csv.gz
+/model/backup/**/cache/
+/model/research/**/*.pt
+/model/research/**/*.csv.gz

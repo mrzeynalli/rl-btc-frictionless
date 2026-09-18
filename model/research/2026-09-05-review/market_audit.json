@@ -1,0 +1,125 @@
+{
+  "rows": 5005040,
+  "columns": [
+    "open_time",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "first": "2016-05-13 12:00:00+00:00",
+  "last": "2026-08-01 23:53:00+00:00",
+  "duplicate_timestamps": 0,
+  "missing_minutes_between_first_and_last": 369754,
+  "missing_minutes_through_requested_end": 369760,
+  "gap_events": 141160,
+  "by_year": {
+    "2016": {
+      "rows": 108334,
+      "missing_share_within_observed_year": 0.6764198113489328,
+      "complete_window_share": {
+        "60": 0.001257696294725144,
+        "1440": 0.0,
+        "14400": 0.0
+      }
+    },
+    "2017": {
+      "rows": 472879,
+      "missing_share_within_observed_year": 0.10030631659056316,
+      "complete_window_share": {
+        "60": 0.5033384645536695,
+        "1440": 0.254658396942924,
+        "14400": 0.038067218178368195
+      }
+    },
+    "2018": {
+      "rows": 525401,
+      "missing_share_within_observed_year": 0.00037861491628614916,
+      "complete_window_share": {
+        "60": 0.9971933683575591,
+        "1440": 0.9568968313170954,
+        "14400": 0.6679623083679413
+      }
+    },
+    "2019": {
+      "rows": 525597,
+      "missing_share_within_observed_year": 5.707762557077626e-06,
+      "complete_window_share": {
+        "60": 0.9996574957995665,
+        "1440": 0.9917582574819569,
+        "14400": 0.915493123057271
+      }
+    },
+    "2020": {
+      "rows": 526901,
+      "missing_share_within_observed_year": 0.0002637370977534912,
+      "complete_window_share": {
+        "60": 0.9968082340729552,
+        "1440": 0.9477303125374571,
+        "14400": 0.7953148499632297
+      }
+    },
+    "2021": {
+      "rows": 524799,
+      "missing_share_within_observed_year": 0.001523972602739726,
+      "complete_window_share": {
+        "60": 0.9419759828443451,
+        "1440": 0.5469178363136518,
+        "14400": 0.16360492252558193
+      }
+    },
+    "2022": {
+      "rows": 509162,
+      "missing_share_within_observed_year": 0.03127473363774733,
+      "complete_window_share": {
+        "60": 0.6085557549268278,
+        "1440": 0.10636426594118982,
+        "14400": 0.0
+      }
+    },
+    "2023": {
+      "rows": 486768,
+      "missing_share_within_observed_year": 0.07388127853881278,
+      "complete_window_share": {
+        "60": 0.38097883894881657,
+        "1440": 0.01652164125144755,
+        "14400": 0.0
+      }
+    },
+    "2024": {
+      "rows": 516978,
+      "missing_share_within_observed_year": 0.01909153005464481,
+      "complete_window_share": {
+        "60": 0.7147411386748289,
+        "1440": 0.1230971782778191,
+        "14400": 0.0
+      }
+    },
+    "2025": {
+      "rows": 516465,
+      "missing_share_within_observed_year": 0.01738013698630137,
+      "complete_window_share": {
+        "60": 0.7241794645898226,
+        "1440": 0.1590064884644222,
+        "14400": 0.0
+      }
+    },
+    "2026": {
+      "rows": 291756,
+      "missing_share_within_observed_year": 0.04876855963536063,
+      "complete_window_share": {
+        "60": 0.5042637491643703,
+        "1440": 0.022540332487101793,
+        "14400": 0.0
+      }
+    }
+  },
+  "funding": {
+    "rows": 11153,
+    "interval_hours_counts": {
+      "8.0": 11131,
+      "24.0": 22
+    }
+  }
+}

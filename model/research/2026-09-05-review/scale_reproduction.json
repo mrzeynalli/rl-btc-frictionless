@@ -1,0 +1,10 @@
+{
+  "raw_reward": 1,
+  "gamma": 0.9,
+  "perfect_raw_value": 10,
+  "old_scale": 1,
+  "new_scale": 2,
+  "advantage_with_unchanged_old_values": -0.5,
+  "advantage_with_converted_values": 0.0,
+  "interpretation": "Controlled numerical example; does not estimate contribution to historical losses."
+}

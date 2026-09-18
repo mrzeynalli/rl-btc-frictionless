@@ -1,0 +1,51 @@
+{
+  "learned_mean_return_per_trade": 0.006090379312490279,
+  "alternatives": [
+    {
+      "fixed_exit_minutes": 15,
+      "mean_net_return_per_entry": -0.001128735244887692,
+      "median_net_return_per_entry": 0.0032047358859385007,
+      "wins": 17,
+      "learned_exit_better_count": 20,
+      "mean_learned_minus_fixed_return": 0.007219114557377972,
+      "note": "Entry-matched attribution; overlapping independent trades, not an aggregate strategy backtest."
+    },
+    {
+      "fixed_exit_minutes": 30,
+      "mean_net_return_per_entry": 0.0017042746495453188,
+      "median_net_return_per_entry": 0.0031008377606793177,
+      "wins": 14,
+      "learned_exit_better_count": 16,
+      "mean_learned_minus_fixed_return": 0.004386104662944961,
+      "note": "Entry-matched attribution; overlapping independent trades, not an aggregate strategy backtest."
+    },
+    {
+      "fixed_exit_minutes": 60,
+      "mean_net_return_per_entry": 0.0016203766896336499,
+      "median_net_return_per_entry": 0.004575672585528691,
+      "wins": 14,
+      "learned_exit_better_count": 13,
+      "mean_learned_minus_fixed_return": 0.004470002622856629,
+      "note": "Entry-matched attribution; overlapping independent trades, not an aggregate strategy backtest."
+    },
+    {
+      "fixed_exit_minutes": 120,
+      "mean_net_return_per_entry": 0.001297941245321137,
+      "median_net_return_per_entry": 0.0020682872581075044,
+      "wins": 16,
+      "learned_exit_better_count": 16,
+      "mean_learned_minus_fixed_return": 0.004792438067169142,
+      "note": "Entry-matched attribution; overlapping independent trades, not an aggregate strategy backtest."
+    },
+    {
+      "fixed_exit_minutes": 240,
+      "mean_net_return_per_entry": 0.004277500827288537,
+      "median_net_return_per_entry": 0.009974656149599687,
+      "wins": 17,
+      "learned_exit_better_count": 12,
+      "mean_learned_minus_fixed_return": 0.001812878485201742,
+      "note": "Entry-matched attribution; overlapping independent trades, not an aggregate strategy backtest."
+    }
+  ],
+  "test_locked": true
+}

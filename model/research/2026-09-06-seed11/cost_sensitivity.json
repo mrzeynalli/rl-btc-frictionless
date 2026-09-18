@@ -1,0 +1,66 @@
+{
+  "8bp": {
+    "total_return_btc": 0.14183703337784137,
+    "total_log_return_btc": 0.13263839822929666,
+    "total_return_usd": 1.5205043230641517,
+    "collateral_btc_hold_return_usd": 1.207411608999811,
+    "daily_sharpe_btc": 2.4979295959298407,
+    "max_drawdown_btc": -0.10530244625250629,
+    "decisions": 105408,
+    "days": 366,
+    "orders": 50,
+    "completed_round_trips": 25,
+    "position_changes": 50,
+    "median_position_spell_hours": 2.1666666666666665,
+    "median_holding_spell_hours": 0.8333333333333334,
+    "side_share": {
+      "short": 0.0,
+      "flat": 0.9964898299939283,
+      "long": 0.0035101700060716453
+    },
+    "fees_btc": 0.026812050331099173,
+    "funding_btc": -0.0011132646732134423,
+    "turnover": 49.68013168548757,
+    "liquidations": 0,
+    "test_locked": true,
+    "test_performance_accessed": false,
+    "return_btc_after_final_close": 0.14183703337784137,
+    "final_close_is_proxy": true,
+    "period": [
+      "2024-01-01 00:00:00+00:00",
+      "2025-01-01 00:00:00+00:00"
+    ]
+  },
+  "10bp": {
+    "total_return_btc": 0.1305692941662877,
+    "total_log_return_btc": 0.12272130600672071,
+    "total_return_usd": 1.4956317847213856,
+    "collateral_btc_hold_return_usd": 1.207411608999811,
+    "daily_sharpe_btc": 2.3888297691624647,
+    "max_drawdown_btc": -0.10711254525120906,
+    "decisions": 105408,
+    "days": 366,
+    "orders": 50,
+    "completed_round_trips": 25,
+    "position_changes": 50,
+    "median_position_spell_hours": 2.1666666666666665,
+    "median_holding_spell_hours": 0.8333333333333334,
+    "side_share": {
+      "short": 0.0,
+      "flat": 0.9964898299939283,
+      "long": 0.0035101700060716453
+    },
+    "fees_btc": 0.026682353355145325,
+    "funding_btc": -0.0011119186014873468,
+    "turnover": 49.68490152241613,
+    "liquidations": 0,
+    "test_locked": true,
+    "test_performance_accessed": false,
+    "return_btc_after_final_close": 0.1305692941662877,
+    "final_close_is_proxy": true,
+    "period": [
+      "2024-01-01 00:00:00+00:00",
+      "2025-01-01 00:00:00+00:00"
+    ]
+  }
+}
