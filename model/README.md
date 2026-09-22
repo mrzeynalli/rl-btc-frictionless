@@ -25,7 +25,8 @@ for buy-and-hold.
 src/collector/          BitMEX public-archive import into one-minute OHLCV bars and funding settlements
 data_pipeline/          hourly bars and the 120 state variables  -> data/processed/xbtusd_hourly_features.parquet
 src/simple_agent/       config, data scaling, environment, actor-critic model, PPO, training and evaluation
-scripts/hpo_multiyear.py   the multi-year hyperparameter search and the final training runs
+scripts/hpo_multiyear.py   the multi-year hyperparameter search that selected the reported configuration
+scripts/hpo_robust.py      a stricter walk-forward search with ten seeds and the training length chosen on the folds
 scripts/final_report.py    evaluates the five final models on the test period
 scripts/paper_figures.py   benchmarks, regime analysis, shuffled-timing test and figures
 tests/                  unit tests

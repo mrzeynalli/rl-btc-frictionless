@@ -1,6 +1,6 @@
 """Separate LSTM actor and LSTM critic.
 
-Each branch:  input (14 market features + 3 position) -> LSTM(64) -> Linear(64, 64) + tanh -> head
+Each branch:  input (120 market features + 3 position one-hot) -> LSTM(64) -> Linear(64, 64) + tanh -> head
   actor head:  Linear(64, 3) -> logits; pi(a | s) = softmax(logits) over short / flat / long
   critic head: Linear(64, 1) -> V(s), the expected discounted sum of future rewards
 The LSTM carries a memory (h, c) from hour to hour; it is zeroed where `done` marks the start of a new path.

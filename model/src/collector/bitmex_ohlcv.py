@@ -100,8 +100,6 @@ def prune_extras(output: Path, final: bool = False) -> None:
     allowed.append(source.ROOT / "results/bitmex_data_import/smoke")
     if final:
         allowed.extend([output / "bars_1m", output / "provenance"])
-        allowed.extend([source.ROOT / "data/binance_spot_btcusdt_1m_2017_2026_07_21",
-                        source.ROOT / "data/binance_spot_btcusdt_2017_2026_07_21"])
     for target in allowed:
         remove_exact(target, allowed)
 

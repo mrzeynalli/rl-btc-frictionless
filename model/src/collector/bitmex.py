@@ -1,4 +1,4 @@
-"""Resumable public XBTUSD archive import; independent of the Spot agent.
+"""Resumable import of the public BitMEX XBTUSD trade archive and funding history.
 
 The CLI delegates to collector.bitmex_ohlcv (OHLCV-only storage).
 Extended import functions are legacy helpers, not the active job.
@@ -556,39 +556,6 @@ def finalize(output: Path, files: list[dict], start: pd.Timestamp, end: pd.Times
     return manifest
 
 
-def remove_retired_spot(output: Path) -> None:
-    """Explicit user-authorized targets only; never touch results or model code."""
-    manifest = json.loads((output / "manifest.json").read_text())
-    if output != DEFAULT_OUTPUT.resolve() or not manifest.get("audit_passed") or manifest.get("status") != "complete":
-        raise ValueError("Spot removal requires the complete audited production replacement")
-    if (not manifest.get("reference") or manifest["requested_end_exclusive_utc"] != str(END)
-            or manifest["requested_start_inclusive_utc"] != str(START)):
-        raise ValueError("Incomplete production replacement; refusing Spot removal")
-    targets = [ROOT / "data/binance_spot_btcusdt_1m_2017_2026_07_21",
-               ROOT / "data/binance_spot_btcusdt_2017_2026_07_21"]
-    receipt_path = output / "provenance/retired_spot_data.json"
-    receipt = json.loads(receipt_path.read_text()) if receipt_path.exists() else {"datasets": [], "authorized_request": "Bulk download and store the data (remove the old spot data)."}
-    for target in targets:
-        if target.is_symlink() or target.resolve().parent != (ROOT / "data").resolve():
-            raise ValueError(f"Unsafe retirement target: {target}")
-        if not target.exists():
-            continue
-        record = {"path": str(target), "files": [], "started_at": now(),
-                  "former_manifest": json.loads((target / "manifest.json").read_text())}
-        for path in sorted(target.rglob("*")):
-            if path.is_symlink():
-                raise ValueError(f"Unexpected symlink in Spot dataset: {path}")
-            if path.is_file():
-                record["files"].append({"path": str(path.relative_to(target)), "bytes": path.stat().st_size,
-                                        "sha256": sha256(path)})
-        receipt["datasets"].append(record)
-        write_json(receipt_path, receipt)
-        shutil.rmtree(target)
-        record["removed_at"] = now()
-        write_json(receipt_path, receipt)
-        print(f"Removed retired Spot data: {target}", flush=True)
-
-
 def legacy_main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -596,7 +563,6 @@ def legacy_main() -> None:
     parser.add_argument("--end-exclusive", default=END.isoformat())
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--skip-references", action="store_true", help="Smoke tests only")
-    parser.add_argument("--remove-retired-spot", action="store_true", help="Remove the two exact retired Spot datasets ONLY after the full production import audit succeeds")
     args = parser.parse_args()
     start, end = pd.Timestamp(args.start), pd.Timestamp(args.end_exclusive)
     if start.tzinfo is None or end.tzinfo is None or start >= end:
@@ -644,8 +610,6 @@ def legacy_main() -> None:
             funding, reference = aux.result()
         print("verifying stored hashes and consolidating one-minute bars", flush=True)
         manifest = finalize(output, files, start, end, funding, reference)
-        if args.remove_retired_spot:
-            remove_retired_spot(output)
         write_json(output / "status.json", {"status": "complete", "bars": manifest["bars"],
                                             "elapsed_seconds": time.monotonic() - started, "updated_at": now()})
         print(f"COMPLETE: {manifest['bars']:,} bars, {manifest['stored_xbtusd_trades']:,} raw XBTUSD trades", flush=True)

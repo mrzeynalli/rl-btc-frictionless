@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from simple_agent.config import DATA_END, SEEDS, year
+from simple_agent.config import SEEDS, TEST
 from simple_agent.data import load, next_returns, rows
 from simple_agent.evaluate import POSITIONS, score
 
@@ -78,7 +78,6 @@ RULES = {'Buy and hold': None, '50 day MA': moving_average(50), '200 day MA': mo
          'Time series momentum': time_series_momentum, 'MACD': macd, 'RSI': rsi}
 
 
-TEST = (year(2025), DATA_END)
 
 
 def phases(table, times):
@@ -289,8 +288,6 @@ def figure_tuning():
 def main():
     FIGURES.mkdir(parents=True, exist_ok=True)
     TABLES.mkdir(parents=True, exist_ok=True)
-    for stale in ('equity_test_2026.pdf', 'price_test_2026.pdf', 'monthly_returns_2026.pdf'):
-        (FIGURES / stale).unlink(missing_ok=True)
     scores, curves, times, table, r, bounds, by_phase, returns_random = benchmark_scores()
     final = json.loads((FINAL / 'final_report.json').read_text())
     agent = {f'Agent, seed {s}': final['seeds'][str(s)]['test'] for s in SEEDS}

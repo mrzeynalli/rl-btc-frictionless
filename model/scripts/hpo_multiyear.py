@@ -1,25 +1,25 @@
-"""Overnight hyperparameter search that rewards generalisation across years (USER 2026-09-21, ~12 hours of compute).
+"""The multi-year hyperparameter search that selected the reported configuration (cfg_016).
 
-The single-year search (scripts/hpo.py) chose settings that fitted 2025 and did not carry over (ARCHITECTURE.md S8.9).
-This one scores every configuration on FOUR validation years, each seen by a model trained only on the years before it:
+Every configuration is scored on four validation years, each seen by a model trained only on the years before it:
 
-    fold   train                validation (scored)   later held out
-    2022   2017-08 -> 2020      2021                  2022
-    2023   2017-08 -> 2021      2022                  2023
-    2024   2017-08 -> 2022      2023                  2024
-    2025   2017-08 -> 2023      2024                  2025
+    training              validation (scored)
+    2017-08 -> 2020       2021
+    2017-08 -> 2021       2022
+    2017-08 -> 2022       2023
+    2017-08 -> 2023       2024
 
-A configuration's score is the mean over folds and seeds of the FINAL model's validation Sharpe - no checkpoint is chosen.
-2025 and 2026 never enter the score: the winner and the current settings are compared on them at the end.
+A configuration's score is the mean over folds and seeds of the final model's validation Sharpe ratio; no checkpoint
+is chosen. The test period (2025-01-01 onward) never enters the search.
 
 Successive halving (Li et al., Hyperband, JMLR 2018): screen many configurations cheaply, spend more on the survivors.
-  Rung 1  48 random configurations + 3 known ones (the current settings, and cfg_001 / cfg_029 of the single-year
-          search), 1 seed, the 2022 and 2024 validation years (a bear year and a choppy one), 5 passes.
+  Rung 1  48 random configurations + the initial settings + 2 configurations from an earlier single-year search,
+          1 seed, validation years 2022 and 2024, 5 passes.
   Rung 2  the best 12, 2 seeds, all four validation years, 10 passes.
   Rung 3  the best 5, 3 more seeds (5 in all).
-  Final   the winner and the current settings trained through 2024, validated on 2025, and both scored on the held-out
-          2025 (from the 2025 fold) and on 2026 (January-July).
-The current settings' four-fold runs are reused from results/simple_agent_walkforward_state4 (same code and settings).
+  Final   the winner trained on everything before 2025 with the five seeds (simple_agent.train --final); these are
+          the models evaluated on the test period by scripts/final_report.py.
+Result directories are named by the year after the validation year (test_<V+1>). The initial settings' four-fold runs
+in rungs 2 and 3 are reused from an earlier walk-forward run with identical code and settings (CONTROL_RUNS).
 
 Resumable: finished runs are skipped. Everything is written to results/simple_agent_hpo_multiyear/.
 
@@ -121,7 +121,7 @@ def launch(jobs, configs, workers, log_file):
             overrides = [f'{k}={v}' for k, v in configs[name].items()]
             process = subprocess.Popen(
                 [sys.executable, '-m', 'simple_agent.train', '--seed', str(seed), '--passes', str(passes),
-                 '--test-year', str(fold), '--output', str(target.parent), '--set', *overrides],
+                 '--validation-year', str(fold - 1), '--output', str(target.parent), '--set', *overrides],
                 stdout=log, stderr=subprocess.STDOUT)
             running.append(((rung, name, fold, seed), process, log))
         time.sleep(15)
@@ -197,14 +197,13 @@ def main():
     winner = rung3[0]['config']
     (OUT / 'winner.json').write_text(json.dumps({'config': winner, 'settings': configs[winner], **rung3[0]}, indent=1))
 
-    # Final: the winner and the current settings trained through 2024 (validated on 2025), for the 2026 hold-out.
+    # Final: the winner and the initial settings trained on everything before 2025, the models of the test period.
     contenders = [winner] if winner == 'current' else [winner, 'current']
     final_jobs = []
     for name in contenders:
         for seed in SEEDS:
             target = OUT / 'final' / name / 'test_2026' / f'seed_{seed}'
-            if not (target / 'validation.jsonl').exists() or \
-                    len((target / 'validation.jsonl').read_text().splitlines()) < RUNG3['passes']:
+            if not (target / 'checkpoints' / f'pass_{RUNG3["passes"]:02d}.pt').exists():
                 final_jobs.append((name, seed, target))
     running = []
     while final_jobs or running:
@@ -215,7 +214,7 @@ def main():
             overrides = [f'{k}={v}' for k, v in configs[name].items()]
             running.append((subprocess.Popen(
                 [sys.executable, '-m', 'simple_agent.train', '--seed', str(seed), '--passes', str(RUNG3['passes']),
-                 '--test-year', '2026', '--output', str(target.parent), '--set', *overrides],
+                 '--final', '--output', str(target.parent), '--set', *overrides],
                 stdout=handle, stderr=subprocess.STDOUT), handle))
         time.sleep(15)
         for item in list(running):

@@ -1,4 +1,4 @@
-"""Offline tests: the data importer does not change the trading agent."""
+"""Offline tests of the BitMEX archive importer."""
 import numpy as np
 import pandas as pd
 import pytest
@@ -82,29 +82,3 @@ def test_missing_archive_is_explicit_and_recovered_not_filled():
     assert result[1]["day"] == "2026-06-10"
     assert result[1]["source"] == "public_rest_trade_fallback"
     assert with_missing_days(result, start, end) == result
-
-
-def test_retirement_only_after_production_audit_and_preserves_other_data(tmp_path, monkeypatch):
-    import collector.bitmex as module
-    root = tmp_path / "model"
-    output = root / "data/bitmex"
-    output.mkdir(parents=True)
-    monkeypatch.setattr(module, "ROOT", root)
-    monkeypatch.setattr(module, "DEFAULT_OUTPUT", output)
-    old = root / "data/binance_spot_btcusdt_1m_2017_2026_07_21"
-    old.mkdir()
-    module.write_json(old / "manifest.json", {"market": "BTCUSDT Spot"})
-    other = root / "results/keep.json"
-    module.write_json(other, {"keep": True})
-    module.write_json(output / "manifest.json", {"status": "failed", "audit_passed": False})
-    with pytest.raises(ValueError, match="complete audited"):
-        module.remove_retired_spot(output)
-    assert old.exists()
-    module.write_json(output / "manifest.json", {
-        "status": "complete", "audit_passed": True, "reference": {"index": True},
-        "requested_start_inclusive_utc": str(module.START),
-        "requested_end_exclusive_utc": str(module.END)})
-    module.remove_retired_spot(output)
-    assert not old.exists()
-    assert other.exists()
-    assert (output / "provenance/retired_spot_data.json").exists()

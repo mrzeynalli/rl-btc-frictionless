@@ -1,4 +1,4 @@
-"""Build the hourly BTC feature table used by the simple agent (src/simple_agent).
+"""Build the hourly Bitcoin feature table used by the agent (src/simple_agent).
 
 Input:  data/bitmex_xbtusd_1m_2016_2026_08_01/  (BitMEX XBTUSD one-minute bars and funding settlements)
 Output: data/processed/xbtusd_hourly_features.parquet
@@ -7,11 +7,13 @@ One row per hour. Row t describes the hour that CLOSES at `time` (the bar [time 
 row t uses only bars up to and including that hour, so the agent can act on row t at `time` and earn the next
 hour's return. Nothing looks ahead.
 
-State v3 (2026-09-20, USER): a wide picture of the market - 108 features, every one relative (a ratio, a
-volatility-normalised move, an efficiency) or a percentile (a rank inside a trailing window), never a level.
+The state: 120 features, every one relative (a ratio, a volatility-normalised move, an efficiency) or a percentile
+(a rank inside a trailing window), never a level, so that periods with very different prices, volatility and volume
+remain comparable.
 The blocks follow Deng et al. (IEEE TNNLS 2017), who fed "the raw price changes of the last 45 min and the
 momentum change to the previous 3 h, 5 h, 1 day, 3 days, and 10 days" (f_t in R^50) - the same structure at an
-hourly clock - and extend it with longer horizons and rank versions of the same quantities.
+hourly clock - and extend it with longer horizons, rank versions of the same quantities, trend persistence and
+funding.
 
     .venv/bin/python data_pipeline/hourly_features.py
 """
@@ -39,9 +41,8 @@ RANK_WINDOWS = {'1m': 720, '3m': QUARTER, '1y': YEAR}
 RANGE_POSITION = {'1d': 24, '1w': 168, '4w': 672, '13w': 2184, '1y': 8760}  # stochastic %K horizons
 DRAWDOWN = {'4w': 672, '13w': 2184, '1y': 8760}
 TREND_EFFICIENCY = {'1d': 24, '3d': 72, '1w': 168, '2w': 336, '4w': 672, '13w': 2184}
-# State v4 additions (2026-09-21): trend persistence and regime smoothness, the properties that set 2023 apart
-# (ARCHITECTURE.md S8.5): how established and how far-run the trend is, how persistent, how choppy, and whether the
-# turbulence comes from rallies or selloffs.
+# Trend persistence and regime smoothness: how established and how far-run the trend is, how persistent, how choppy,
+# and whether the turbulence comes from rallies or selloffs.
 MOVING_AVERAGES = {'50d': 50 * DAY, '200d': 200 * DAY}
 UP_DAY_WINDOWS = {'1w': 7, '4w': 28, '13w': 91}                   # in days
 CROSSING_WINDOWS = {'4w': MONTH, '13w': 2184}
@@ -133,7 +134,7 @@ def build():
     for name, k in TREND_EFFICIENCY.items():
         f[f'teff_{name}'] = (log_close - log_close.shift(k)) / path.rolling(k).sum()
 
-    # --- M. Trend persistence and smoothness (state v4) ------------------------------------------------------
+    # --- M. Trend persistence and smoothness ---------------------------------------------------------------
     close = h.close
     for name, k in MOVING_AVERAGES.items():
         average = close.rolling(k).mean()
@@ -199,11 +200,6 @@ FEATURES = tuple(
     + [f'ma_cross_pct_{name}' for name in CROSSING_WINDOWS]
     + [f'semivol_ratio_{name}' for name in SEMIVOL_WINDOWS] + ['vol_of_vol_4w']
     + [f'fund_pct_{label}' for label in RANK_WINDOWS] + ['fund_chg_1w', 'fund_cum_1w', 'fund_cum_4w'])
-# State v3 (108 features) is every feature above except the twelve state-v4 additions; kept so the state-v3
-# checkpoints can still be loaded and evaluated.
-V4_ADDITIONS = tuple(name for name in FEATURES if name.startswith(('ma_dist_', 'ma_age_', 'up_days_', 'ma_cross_pct_',
-                                                                   'semivol_ratio_', 'vol_of_vol_')))
-FEATURES_V3 = tuple(name for name in FEATURES if name not in V4_ADDITIONS)
 
 if __name__ == '__main__':
     built = build()

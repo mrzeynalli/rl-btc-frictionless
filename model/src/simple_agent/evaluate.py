@@ -5,7 +5,7 @@ through the LSTM so the memory is warm; no positions are taken during that week.
 Scores:
     total log return   = sum_t ln(1 + R_t)                       (what the model works with)
     total return       = exp(total log return) - 1                (the actual gain, e.g. 0.25 = +25%)
-    equity from $10k   = 10,000 * exp(total log return)            (USER 2026-09-21: report actual money)
+    equity from $10k   = 10,000 * exp(total log return)            (the result in money)
     Sharpe (annual)    = mean(R_t) / std(R_t) * sqrt(8760)            from hourly returns
     max drawdown       = min_t (equity_t / max_{s<=t} equity_s - 1),  equity_t = prod (1 + R_s)
 """
@@ -58,7 +58,8 @@ def run_policy(model, features, returns, period_rows, warmup_hours):
 
 
 def benchmarks(table, returns, period_rows, seed=0, random_paths=100):
-    """Rules on the same rows and the same cost-free account."""
+    """Quick reference rules on the same rows and the same cost-free account, used in training reports. The paper's
+    benchmarks, with daily signals, are computed by scripts/paper_figures.py."""
     rows = period_rows[:-1]
     r = returns[rows]
     close = table.close.to_numpy(np.float64)
