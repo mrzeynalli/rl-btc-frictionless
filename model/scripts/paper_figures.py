@@ -150,11 +150,11 @@ def agent_analysis(r, times, bounds, returns_random):
 # Figures
 # --------------------------------------------------------------------------------------------------------------------
 def figure_equity(curves, times):
-    """Equity of the DRL agent (the mean over five random initializations) against every rule based benchmark."""
+    """Equity of the PPO agent (the mean over five random initializations) against every rule based benchmark."""
     equity = pd.read_csv(FINAL / 'equity_test.csv', parse_dates=['time'])
     agent = equity[[f'seed_{s}' for s in SEEDS]]
     fig, ax = plt.subplots(figsize=(6.6, 3.6))
-    ax.plot(equity.time, agent.mean(axis=1), color='black', lw=1.8, label='DRL agent')
+    ax.plot(equity.time, agent.mean(axis=1), color='black', lw=1.8, label='PPO agent')
     styles = {'Buy and hold': ('#c00000', '-'), '50 day MA': ('#ed7d31', '-'),
               '200 day MA': ('#7f7f7f', '--'), 'Time series momentum': ('#2e75b6', ':'),
               'MACD': ('#70ad47', '-'), 'RSI': ('#7030a0', '-')}
