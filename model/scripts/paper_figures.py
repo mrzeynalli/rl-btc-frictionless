@@ -150,13 +150,11 @@ def agent_analysis(r, times, bounds, returns_random):
 # Figures
 # --------------------------------------------------------------------------------------------------------------------
 def figure_equity(curves, times):
-    """Mean equity of the five agents against every rule based benchmark (the random policy is in the table)."""
+    """Equity of the DRL agent (the mean over five random initializations) against every rule based benchmark."""
     equity = pd.read_csv(FINAL / 'equity_test.csv', parse_dates=['time'])
     agent = equity[[f'seed_{s}' for s in SEEDS]]
     fig, ax = plt.subplots(figsize=(6.6, 3.6))
-    ax.fill_between(equity.time, agent.min(axis=1), agent.max(axis=1), color='#9dc3e6', alpha=0.45, lw=0,
-                    label='Agent, range of five seeds')
-    ax.plot(equity.time, agent.mean(axis=1), color='black', lw=1.8, label='Agent, mean of five seeds')
+    ax.plot(equity.time, agent.mean(axis=1), color='black', lw=1.8, label='DRL agent')
     styles = {'Buy and hold': ('#c00000', '-'), '50 day MA': ('#ed7d31', '-'),
               '200 day MA': ('#7f7f7f', '--'), 'Time series momentum': ('#2e75b6', ':'),
               'MACD': ('#70ad47', '-'), 'RSI': ('#7030a0', '-')}
@@ -226,13 +224,10 @@ def figure_training():
     for ax, (key, title) in zip(axes.flat, panels):
         smooth = pd.DataFrame({s: log[key].rolling(25, min_periods=1).mean() for s, log in logs.items()})
         passes = logs[SEEDS[0]]['update'] / logs[SEEDS[0]]['update'].max() * 10
-        ax.fill_between(passes, smooth.min(axis=1), smooth.max(axis=1), color='#9dc3e6', alpha=0.6, lw=0,
-                        label='Range over seeds')
-        ax.plot(passes, smooth.mean(axis=1), color='#1f4e79', lw=1.3, label='Mean over seeds')
+        ax.plot(passes, smooth.mean(axis=1), color='#1f4e79', lw=1.3)
         ax.set_title(title)
     for ax in axes[1]:
         ax.set_xlabel('Training passes')
-    axes[0, 0].legend(frameon=False)
     fig.tight_layout()
     fig.savefig(FIGURES / 'training_curves.pdf')
     plt.close(fig)
