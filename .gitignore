@@ -25,6 +25,8 @@
 /model/scripts/*
 !/model/scripts/hpo_multiyear.py
 !/model/scripts/hpo_robust.py
+!/model/scripts/walkforward_nested.py
+!/model/scripts/walkforward_report.py
 !/model/scripts/final_report.py
 !/model/scripts/paper_figures.py
 

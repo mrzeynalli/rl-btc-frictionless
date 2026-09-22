@@ -4,6 +4,8 @@ Search fold (walk forward): train on everything before year V and score the mode
     PYTHONPATH=src .venv/bin/python -m simple_agent.train --seed 11 --validation-year 2023 --output <dir> [--set ...]
 Final agent: train on everything before 2025 (config.TRAIN); nothing after the training period is loaded.
     PYTHONPATH=src .venv/bin/python -m simple_agent.train --seed 11 --final --output <dir> [--passes 10] [--set ...]
+Walk-forward model for test year Y: train on everything before year Y, no evaluation.
+    PYTHONPATH=src .venv/bin/python -m simple_agent.train --seed 11 --train-end 2023 --output <dir> [--set ...]
 
 Writes, per seed:  updates.jsonl (every PPO update), checkpoints/pass_XX.pt (weights after each pass), config.json,
                    and for a search fold validation.jsonl (the validation-year score after each pass).
@@ -18,12 +20,13 @@ import time
 import numpy as np
 import torch
 
-from .config import OUTPUT, TRAIN, Config, fold
+from .config import DATA_START, OUTPUT, TRAIN, Config, fold, year
 from .data import FEATURES, Scaler, load, next_returns, rows
 from .env import Env
 from .evaluate import run_policy
 from .model import ActorCritic
 from .ppo import PPO
+from .reinforce import Reinforce
 
 
 def main():
@@ -34,17 +37,21 @@ def main():
     target = parser.add_mutually_exclusive_group(required=True)
     target.add_argument('--validation-year', type=int, help='search fold: train before this year, score on it')
     target.add_argument('--final', action='store_true', help='train on config.TRAIN for the reported agent')
+    target.add_argument('--train-end', type=int, help='walk-forward model: train on everything before this year')
     parser.add_argument('--set', nargs='*', default=[], metavar='FIELD=VALUE',
                         help='override Config fields, e.g. --set gamma=0.99 hidden=256 (hyperparameter search)')
     args = parser.parse_args()
     if args.final:
         train_period, validation_period = TRAIN, None
+    elif args.train_end:
+        train_period, validation_period = (DATA_START, year(args.train_end)), None
     else:
         train_period, validation_period = fold(args.validation_year)
     overrides = {}
     for item in args.set:
         name, value = item.split('=', 1)
-        overrides[name] = type(getattr(Config, name))(float(value) if '.' in value or 'e' in value else int(value))
+        kind = type(getattr(Config, name))
+        overrides[name] = value if kind is str else kind(float(value) if '.' in value or 'e' in value else int(value))
     config = replace(Config(), passes=args.passes, **overrides)
     torch.manual_seed(args.seed)
     torch.set_num_threads(1)
@@ -61,7 +68,7 @@ def main():
 
     env = Env(features[train_rows], train_returns, config.envs, config.eta, initial_variance)
     model = ActorCritic(len(FEATURES) + 3, config.hidden)
-    ppo = PPO(model, env, config)
+    ppo = Reinforce(model, env, config) if config.algo == 'reinforce' else PPO(model, env, config)
     # One pass = as many samples as the training period has hours.
     updates_per_pass = math.ceil(len(train_rows) / (config.envs * config.rollout))
 

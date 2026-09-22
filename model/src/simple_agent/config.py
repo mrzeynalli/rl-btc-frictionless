@@ -49,6 +49,9 @@ class Config:
     minibatches: int = 4        # each minibatch = 2 walkers x 64 hours
     epochs: int = 3             # passes over one rollout per update [4]
 
+    # --- learning algorithm ---
+    algo: str = 'ppo'           # 'ppo' (actor and critic) or 'reinforce' (critic-free One-Batch REINFORCE)
+
     # --- PPO (CleanRL defaults) ---
     gamma: float = 0.98         # discount per hour: rewards ~50 hours ahead still count 1/e
     gae_lambda: float = 0.95    # GAE smoothing between one-step and long-horizon advantage
