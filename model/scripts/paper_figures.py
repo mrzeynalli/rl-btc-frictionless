@@ -2,8 +2,7 @@
 
 Final agent: cfg_016, trained 2017-08 -> 2024, tested on one continuous account from 1 January 2025 to 1 August 2026
 (results/simple_agent_final, results/simple_agent_hpo_multiyear). All accounts are cost-free and start at $10,000.
-Returns are also split by bull and bear markets, dated on daily closes with the Lunde & Timmermann (2004) filter
-(a 20% fall from a peak starts a bear market, a 20% rise from a trough a bull market), and by calendar year.
+Returns are also split by calendar year.
 
 Benchmarks, all on the same hourly account as the agent, with daily signals taken at 00:00 UTC from daily closes:
   buy-and-hold; 50- and 200-day moving average (long above, short below; Brock, Lakonishok & LeBaron 1992);
@@ -80,56 +79,9 @@ RULES = {'Buy and hold': None, '50 day MA': moving_average(50), '200 day MA': mo
 
 
 
-BULL_BEAR_FILTER = (0.20, 0.20)     # (lambda1, lambda2): rise from a trough / fall from a peak that switches the state
-
-
-def bull_bear_turns(daily, rise, fall):
-    """Turning points of the Lunde & Timmermann (2004) bull and bear market filter on daily closes.
-
-    In a bull market the running peak is updated until the price falls more than `fall` below it; the market is then
-    dated as bear from that peak on. In a bear market the running trough is updated until the price rises more than
-    `rise` above it; the market is then dated as bull from that trough on. Returns [(day, 'peak'|'trough')].
-    """
-    state, extreme, extreme_day, turns = 1, daily.iloc[0], daily.index[0], []
-    for day, price in daily.items():
-        if state == 1:
-            if price >= extreme:
-                extreme, extreme_day = price, day
-            elif price < (1 - fall) * extreme:
-                turns.append((extreme_day, 'peak'))
-                state, extreme, extreme_day = 0, price, day
-        else:
-            if price <= extreme:
-                extreme, extreme_day = price, day
-            elif price > (1 + rise) * extreme:
-                turns.append((extreme_day, 'trough'))
-                state, extreme, extreme_day = 1, price, day
-    return turns
-
-
-def market_states(table, times):
-    """Hour masks of the test window for bull markets, bear markets and the calendar years, plus the dated segments.
-
-    The filter runs over the whole daily history, so the state on 1 January 2025 is inherited from earlier data.
-    """
-    daily = table.set_index('time').close.resample('1D', label='left').last().dropna()
-    turns = bull_bear_turns(daily, *BULL_BEAR_FILTER)
-    day_of_hour = (times - pd.Timedelta(hours=1)).dt.floor('D')          # an hour belongs to the day it trades in
-    bull = np.ones(len(times), bool)
-    for day, kind in turns:                                             # the extreme day closes the old state
-        after = (day_of_hour > day).to_numpy()
-        bull[after] = kind == 'trough'
-    segments, start = [], times.iloc[0]
-    for day, kind in turns:
-        if times.iloc[0] < day + pd.Timedelta(days=1) < times.iloc[-1]:
-            segments.append({'state': 'bull' if kind == 'peak' else 'bear', 'start': str(start.date()),
-                             'end': str(day.date())})
-            start = day + pd.Timedelta(days=1)
-    segments.append({'state': 'bull' if bull[-1] else 'bear', 'start': str(start.date()),
-                     'end': str(times.iloc[-1].date())})
-    masks = {'Bull markets': bull, 'Bear markets': ~bull,
-             '2025': (times < '2026-01-01').to_numpy(), '2026': (times >= '2026-01-01').to_numpy()}
-    return masks, segments
+def calendar_years(times):
+    """Hour masks of the test window for the two calendar years (the test is evaluated chronologically)."""
+    return {'2025': (times < '2026-01-01').to_numpy(), '2026': (times >= '2026-01-01').to_numpy()}
 
 
 def phase_returns(R, times, masks):
@@ -150,7 +102,7 @@ def benchmark_scores():
     test_rows = rows(table, TEST)[:-1]
     r = returns[test_rows]
     times = table.time.iloc[test_rows].reset_index(drop=True)
-    bounds, segments = market_states(table, times)
+    bounds = calendar_years(times)
     out, curves, by_phase = {}, {}, {}
     for name, rule in RULES.items():
         positions = np.ones(len(test_rows)) if rule is None else daily_signal_positions(table, test_rows, rule)
@@ -167,7 +119,7 @@ def benchmark_scores():
     returns_random = np.array([s['total_return_pct'] for s in random_scores])
     out['Random (median)']['p05_return_pct'] = float(np.percentile(returns_random, 5))
     out['Random (median)']['p95_return_pct'] = float(np.percentile(returns_random, 95))
-    return out, curves, times, table, r, bounds, by_phase, returns_random, segments
+    return out, curves, times, table, r, bounds, by_phase, returns_random
 
 
 def agent_analysis(r, times, bounds, returns_random):
@@ -325,7 +277,7 @@ def figure_tuning():
 def main():
     FIGURES.mkdir(parents=True, exist_ok=True)
     TABLES.mkdir(parents=True, exist_ok=True)
-    scores, curves, times, table, r, bounds, by_phase, returns_random, segments = benchmark_scores()
+    scores, curves, times, table, r, bounds, by_phase, returns_random = benchmark_scores()
     final = json.loads((FINAL / 'final_report.json').read_text())
     agent = {f'Agent, seed {s}': final['seeds'][str(s)]['test'] for s in SEEDS}
     agent['Agent, mean of five seeds'] = {k: float(np.mean([a[k] for a in agent.values()]))
@@ -341,12 +293,7 @@ def main():
     figure_training()
     figure_tuning()
     close = table.set_index('time').close.reindex(times)
-    daily = close.resample('1D', label='left').last()
-    for segment in segments:
-        part = daily[segment['start']:segment['end']]
-        segment.update({'first': float(part.iloc[0]), 'last': float(part.iloc[-1]),
-                        'return_pct': float((part.iloc[-1] / part.iloc[0] - 1) * 100)})
-    describe = {'segments': segments, 'hours': {k: int(v.sum()) for k, v in bounds.items()},
+    describe = {'hours': {k: int(v.sum()) for k, v in bounds.items()},
                 'btc_return_pct': phase_returns(r, times, bounds)}
     (TABLES / 'test.json').write_text(json.dumps({'agent': agent, 'benchmarks': scores, 'analysis': analysis,
                                                    'benchmark_phases': by_phase, 'phases': describe},
