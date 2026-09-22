@@ -1,7 +1,0 @@
-{
-  "locked": true,
-  "start_inclusive": "2026-01-01 00:00:00+00:00",
-  "performance_accessed": false,
-  "unlock_entrypoint": null,
-  "enforcement": "cache built only from pre-2026 rows; date guards; development fold whitelist; training-only counterfactual bounds"
-}

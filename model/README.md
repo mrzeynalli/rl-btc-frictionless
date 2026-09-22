@@ -1,87 +1,46 @@
-**Single-asset recurrent trading agent — version 2**
+# Recurrent PPO agent for Bitcoin perpetual futures
 
-A **USDT-margined linear perpetual account** — the user's USD-M futures account — on **BitMEX XBTUSD
-prices, volume and funding** (one consistent venue from 2016). **Hourly decisions on five-minute bars**: the agent chooses a target
-position — SHORT, FLAT (USDT cash) or LONG at 1× entry notional — once an hour. Recurrent PPO with
-separate LSTM actor and critic and layer normalisation after every hidden layer. The market state is
-volatility-normalised log returns over nine horizons (1 h, 3 h, 1 d, 3 d, 1 w, 4 w, 8 w, 13 w, 26 w),
-the volatility level and regime, the volume regime and the funding rate; the account state is the side, the open trade's return and age,
-exposure, and the reward's own statistics. The reward is the exact per-bar change in an
-exponentially weighted Sharpe ratio of USDT equity. Training charges twice the real cost; evaluation
-takes the most probable action at the real cost.
-
-**Status (2026-09-15): built, tested and smoke-run end to end; the pre-registered γ/λ search kept γ = λ = 0.9792
-per hour (ARCHITECTURE.md §5). The main run has not been launched. The whole of 2026 is locked for testing.** Version 1
-(BitMEX inverse contract, BTC collateral, six regime features) and its full record are archived in
-`backup/agent_inverse_regime_20260915/`.
-
-**The design, the evidence behind every constant, the data audit and the formulation with pseudo-code
-are in [ARCHITECTURE.md](ARCHITECTURE.md).** Update it with every change to `src/agent/`; a test fails
-if a configuration constant is missing from its provenance table. Decision rules fixed before
-measurement are in `results/agent_v2/PREREGISTRATION.md`.
-
-## Protocol
+A deep reinforcement learning agent that trades Bitcoin perpetual futures once per hour. It holds a short, flat or
+long position of one times the account value in a USD-margined (linear) account, so a flat position leaves the equity
+untouched by Bitcoin price moves. The aim is an agent that adapts to changing market regimes and survives them,
+rather than one that forecasts prices.
 
 | | |
 |---|---|
-| Decisions | hourly (`decision_bars` = 12 five-minute bars) |
-| Folds | train 2017 → Y, validate the four quarters of Y: 2024, 2025 |
-| γ/λ search | inner folds 2022 and 2023, seed 11, 3 × 3 grid, 30 passes — kept 0.9792 / 0.9792 per hour |
-| Seeds | 11, 29, 47, 61, 83 (USER) |
-| Reward | differential Sharpe of USDT equity (USER) |
-| Training | 60 passes over each fold's span — 3,595 / 4,110 updates of 8 × 128 hourly decisions; episodes of 2,176 decisions (90.7 days) starting flat, short or long; 2× the real cost |
-| Costs at evaluation | 5 bp taker commission (Binance USD-M VIP 0) + 1 bp slippage per leg |
-| Validation | a checkpoint every 5 passes (12 per run), each quarter from a flat account, argmax actions |
-| Selection | interquartile mean of quarterly log return, stratified bootstrap 95% interval, probability of backtest overfitting, break-even slippage; constant long/short/flat and 1-week and 26-week momentum rules as references |
-| Test | **2026-01-01 onward, locked** (USER) |
+| Market | BitMEX XBTUSD hourly prices, volume and funding, rebuilt from the public trade archive |
+| Account | frictionless (no fees, slippage or funding), $10,000 start, position in {-1, 0, +1} |
+| State | 120 market variables, each relative to its own history (volatility-scaled returns, momentum, volatility and volume percentiles, trend persistence, funding), plus a one-hot of the current position |
+| Agent | separate LSTM(64) actor and critic, each followed by a 64-unit tanh layer; recurrent PPO in the CleanRL style |
+| Reward | differential Sharpe ratio (Moody & Saffell), adaptation rate 1/336 |
+| Training | one continuous path, 8 parallel walkers from evenly spaced starts, 10 passes (1,270 updates), seeds 11, 29, 47, 61, 83; the final model of each seed is used |
+| Hyperparameters | successive-halving random search (51 → 12 → 5 configurations) scored on four walk-forward years, 2021 to 2024 |
+| Test | trained to 31 Dec 2024, evaluated on 1 Jan 2025 → 1 Aug 2026 |
 
-## Running it
-
-```bash
-# Engineering checks; no locked market data are evaluated.
-PYTHONPATH=src .venv/bin/python -m pytest -q
-
-# Pre-registered state redundancy rule on 2017-2023 (development data only).
-PYTHONPATH=src .venv/bin/python scripts/feature_redundancy.py
-
-# Binance USD-M data, kept for comparing funding with the user's venue; not used by the agent.
-PYTHONPATH=src .venv/bin/python -m collector.binance_um --output data/binance_um_btcusdt_1m --end YYYY-MM-DD
-
-# The gamma/lambda search (about 3.5 hours on this host), then its pre-registered decision.
-bash scripts/run_search.sh
-PYTHONPATH=src .venv/bin/python scripts/search_summary.py
-
-# The main run, after Config carries the searched gamma and lambda: [workers].
-bash scripts/run_agent.sh 6
-
-# The permanent benchmark set against an experiment's selected checkpoint (about 15 minutes, 1,000 random paths).
-PYTHONPATH=src .venv/bin/python scripts/benchmark_report.py --experiment results/agent_v2/main
-
-# Progress and the learning diagnostics of every experiment.
-.venv/bin/python scripts/agent_status.py
-```
-
-Measured at **1.4–2.0 s per update with six workers and ~1 GB per worker**. The main run is 38,525 updates over ten
-runs — roughly 19 core-hours plus validation, about 4 hours with 6 workers.
-
-## Diagnostics to watch
-
-`account_side_share`, `long_entry_share` and `state_action_mutual_information` show whether the policy
-locks onto one side regardless of the market. `policy_entropy` and the flat-to-long and flat-to-short
-probabilities show whether entries are still explored. `exit_decisions`, `mean_age_at_exit_hours` and
-`policy_implied_holding_hours` show how long it holds. `liquidations_in_rollout` tracks ruin.
-`replay_*_error` must stay at zero.
+Result on the test period: all five seeds finish above $10,000; $16,402 on average (+64.0%) against $6,713 (−32.9%)
+for buy-and-hold.
 
 ## Layout
 
-Outputs are under `results/agent_v2/`: `cache/` (BitMEX market arrays to 2026-01-01, all 15 candidate features),
-`audit/` (feature redundancy; the superseded splice audit), `search_merged_data/<cell>/` and its `decision.json`,
-and `main/` for the main run, holding `protocol.json` (the frozen specification every run is rebuilt
-from), `queue.json`, `TEST_LOCK.json`, `status.json`, `runs/<year>/seed_<seed>/` and
-`comparison/selection.json`. The agent's data are in `data/bitmex_xbtusd_1m_2016_2026_08_01/`. Version 1's results remain in `results/agent/`; its scripts
-(test window, charts, synthetic verification, state analytics) are in
-`backup/agent_inverse_regime_20260915/`.
+```
+src/collector/          BitMEX public-archive import into one-minute OHLCV bars and funding settlements
+data_pipeline/          hourly bars and the 120 state variables  -> data/processed/xbtusd_hourly_features.parquet
+src/simple_agent/       config, data scaling, environment, actor-critic model, PPO, training and evaluation
+scripts/hpo_multiyear.py   the multi-year hyperparameter search and the final training runs
+scripts/final_report.py    evaluates the five final models on the test period
+scripts/paper_figures.py   benchmarks, regime analysis, shuffled-timing test and figures
+tests/                  unit tests
+```
 
-Profitability and generalisation remain empirical questions. These changes align the agent with the
-account the user trades and give it the information the user asked for; they do not create signal,
-and a null result is a result.
+Market data, results and model weights are not part of the repository.
+
+## Running
+
+```bash
+python -m venv .venv && .venv/bin/pip install -r requirements.txt
+PYTHONPATH=src .venv/bin/python -m pytest -q                       # unit tests
+PYTHONPATH=src .venv/bin/python -m collector.bitmex                # download and build one-minute bars
+PYTHONPATH=src .venv/bin/python data_pipeline/hourly_features.py   # hourly features
+PYTHONPATH=src .venv/bin/python scripts/hpo_multiyear.py --workers 6
+PYTHONPATH=src .venv/bin/python scripts/final_report.py
+PYTHONPATH=src .venv/bin/python scripts/paper_figures.py
+```

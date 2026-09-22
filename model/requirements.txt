@@ -5,3 +5,4 @@ numpy>=1.26
 torch>=2.2
 requests>=2.31
 python-dotenv>=1.0
+matplotlib>=3.8

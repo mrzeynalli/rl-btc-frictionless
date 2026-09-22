@@ -1,46 +1,58 @@
-# secrets and environments
+# The repository publishes only the source of the latest agent (simple_agent, v4): the agent package, the data
+# collector and feature pipeline, the scripts that produced the reported results, and their tests.
+# Everything else is ignored by default: market data, results and model weights, archived agents (backup/),
+# the paper, reference articles, and agent instruction or working documents (CLAUDE.md, AGENTS.md, ARCHITECTURE.md,
+# literature notes, .claude/, .codex/, .agents/).
+
+/*
+!/.gitignore
+!/model/
+
+/model/*
+!/model/README.md
+!/model/pyproject.toml
+!/model/requirements.txt
+!/model/src/
+!/model/data_pipeline/
+!/model/scripts/
+!/model/tests/
+
+/model/src/*
+!/model/src/simple_agent/
+!/model/src/collector/
+/model/src/collector/binance_um.py
+
+/model/scripts/*
+!/model/scripts/hpo_multiyear.py
+!/model/scripts/final_report.py
+!/model/scripts/paper_figures.py
+
+/model/tests/*
+!/model/tests/test_simple_agent.py
+!/model/tests/test_bitmex_collector.py
+!/model/tests/test_bitmex_ohlcv.py
+
+# agent instruction and working documents, wherever they appear
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+ARCHITECTURE*.md
+literature.md
+.claude/
+.codex/
+.agents/
+.cursor/
+.idea/
+
+# data, secrets and generated files
+*.parquet
+*.csv
+*.csv.gz
+*.pt
+*.log
 .env
 .venv/
-
-# large local trees: market data, study outputs, and the superseded code archive
-/data/
-/artifacts/
-/backup/
-
-# third-party reference corpus (139 MB of downloaded PDFs, not our work)
-/Articles/
-
-# manuscript sources and build output
-/paper/
-
-# python noise
 __pycache__/
 *.egg-info/
 .pytest_cache/
-
-# tooling
-.claude/
-
-# New BitMEX bulk archive (reproducible; keep large market data out of Git).
-/model/data/bitmex_xbtusd_*/
-/model/results/bitmex_data_import/*.log
-/model/results/bitmex_data_import/smoke/
-
-# Generated market cache, model weights, dense trajectories and process output.
-# The cache is rebuilt from data/ by agent.data.prepare and is not source.
-/model/results/agent/cache/
-/model/results/agent/cache_v2_13_features/
-/model/results/agent_v2/cache/
-/model/data/binance_um_btcusdt_1m/
-/model/results/agent/**/*.pt
-/model/results/agent/**/*.csv.gz
-/model/results/agent/.experiment.lock
-/model/results/agent/logs/
-/model/results/agent/service.log
-
-# Archived generations: keep the manifests and written records, not the weights.
-/model/backup/**/*.pt
-/model/backup/**/*.csv.gz
-/model/backup/**/cache/
-/model/research/**/*.pt
-/model/research/**/*.csv.gz
+.DS_Store
