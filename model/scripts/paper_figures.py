@@ -2,8 +2,8 @@
 
 Final agent: cfg_016, trained 2017-08 -> 2024, tested on one continuous account from 1 January 2025 to 1 August 2026
 (results/simple_agent_final, results/simple_agent_hpo_multiyear). All accounts are cost-free and start at $10,000.
-The test window is split into three market phases by its price extremes: the correction to the 2025 low, the rally to
-the all-time high, and the decline after it.
+Returns are also split by bull and bear markets, dated on daily closes with the Lunde & Timmermann (2004) filter
+(a 20% fall from a peak starts a bear market, a 20% rise from a trough a bull market), and by calendar year.
 
 Benchmarks, all on the same hourly account as the agent, with daily signals taken at 00:00 UTC from daily closes:
   buy-and-hold; 50- and 200-day moving average (long above, short below; Brock, Lakonishok & LeBaron 1992);
@@ -80,20 +80,61 @@ RULES = {'Buy and hold': None, '50 day MA': moving_average(50), '200 day MA': mo
 
 
 
-def phases(table, times):
-    """Phase boundaries from the test window's price extremes: the 2025 low and the all-time high."""
-    close = table.set_index('time').close.reindex(times)
-    low = close[close.index < '2026-01-01'].idxmin()
-    high = close.idxmax()
-    return {'Correction': (times.iloc[0], low), 'Rally to the high': (low, high), 'Decline': (high, times.iloc[-1])}
+BULL_BEAR_FILTER = (0.20, 0.20)     # (lambda1, lambda2): rise from a trough / fall from a peak that switches the state
 
 
-def phase_returns(R, times, bounds):
-    out = {}
-    for name, (start, end) in bounds.items():
-        mask = ((times >= start) & (times < end)).to_numpy() if name != 'Decline' else (times >= start).to_numpy()
-        out[name] = float(np.expm1(np.log1p(R[mask]).sum()) * 100)
-    return out
+def bull_bear_turns(daily, rise, fall):
+    """Turning points of the Lunde & Timmermann (2004) bull and bear market filter on daily closes.
+
+    In a bull market the running peak is updated until the price falls more than `fall` below it; the market is then
+    dated as bear from that peak on. In a bear market the running trough is updated until the price rises more than
+    `rise` above it; the market is then dated as bull from that trough on. Returns [(day, 'peak'|'trough')].
+    """
+    state, extreme, extreme_day, turns = 1, daily.iloc[0], daily.index[0], []
+    for day, price in daily.items():
+        if state == 1:
+            if price >= extreme:
+                extreme, extreme_day = price, day
+            elif price < (1 - fall) * extreme:
+                turns.append((extreme_day, 'peak'))
+                state, extreme, extreme_day = 0, price, day
+        else:
+            if price <= extreme:
+                extreme, extreme_day = price, day
+            elif price > (1 + rise) * extreme:
+                turns.append((extreme_day, 'trough'))
+                state, extreme, extreme_day = 1, price, day
+    return turns
+
+
+def market_states(table, times):
+    """Hour masks of the test window for bull markets, bear markets and the calendar years, plus the dated segments.
+
+    The filter runs over the whole daily history, so the state on 1 January 2025 is inherited from earlier data.
+    """
+    daily = table.set_index('time').close.resample('1D', label='left').last().dropna()
+    turns = bull_bear_turns(daily, *BULL_BEAR_FILTER)
+    day_of_hour = (times - pd.Timedelta(hours=1)).dt.floor('D')          # an hour belongs to the day it trades in
+    bull = np.ones(len(times), bool)
+    for day, kind in turns:                                             # the extreme day closes the old state
+        after = (day_of_hour > day).to_numpy()
+        bull[after] = kind == 'trough'
+    segments, start = [], times.iloc[0]
+    for day, kind in turns:
+        if times.iloc[0] < day + pd.Timedelta(days=1) < times.iloc[-1]:
+            segments.append({'state': 'bull' if kind == 'peak' else 'bear', 'start': str(start.date()),
+                             'end': str(day.date())})
+            start = day + pd.Timedelta(days=1)
+    segments.append({'state': 'bull' if bull[-1] else 'bear', 'start': str(start.date()),
+                     'end': str(times.iloc[-1].date())})
+    masks = {'Bull markets': bull, 'Bear markets': ~bull,
+             '2025': (times < '2026-01-01').to_numpy(), '2026': (times >= '2026-01-01').to_numpy()}
+    return masks, segments
+
+
+def phase_returns(R, times, masks):
+    """Compounded return in percent over the hours of each mask (one continuous account, restricted to those hours)."""
+    return {name: float(np.expm1(np.log1p(R[mask]).sum()) * 100) for name, mask in masks.items()}
 
 
 def win_rate(R, positions):
@@ -109,7 +150,7 @@ def benchmark_scores():
     test_rows = rows(table, TEST)[:-1]
     r = returns[test_rows]
     times = table.time.iloc[test_rows].reset_index(drop=True)
-    bounds = phases(table, times)
+    bounds, segments = market_states(table, times)
     out, curves, by_phase = {}, {}, {}
     for name, rule in RULES.items():
         positions = np.ones(len(test_rows)) if rule is None else daily_signal_positions(table, test_rows, rule)
@@ -126,7 +167,7 @@ def benchmark_scores():
     returns_random = np.array([s['total_return_pct'] for s in random_scores])
     out['Random (median)']['p05_return_pct'] = float(np.percentile(returns_random, 5))
     out['Random (median)']['p95_return_pct'] = float(np.percentile(returns_random, 95))
-    return out, curves, times, table, r, bounds, by_phase, returns_random
+    return out, curves, times, table, r, bounds, by_phase, returns_random, segments
 
 
 def agent_analysis(r, times, bounds, returns_random):
@@ -180,16 +221,12 @@ def figure_equity(curves, times):
     plt.close(fig)
 
 
-def figure_test_price(table, times, bounds):
-    """Hourly closing price of the XBTUSD perpetual over the test window, with its three market phases shaded."""
+def figure_test_price(table, times):
+    """Hourly closing price of the XBTUSD perpetual over the test window, with the all time high marked."""
     close = table.set_index('time').close.reindex(times)
     fig, ax = plt.subplots(figsize=(6.6, 3.0))
-    shades = {'Correction': '#f2f2f2', 'Rally to the high': '#e2efda', 'Decline': '#fbe5d6'}
-    for name, (start, end) in bounds.items():
-        ax.axvspan(start, end, color=shades[name], lw=0)
-        ax.text(start + (end - start) / 2, 131_000, name, ha='center', va='top', fontsize=8)
     ax.plot(times, close.to_numpy(), color='#1f4e79', lw=0.8)
-    high = bounds['Decline'][0]
+    high = close.idxmax()
     ax.annotate(f'All time high\n{close[high]:,.0f} USD', xy=(high, close[high]), xytext=(25, -25),
                 textcoords='offset points', fontsize=8, arrowprops={'arrowstyle': '->', 'lw': 0.6})
     ax.set_ylim(50_000, 133_000)
@@ -288,7 +325,7 @@ def figure_tuning():
 def main():
     FIGURES.mkdir(parents=True, exist_ok=True)
     TABLES.mkdir(parents=True, exist_ok=True)
-    scores, curves, times, table, r, bounds, by_phase, returns_random = benchmark_scores()
+    scores, curves, times, table, r, bounds, by_phase, returns_random, segments = benchmark_scores()
     final = json.loads((FINAL / 'final_report.json').read_text())
     agent = {f'Agent, seed {s}': final['seeds'][str(s)]['test'] for s in SEEDS}
     agent['Agent, mean of five seeds'] = {k: float(np.mean([a[k] for a in agent.values()]))
@@ -299,13 +336,18 @@ def main():
         agent[f'Agent, seed {s}']['win_rate_pct'] = analysis[s]['win_rate_pct']
     agent['Agent, mean of five seeds']['win_rate_pct'] = float(np.mean([analysis[s]['win_rate_pct'] for s in SEEDS]))
     figure_equity(curves, times)
-    figure_test_price(table, times, bounds)
+    figure_test_price(table, times)
     figure_walk_forward()
     figure_training()
     figure_tuning()
     close = table.set_index('time').close.reindex(times)
-    describe = {name: {'first': float(close[start]), 'last': float(close[end] if name != 'Decline' else close.iloc[-1]),
-                       'start': str(start), 'end': str(end)} for name, (start, end) in bounds.items()}
+    daily = close.resample('1D', label='left').last()
+    for segment in segments:
+        part = daily[segment['start']:segment['end']]
+        segment.update({'first': float(part.iloc[0]), 'last': float(part.iloc[-1]),
+                        'return_pct': float((part.iloc[-1] / part.iloc[0] - 1) * 100)})
+    describe = {'segments': segments, 'hours': {k: int(v.sum()) for k, v in bounds.items()},
+                'btc_return_pct': phase_returns(r, times, bounds)}
     (TABLES / 'test.json').write_text(json.dumps({'agent': agent, 'benchmarks': scores, 'analysis': analysis,
                                                    'benchmark_phases': by_phase, 'phases': describe},
                                                   indent=1, default=str))
