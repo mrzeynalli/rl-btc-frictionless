@@ -3,7 +3,7 @@
 Test: 1 January 2021 -> 1 August 2026, each year traded by models trained on the data before it
 (agents/ppo/results/walkforward, written by scripts/walkforward_nested.py and scripts/walkforward_report.py).
 The PPO agent is the mean over ten random initializations; all accounts are frictionless and start at 10,000 USD.
-Returns are reported by calendar year and by month, with every year's equity rebased to 10,000 USD.
+Calendar-year equity curves are rebased to 10,000 USD; the PPO line is the mean of the ten runs.
 
     PYTHONPATH=.:scripts .venv/bin/python scripts/paper_figures.py
 """
@@ -77,7 +77,9 @@ def descriptive_by_year(table):
     close = table.set_index('time').close
     out = {}
     for y in range(2018, 2027):
-        part = close[str(y)]
+        start = pd.Timestamp(f'{y}-01-01', tz='UTC')
+        end = min(pd.Timestamp(f'{y + 1}-01-01', tz='UTC'), close.index[-1])
+        part = close.loc[start:end]
         r = np.log(part).diff().dropna()
         out[str(y)] = {'first': float(part.iloc[0]), 'last': float(part.iloc[-1]), 'min': float(part.min()),
                        'max': float(part.max()), 'return_pct': float((part.iloc[-1] / part.iloc[0] - 1) * 100),
@@ -90,7 +92,7 @@ def descriptive_by_year(table):
 # Figures
 # --------------------------------------------------------------------------------------------------------------------
 def figure_price(table):
-    close = table.set_index('time').close['2021-01-01':'2026-08-01']
+    close = table.set_index('time').close['2021-01-01':'2026-08-02 00:00']
     fig, ax = plt.subplots(figsize=(6.6, 3.0))
     ax.plot(close.index, close.to_numpy(), color='#1f4e79', lw=0.7)
     high = close.idxmax()
@@ -115,9 +117,10 @@ def figure_walk_forward():
         ax.barh(y, (end - start).days, left=start, color='#bfbfbf', height=0.55,
                 label='Training' if i == 0 else None)
         for v in nested.selection_years(test_year):
-            ax.barh(y, 365, left=pd.Timestamp(f'{v}-01-01'), color='#2e75b6', height=0.25,
+            days = (pd.Timestamp(f'{v + 1}-01-01') - pd.Timestamp(f'{v}-01-01')).days
+            ax.barh(y, days, left=pd.Timestamp(f'{v}-01-01'), color='#2e75b6', height=0.25,
                     label='Selection years' if i == 0 and v == nested.selection_years(test_year)[0] else None)
-        test_end = pd.Timestamp('2026-08-01') if test_year == 2026 else pd.Timestamp(f'{test_year + 1}-01-01')
+        test_end = pd.Timestamp('2026-08-02') if test_year == 2026 else pd.Timestamp(f'{test_year + 1}-01-01')
         ax.barh(y, (test_end - end).days, left=end, color='#c00000', height=0.55, label='Test year' if i == 0 else None)
     ax.set_yticks(range(len(nested.TEST_YEARS), 0, -1), [str(y) for y in nested.TEST_YEARS])
     ax.set_ylabel('Test year')
@@ -133,12 +136,15 @@ def figure_equity_by_year(frame, agent_columns):
     year_of = frame.time.dt.year.astype(str).to_numpy()
     for ax, y in zip(axes.flat, YEARS):
         mask = year_of == y
-        times = frame.time[mask]
-        agent = np.mean([10_000 * np.cumprod(1 + hourly_returns(frame[c])[mask]) for c in agent_columns], axis=0)
+        decisions = frame.time[mask]
+        times = pd.DatetimeIndex([decisions.iloc[0], *(decisions + pd.Timedelta(hours=1))])
+        paths = np.array([10_000 * np.r_[1.0, np.cumprod(1 + hourly_returns(frame[c])[mask])]
+                          for c in agent_columns])
+        agent = paths.mean(axis=0)
         ax.plot(times, agent, color='black', lw=1.5, label='PPO agent')
         for name in BENCHMARKS:
             colour, style, width = STYLES[name]
-            ax.plot(times, 10_000 * np.cumprod(1 + hourly_returns(frame[name])[mask]), color=colour, ls=style, lw=width,
+            ax.plot(times, 10_000 * np.r_[1.0, np.cumprod(1 + hourly_returns(frame[name])[mask])], color=colour, ls=style, lw=width,
                     label=LABELS.get(name, name))
         ax.axhline(10_000, color='#bfbfbf', lw=0.6)
         ax.set_title(y if y != '2026' else '2026 (to 1 August)')
@@ -177,8 +183,6 @@ def figure_training():
 def main():
     FIGURES.mkdir(parents=True, exist_ok=True)
     TABLES.mkdir(parents=True, exist_ok=True)
-    for stale in ('equity_test.pdf', 'tuning.pdf'):
-        (FIGURES / stale).unlink(missing_ok=True)
     report = json.loads((RUN / 'report.json').read_text())
     frame = pd.read_csv(RUN / 'equity_test.csv', parse_dates=['time'])
     agent_columns = [f'seed_{s}' for s in nested.FINAL_SEEDS]
@@ -202,6 +206,8 @@ def main():
            'seeds': seeds, 'choices': choices, 'diagnostics': report['diagnostics'],
            'descriptive_by_year': descriptive_by_year(table)}
     (TABLES / 'walkforward.json').write_text(json.dumps(out, indent=1, default=float))
+    from paper_tables import generate
+    generate(out, frame)
 
     figure_price(table)
     figure_walk_forward()

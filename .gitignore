@@ -21,6 +21,7 @@
 !/scripts/walkforward_nested.py
 !/scripts/walkforward_report.py
 !/scripts/paper_figures.py
+!/scripts/paper_tables.py
 
 # agent instruction and working documents, wherever they appear
 CLAUDE.md

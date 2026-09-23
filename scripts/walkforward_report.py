@@ -47,6 +47,7 @@ def period(test_year):
 def evaluate_model(job):
     """One (test year, seed): positions and returns on the test year, and the Sharpe ratio on its training period."""
     out, test_year, seed, passes, hidden = job
+    torch.set_num_threads(1)
     table = load(end=DATA_END)
     train_rows = rows(table, (DATA_START, year(test_year)))
     run = json.loads((nested.final_dir(out, test_year, seed) / 'config.json').read_text())
@@ -55,7 +56,8 @@ def evaluate_model(job):
     model = ActorCritic(len(run['features']) + 3, hidden)
     checkpoint = nested.final_dir(out, test_year, seed) / 'checkpoints' / f'pass_{passes:02d}.pt'
     model.load_state_dict(torch.load(checkpoint)['model'])
-    _, positions, R, _ = run_policy(model, features, returns, rows(table, period(test_year)), run['config']['warmup_hours'])
+    _, positions, R, _ = run_policy(model, features, returns, rows(table, period(test_year)),
+                                    run['config']['warmup_hours'], include_last=True)
     in_sample, _, _, _ = run_policy(model, features, returns, train_rows, run['config']['warmup_hours'])
     return test_year, seed, positions, R, in_sample['sharpe']
 
@@ -100,7 +102,9 @@ def main():
 
     table = load(end=DATA_END)
     returns = next_returns(table)
-    test_rows = np.concatenate([rows(table, period(y))[:-1] for y in nested.TEST_YEARS])
+    test_rows = np.concatenate([rows(table, period(y)) for y in nested.TEST_YEARS])
+    test_rows = test_rows[np.isfinite(returns[test_rows])]
+    assert table.time.iloc[test_rows].diff().iloc[1:].eq(pd.Timedelta(hours=1)).all()
     r = returns[test_rows]
     times = table.time.iloc[test_rows].reset_index(drop=True)
     year_of = times.dt.year.to_numpy()
@@ -152,7 +156,12 @@ def main():
                    'mean_train_sharpe': float(gap_frame.train_sharpe.mean()),
                    'mean_test_sharpe': float(gap_frame.test_sharpe.mean())}
 
-    report = {'choices': {y: c['selected'] for y, c in choices.items()}, 'agent_mean': mean_agent,
+    report = {'evaluation': {'first_decision_utc': str(times.iloc[0]),
+                             'last_decision_utc': str(times.iloc[-1]),
+                             'last_settlement_utc': str(times.iloc[-1] + pd.Timedelta(hours=1)),
+                             'hours': len(test_rows), 'includes_year_boundary_returns': True,
+                             'selection_convention': 'original within-year transitions; checkpoints unchanged'},
+              'choices': {y: c['selected'] for y, c in choices.items()}, 'agent_mean': mean_agent,
               'agent_seeds': agent, 'benchmarks': bench, 'diagnostics': diagnostics}
     (out / 'report.json').write_text(json.dumps(report, indent=1, default=float))
     frame = pd.DataFrame(curves)

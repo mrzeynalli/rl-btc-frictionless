@@ -33,10 +33,15 @@ def score(R, positions):
 
 
 @torch.no_grad()
-def run_policy(model, features, returns, period_rows, warmup_hours):
-    """Trade the rows `period_rows` (consecutive); returns (score, positions, hourly returns, P(short/flat/long))."""
+def run_policy(model, features, returns, period_rows, warmup_hours, *, include_last=False):
+    """Evaluate consecutive decision rows, optionally including the return across a period boundary.
+
+    Selection retains the original within-period convention. Final walk-forward reporting uses
+    include_last=True: the next boundary price settles the last decision, but no future feature
+    is fed to the policy. The terminal dataset row, whose next return is unavailable, is excluded.
+    """
     first = period_rows[0]
-    rows = period_rows[:-1]                     # the period's last row has no next hour inside the period
+    rows = period_rows[np.isfinite(returns[period_rows])] if include_last else period_rows[:-1]
     state = model.actor.initial_state(1)
     no_reset = torch.zeros(1, 1)
     flat = np.array([0, 1, 0], np.float32)
