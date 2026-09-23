@@ -12,7 +12,7 @@ Overfitting diagnostics:
   deflated Sharpe      probability that the test Sharpe ratio exceeds the best of N trials expected by chance
                        (Bailey & Lopez de Prado 2014), with N the number of candidate configurations.
 
-    PYTHONPATH=src .venv/bin/python scripts/walkforward_report.py --algo ppo
+    PYTHONPATH=.:scripts .venv/bin/python scripts/walkforward_report.py --algo ppo
 """
 import argparse
 from concurrent.futures import ProcessPoolExecutor
@@ -26,13 +26,13 @@ import numpy as np
 import pandas as pd
 import torch
 
-from simple_agent.config import DATA_END, DATA_START, HOURS_PER_YEAR, year
-from simple_agent.data import Scaler, load, next_returns, rows
-from simple_agent.evaluate import POSITIONS, run_policy, score
-from simple_agent.model import ActorCritic
+from core.config import DATA_END, DATA_START, HOURS_PER_YEAR, year
+from core.data import Scaler, load, next_returns, rows
+from core.evaluate import POSITIONS, run_policy, score
+from core.model import ActorCritic
 
 import walkforward_nested as nested
-from paper_figures import RULES, daily_signal_positions, win_rate
+from core.benchmarks import RULES, daily_signal_positions, win_rate
 
 ROOT = Path(__file__).resolve().parents[1]
 START = year(2021)
@@ -90,7 +90,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--algo', choices=('ppo', 'reinforce'), required=True)
     args = parser.parse_args()
-    out = ROOT / f'results/walkforward_nested_{args.algo}'
+    out = ROOT / 'agents' / args.algo / 'results' / 'walkforward'
     choices = {int(k): v for k, v in json.loads((out / 'choices.json').read_text()).items()}
     configs = json.loads((out / 'candidates.json').read_text())
     jobs = [(out, y, s, choices[y]['selected']['passes'], configs[choices[y]['selected']['config']]['hidden'])

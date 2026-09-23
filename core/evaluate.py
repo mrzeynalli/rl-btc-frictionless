@@ -55,22 +55,3 @@ def run_policy(model, features, returns, period_rows, warmup_hours):
     positions = np.array(positions)
     R = positions * returns[rows]                                   # R_{t+1} = a_t * (P_{t+1}/P_t - 1)
     return score(R, positions), positions, R, np.array(probabilities)
-
-
-def benchmarks(table, returns, period_rows, seed=0, random_paths=100):
-    """Quick reference rules on the same rows and the same cost-free account, used in training reports. The paper's
-    benchmarks, with daily signals, are computed by scripts/paper_figures.py."""
-    rows = period_rows[:-1]
-    r = returns[rows]
-    close = table.close.to_numpy(np.float64)
-    # 50-day moving average of hourly closes (1,200 hours): long above it, short below (Brock et al. 1992).
-    sma = np.array([close[max(0, i - 1199):i + 1].mean() for i in rows])
-    ma = np.sign(close[rows] - sma)
-    rng = np.random.default_rng(seed)
-    random_scores = [score(p * r, p)['total_log_return']
-                     for p in (POSITIONS[rng.integers(0, 3, len(rows))] for _ in range(random_paths))]
-    return {'buy_and_hold': score(r, np.ones(len(rows))),
-            'sma_50d': score(ma * r, ma),
-            'random_uniform_total_log_return': {'median': float(np.median(random_scores)),
-                                                'p05': float(np.percentile(random_scores, 5)),
-                                                'p95': float(np.percentile(random_scores, 95))}}

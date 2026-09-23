@@ -1,4 +1,4 @@
-"""Build the hourly Bitcoin feature table used by the agent (src/simple_agent).
+"""Build the hourly Bitcoin feature table used by the agents (core/, agents/).
 
 Input:  data/bitmex_xbtusd_1m_2016_2026_08_01/  (BitMEX XBTUSD one-minute bars and funding settlements)
 Output: data/processed/xbtusd_hourly_features.parquet

@@ -1,5 +1,5 @@
 [project]
-name = "btc-perpetual-agent"
+name = "rl-research-crypto"
 version = "1.0.0"
 description = "Recurrent PPO agent with a differential Sharpe reward for hourly Bitcoin perpetual futures trading"
 requires-python = ">=3.11"
@@ -22,10 +22,10 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["src"]
-include = ["collector*", "simple_agent*"]
+where = ["."]
+include = ["core*", "agents*", "data_pipeline*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
-norecursedirs = ["backup", "data", "results", ".venv"]
+pythonpath = ["."]
+norecursedirs = ["archive", "data", "results", ".venv"]

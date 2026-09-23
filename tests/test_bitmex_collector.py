@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from collector.bitmex import LAUNCH, combine_parts, minute_parts, normalize_trades, udf_frame, with_missing_days
+from data_pipeline.collector.bitmex import LAUNCH, combine_parts, minute_parts, normalize_trades, udf_frame, with_missing_days
 
 
 def sample():

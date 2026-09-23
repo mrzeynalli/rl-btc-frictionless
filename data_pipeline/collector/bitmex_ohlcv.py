@@ -18,11 +18,11 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from collector import bitmex as source
+from data_pipeline.collector import bitmex as source
 
 COLUMNS = ["open_time", "open", "high", "low", "close", "volume"]
 FILENAME = "XBTUSD-1m-OHLCV.parquet"
-REPORT = source.ROOT / "results/bitmex_data_import/ohlcv_cleanup.json"
+REPORT = source.ROOT / "data/import_reports/ohlcv_cleanup.json"
 PRUNED_DATA_NAMES = ("trades", "reference", "download_cache", "provenance/rest_trade_pages")
 
 
@@ -97,7 +97,7 @@ def prune_extras(output: Path, final: bool = False) -> None:
     if output != source.DEFAULT_OUTPUT.resolve():
         raise ValueError("Cleanup is restricted to the production dataset")
     allowed = [output / name for name in PRUNED_DATA_NAMES]
-    allowed.append(source.ROOT / "results/bitmex_data_import/smoke")
+    allowed.append(source.ROOT / "data/import_reports/smoke")
     if final:
         allowed.extend([output / "bars_1m", output / "provenance"])
     for target in allowed:

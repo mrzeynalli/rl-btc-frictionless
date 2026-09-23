@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from collector.bitmex_ohlcv import COLUMNS, compact_frame, consolidate, remove_exact
+from data_pipeline.collector.bitmex_ohlcv import COLUMNS, compact_frame, consolidate, remove_exact
 
 
 def test_ohlcv_projection_and_contract_volume():
@@ -44,13 +44,13 @@ def test_delete_is_allowlisted_permanent_and_audited(tmp_path):
 
 
 def test_funding_is_not_in_ohlcv_cleanup_targets():
-    from collector.bitmex_ohlcv import PRUNED_DATA_NAMES
+    from data_pipeline.collector.bitmex_ohlcv import PRUNED_DATA_NAMES
     assert "funding" not in PRUNED_DATA_NAMES
 
 
 def test_ohlcv_download_never_persists_raw_trades_and_resumes_without_them(tmp_path, monkeypatch):
     import hashlib
-    from collector import bitmex as source
+    from data_pipeline.collector import bitmex as source
     cache = tmp_path / "download_cache/20260801.csv.gz"
     cache.parent.mkdir()
     raw = pd.DataFrame({"timestamp": ["2026-08-01D00:00:01.000000"],
@@ -86,7 +86,7 @@ def test_ohlcv_download_never_persists_raw_trades_and_resumes_without_them(tmp_p
 @pytest.mark.parametrize("identical", [False, True])
 def test_distinct_fills_with_reused_match_ids_keep_volume(tmp_path, identical):
     import hashlib
-    from collector import bitmex as source
+    from data_pipeline.collector import bitmex as source
     cache = tmp_path / "download_cache/20260801.csv.gz"
     cache.parent.mkdir()
     raw = pd.DataFrame({"timestamp": ["2026-08-01D00:00:01.000000"] * 2,

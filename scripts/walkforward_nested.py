@@ -23,7 +23,9 @@ ratio is averaged over the validation years of Y after each pass and smoothed ov
 smallest one within one standard error (across years) of the best, and the candidate with the highest mean minus one
 standard error at its pass count is selected.
 
-    PYTHONPATH=src .venv/bin/python scripts/walkforward_nested.py --algo ppo [--workers 6]
+    PYTHONPATH=. .venv/bin/python scripts/walkforward_nested.py --algo ppo [--workers 6]
+
+Results are written to agents/<algo>/results/walkforward/.
 """
 import argparse
 from itertools import product
@@ -81,7 +83,7 @@ def run_all(jobs, workers, log):
             target, seed, args, _ = job = pending.pop(0)
             target.parent.mkdir(parents=True, exist_ok=True)
             handle = open(target.parent / f'seed_{seed}.log', 'w')
-            process = subprocess.Popen([sys.executable, '-m', 'simple_agent.train', '--seed', str(seed),
+            process = subprocess.Popen([sys.executable, '-m', 'core.train', '--seed', str(seed),
                                         '--output', str(target.parent), *args],
                                        stdout=handle, stderr=subprocess.STDOUT)
             running.append((job, process, handle))
@@ -126,7 +128,7 @@ def main():
     args = parser.parse_args()
     global MAX_PASSES
     MAX_PASSES = PASS_LIMIT[args.algo]
-    out = ROOT / f'results/walkforward_nested_{args.algo}'
+    out = ROOT / 'agents' / args.algo / 'results' / 'walkforward'
     out.mkdir(parents=True, exist_ok=True)
     configs = candidates(args.algo)
     (out / 'candidates.json').write_text(json.dumps(configs, indent=1))

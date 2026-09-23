@@ -1,12 +1,11 @@
-"""Every setting of the simple agent, in one place."""
+"""Every setting of the agent, in one place."""
 from dataclasses import dataclass
 from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 FEATURE_FILE = ROOT / 'data/processed/xbtusd_hourly_features.parquet'   # built by data_pipeline/hourly_features.py
-OUTPUT = ROOT / 'results/simple_agent'
 
 # Every period is [start, end) in UTC. The feature table starts in June 2017; the first rows whose one-year look-back
 # windows are incomplete are dropped by the feature pipeline, so training effectively starts on 12 August 2017.
@@ -18,21 +17,11 @@ def year(y):
     return pd.Timestamp(f'{y}-01-01', tz='UTC')
 
 
-# The reported agent: trained on everything before 2025, then tested once on 1 January 2025 -> 1 August 2026.
-TRAIN = (DATA_START, year(2025))
-TEST = (year(2025), DATA_END)
-
-# Hyperparameter search folds (walk forward): for validation year V the agent is trained on [DATA_START, V) and
-# scored on year V. No fold reaches into the test period.
-VALIDATION_YEARS = (2021, 2022, 2023, 2024)
-
-
 def fold(validation_year):
-    """(training period, validation period) of one search fold."""
+    """(training period, validation period) of a selection fold: train on [DATA_START, V), score on year V."""
     return (DATA_START, year(validation_year)), (year(validation_year), year(validation_year + 1))
 
 
-SEEDS = (11, 29, 47, 61, 83)
 ACTIONS = (-1, 0, 1)            # action index 0, 1, 2 -> position short, flat, long
 HOURS_PER_YEAR = 8760
 
@@ -40,7 +29,8 @@ HOURS_PER_YEAR = 8760
 @dataclass(frozen=True)
 class Config:
     # --- network ---
-    # Configuration cfg_016 of the multi-year search (scripts/hpo_multiyear.py). Initial CleanRL-based values in [].
+    # Defaults. The walk-forward (scripts/walkforward_nested.py) chooses lr, hidden, entropy_coef and eta for every
+    # test year from the years before it and fixes the remaining settings at these values. CleanRL values in [].
     hidden: int = 64            # LSTM and hidden-layer width, for both actor and critic [128]
 
     # --- rollout ---

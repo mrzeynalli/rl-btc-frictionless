@@ -1,6 +1,6 @@
 """Resumable import of the public BitMEX XBTUSD trade archive and funding history.
 
-The CLI delegates to collector.bitmex_ohlcv (OHLCV-only storage).
+The CLI delegates to data_pipeline.collector.bitmex_ohlcv (OHLCV-only storage).
 Extended import functions are legacy helpers, not the active job.
 No credentials. All dates and stored timestamps are UTC. See data README.
 """
@@ -619,5 +619,5 @@ def legacy_main() -> None:
 
 
 if __name__ == "__main__":
-    from collector.bitmex_ohlcv import main
+    from data_pipeline.collector.bitmex_ohlcv import main
     main()

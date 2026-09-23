@@ -1,14 +1,13 @@
-"""Train one seed of the agent.
+"""Train one agent (one random initialization) with PPO or critic-free REINFORCE (Config.algo).
 
-Search fold (walk forward): train on everything before year V and score the model on year V after every pass.
-    PYTHONPATH=src .venv/bin/python -m simple_agent.train --seed 11 --validation-year 2023 --output <dir> [--set ...]
-Final agent: train on everything before 2025 (config.TRAIN); nothing after the training period is loaded.
-    PYTHONPATH=src .venv/bin/python -m simple_agent.train --seed 11 --final --output <dir> [--passes 10] [--set ...]
-Walk-forward model for test year Y: train on everything before year Y, no evaluation.
-    PYTHONPATH=src .venv/bin/python -m simple_agent.train --seed 11 --train-end 2023 --output <dir> [--set ...]
+Selection fold: train on everything before year V and score the model on year V after every pass.
+    .venv/bin/python -m core.train --seed 11 --validation-year 2023 --output <dir> [--passes 15] [--set algo=ppo ...]
+Walk-forward model for test year Y: train on everything before year Y; nothing later is loaded.
+    .venv/bin/python -m core.train --seed 11 --train-end 2023 --output <dir> [--passes 12] [--set ...]
+Run from the repository root (the directory that contains core/ and agents/).
 
-Writes, per seed:  updates.jsonl (every PPO update), checkpoints/pass_XX.pt (weights after each pass), config.json,
-                   and for a search fold validation.jsonl (the validation-year score after each pass).
+Writes, per seed:  updates.jsonl (every update), checkpoints/pass_XX.pt (weights after each pass), config.json,
+                   and for a selection fold validation.jsonl (the validation-year score after each pass).
 """
 import argparse
 from dataclasses import asdict, replace
@@ -20,30 +19,27 @@ import time
 import numpy as np
 import torch
 
-from .config import DATA_START, OUTPUT, TRAIN, Config, fold, year
+from .config import DATA_START, Config, fold, year
 from .data import FEATURES, Scaler, load, next_returns, rows
 from .env import Env
 from .evaluate import run_policy
 from .model import ActorCritic
-from .ppo import PPO
-from .reinforce import Reinforce
+from agents.ppo.ppo import PPO
+from agents.reinforce.reinforce import Reinforce
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--seed', type=int, required=True)
     parser.add_argument('--passes', type=int, default=Config.passes)
-    parser.add_argument('--output', type=Path, default=OUTPUT)
+    parser.add_argument('--output', type=Path, required=True)
     target = parser.add_mutually_exclusive_group(required=True)
     target.add_argument('--validation-year', type=int, help='search fold: train before this year, score on it')
-    target.add_argument('--final', action='store_true', help='train on config.TRAIN for the reported agent')
     target.add_argument('--train-end', type=int, help='walk-forward model: train on everything before this year')
     parser.add_argument('--set', nargs='*', default=[], metavar='FIELD=VALUE',
                         help='override Config fields, e.g. --set gamma=0.99 hidden=256 (hyperparameter search)')
     args = parser.parse_args()
-    if args.final:
-        train_period, validation_period = TRAIN, None
-    elif args.train_end:
+    if args.train_end:
         train_period, validation_period = (DATA_START, year(args.train_end)), None
     else:
         train_period, validation_period = fold(args.validation_year)

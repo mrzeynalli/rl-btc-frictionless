@@ -3,10 +3,10 @@ import numpy as np
 import pandas as pd
 import torch
 
-from simple_agent.config import Config
-from simple_agent.env import Env, differential_sharpe
-from simple_agent.model import ActorCritic
-from simple_agent.ppo import PPO
+from core.config import Config
+from core.env import Env, differential_sharpe
+from core.model import ActorCritic
+from agents.ppo.ppo import PPO
 
 
 def test_differential_sharpe_is_the_derivative_of_the_sharpe_ratio():
@@ -60,7 +60,7 @@ def test_ppo_update_runs_and_stays_finite():
     assert all(np.isfinite(v) for v in summary.values() if isinstance(v, float))
 
 
-def test_every_simple_agent_constant_is_documented():
+def test_every_config_constant_is_documented():
     """ARCHITECTURE.md must name every Config field of the simple agent."""
     from dataclasses import fields
     from pathlib import Path
@@ -76,7 +76,7 @@ def test_every_simple_agent_constant_is_documented():
 
 def test_reinforce_update_is_finite():
     """One critic-free update on a synthetic path runs and returns finite statistics."""
-    from simple_agent.reinforce import Reinforce
+    from agents.reinforce.reinforce import Reinforce
     rng = np.random.default_rng(0)
     features = rng.normal(size=(400, 5)).astype(np.float32)
     returns = rng.normal(0, 0.01, 400)
