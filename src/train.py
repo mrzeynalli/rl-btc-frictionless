@@ -1,10 +1,10 @@
 """Train one agent (one random initialization) with recurrent PPO.
 
 Selection fold: train on everything before year V and score the model on year V after every pass.
-    .venv/bin/python -m core.train --seed 11 --validation-year 2023 --output <dir> [--passes 15] [--set lr=2.5e-4 ...]
+    .venv/bin/python -m src.train --seed 11 --validation-year 2023 --output <dir> [--passes 15] [--set lr=2.5e-4 ...]
 Walk-forward model for test year Y: train on everything before year Y; nothing later is loaded.
-    .venv/bin/python -m core.train --seed 11 --train-end 2023 --output <dir> [--passes 12] [--set ...]
-Run from the repository root (the directory that contains core/ and agents/).
+    .venv/bin/python -m src.train --seed 11 --train-end 2023 --output <dir> [--passes 12] [--set ...]
+Run from the repository root (the directory that contains src/ and agents/).
 
 Writes, per seed:  updates.jsonl (every update), checkpoints/pass_XX.pt (weights after each pass), config.json,
                    and for a selection fold validation.jsonl (the validation-year score after each pass).

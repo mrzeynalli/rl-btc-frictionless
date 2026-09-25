@@ -29,18 +29,15 @@ Probability of backtest overfitting of the selection 0.20; deflated Sharpe ratio
 
 ```
 agents/ppo/ppo.py       the learning algorithm: recurrent PPO update (start here to review the algorithm)
-core/                   shared framework: settings (config.py), data scaling (data.py), frictionless environment and
-                        differential Sharpe reward (env.py), LSTM actor-critic (model.py), policy evaluation
-                        (evaluate.py), rule benchmarks (benchmarks.py), training entry point (python -m core.train)
+src/                    how the agent works: settings (config.py), data scaling (data.py), frictionless environment
+                        and differential Sharpe reward (env.py), LSTM actor-critic (model.py), policy evaluation
+                        (evaluate.py), rule benchmarks (benchmarks.py), training entry point (train.py)
 data_pipeline/          data collection and processing: BitMEX archive collector (collector/) and the hourly
                         feature table (hourly_features.py)
-scripts/                walkforward_nested.py (selection + final training), walkforward_report.py (test results
-                        and overfitting diagnostics), paper_figures.py and paper_tables.py (figures and tables)
-tests/                  unit tests
+tests/                  unit tests of the reward, environment, features, PPO update and evaluation
 ```
 
-Market data, results, model weights, backups and side experiments are not part of the repository. Locally, runs are
-written to `agents/ppo/results/`, data to `data/`, and the paper figures and tables to `../../report/`.
+Market data, results and model weights are not part of the repository.
 
 ## Running
 
@@ -49,7 +46,5 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 PYTHONPATH=. .venv/bin/python -m pytest -q                                     # unit tests
 PYTHONPATH=. .venv/bin/python -m data_pipeline.collector.bitmex                # one-minute bars and funding
 PYTHONPATH=. .venv/bin/python data_pipeline/hourly_features.py                 # hourly features
-PYTHONPATH=. .venv/bin/python scripts/walkforward_nested.py --workers 6
-PYTHONPATH=.:scripts .venv/bin/python scripts/walkforward_report.py
-PYTHONPATH=.:scripts .venv/bin/python scripts/paper_figures.py
+PYTHONPATH=. .venv/bin/python -m src.train --seed 11 --train-end 2023 --output runs/example   # train one agent
 ```

@@ -23,9 +23,9 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["core*", "agents*", "data_pipeline*"]
+include = ["src*", "agents*", "data_pipeline*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
-norecursedirs = ["backups", "data", "results", "experiments", ".venv"]
+norecursedirs = ["backups", "data", "results", "experiments", "scripts", ".venv"]

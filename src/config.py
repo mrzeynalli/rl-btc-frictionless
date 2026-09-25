@@ -29,7 +29,7 @@ HOURS_PER_YEAR = 8760
 @dataclass(frozen=True)
 class Config:
     # --- network ---
-    # Defaults. The walk-forward (scripts/walkforward_nested.py) chooses lr, hidden, entropy_coef and eta for every
+    # Defaults. The nested walk-forward chooses lr, hidden, entropy_coef and eta for every
     # test year from the years before it and fixes the remaining settings at these values. CleanRL values in [].
     hidden: int = 64            # LSTM and hidden-layer width, for both actor and critic [128]
 

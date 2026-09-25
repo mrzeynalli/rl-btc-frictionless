@@ -36,7 +36,7 @@ def score(R, positions):
 def run_policy(model, features, returns, period_rows, warmup_hours, *, include_last=False):
     """Evaluate consecutive decision rows, optionally including the return across a period boundary.
 
-    Selection retains the original within-period convention. Final walk-forward reporting uses
+    Selection keeps the within-period convention. The walk-forward test uses
     include_last=True: the next boundary price settles the last decision, but no future feature
     is fed to the policy. The terminal dataset row, whose next return is unavailable, is excluded.
     """

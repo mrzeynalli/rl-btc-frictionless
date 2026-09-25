@@ -1,8 +1,8 @@
-"""Final reporting must cover year boundaries without observing the following year's features."""
+"""Evaluation must cover year boundaries without observing the following year's features."""
 import numpy as np
 import torch
 
-from core.evaluate import run_policy
+from src.evaluate import run_policy
 
 
 class LongActor:

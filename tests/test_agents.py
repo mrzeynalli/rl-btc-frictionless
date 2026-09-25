@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 import torch
 
-from core.config import Config
-from core.env import Env, differential_sharpe
-from core.model import ActorCritic
+from src.config import Config
+from src.env import Env, differential_sharpe
+from src.model import ActorCritic
 from agents.ppo.ppo import PPO
 
 

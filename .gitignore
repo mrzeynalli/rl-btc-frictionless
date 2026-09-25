@@ -1,8 +1,9 @@
-# The repository publishes only the source of Study 1 (frictionless account, recurrent PPO): the shared framework
-# (core/), the learning algorithm (agents/ppo/), the data collector and feature pipeline (data_pipeline/), the
-# walk-forward and paper scripts, and tests.
-# Everything else is ignored by default: market data, results and model weights, backups (the archive of earlier
-# agents, REINFORCE, paper revisions), side experiments, and agent instruction or working documents
+# The repository publishes only the code that defines how the Study 1 agent works (frictionless account, recurrent
+# PPO): the framework (src/), the learning algorithm (agents/ppo/), the data collector and feature pipeline
+# (data_pipeline/), and the agent tests.
+# Everything else is ignored by default: the local run and evaluation scripts (scripts/), market data, results and
+# model weights, backups (the archive of earlier agents, REINFORCE, paper scripts, paper revisions), side
+# experiments, and agent instruction or working documents
 # (CLAUDE.md, AGENTS.md, ARCHITECTURE.md, literature notes, .claude/ ...).
 
 /*
@@ -10,10 +11,9 @@
 !/README.md
 !/pyproject.toml
 !/requirements.txt
-!/core/
+!/src/
 !/agents/
 !/data_pipeline/
-!/scripts/
 !/tests/
 
 # named explicitly as well, so they stay out even if the rules above change
@@ -24,11 +24,7 @@
 /agents/*/results/
 /data_pipeline/*.parquet
 
-/scripts/*
-!/scripts/walkforward_nested.py
-!/scripts/walkforward_report.py
-!/scripts/paper_figures.py
-!/scripts/paper_tables.py
+/scripts/
 
 # agent instruction and working documents, wherever they appear
 CLAUDE.md
