@@ -1,7 +1,7 @@
-"""Train one agent (one random initialization) with PPO or critic-free REINFORCE (Config.algo).
+"""Train one agent (one random initialization) with recurrent PPO.
 
 Selection fold: train on everything before year V and score the model on year V after every pass.
-    .venv/bin/python -m core.train --seed 11 --validation-year 2023 --output <dir> [--passes 15] [--set algo=ppo ...]
+    .venv/bin/python -m core.train --seed 11 --validation-year 2023 --output <dir> [--passes 15] [--set lr=2.5e-4 ...]
 Walk-forward model for test year Y: train on everything before year Y; nothing later is loaded.
     .venv/bin/python -m core.train --seed 11 --train-end 2023 --output <dir> [--passes 12] [--set ...]
 Run from the repository root (the directory that contains core/ and agents/).
@@ -25,7 +25,6 @@ from .env import Env
 from .evaluate import run_policy
 from .model import ActorCritic
 from agents.ppo.ppo import PPO
-from agents.reinforce.reinforce import Reinforce
 
 
 def main():
@@ -64,7 +63,7 @@ def main():
 
     env = Env(features[train_rows], train_returns, config.envs, config.eta, initial_variance)
     model = ActorCritic(len(FEATURES) + 3, config.hidden)
-    ppo = Reinforce(model, env, config) if config.algo == 'reinforce' else PPO(model, env, config)
+    ppo = PPO(model, env, config)
     # One pass = as many samples as the training period has hours.
     updates_per_pass = math.ceil(len(train_rows) / (config.envs * config.rollout))
 

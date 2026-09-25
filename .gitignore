@@ -1,7 +1,9 @@
-# The repository publishes only the source of the agents: the shared framework (core/), the learning algorithms
-# (agents/), the data collector and feature pipeline (data_pipeline/), the walk-forward and figure scripts, and tests.
-# Everything else is ignored by default: market data, results and model weights, the archive of earlier agents, and
-# agent instruction or working documents (CLAUDE.md, AGENTS.md, ARCHITECTURE.md, literature notes, .claude/ ...).
+# The repository publishes only the source of Study 1 (frictionless account, recurrent PPO): the shared framework
+# (core/), the learning algorithm (agents/ppo/), the data collector and feature pipeline (data_pipeline/), the
+# walk-forward and paper scripts, and tests.
+# Everything else is ignored by default: market data, results and model weights, backups (the archive of earlier
+# agents, REINFORCE, paper revisions), side experiments, and agent instruction or working documents
+# (CLAUDE.md, AGENTS.md, ARCHITECTURE.md, literature notes, .claude/ ...).
 
 /*
 !/.gitignore
@@ -14,6 +16,11 @@
 !/scripts/
 !/tests/
 
+# named explicitly as well, so they stay out even if the rules above change
+/backups/
+/experiments/
+/data/
+/agents/reinforce/
 /agents/*/results/
 /data_pipeline/*.parquet
 

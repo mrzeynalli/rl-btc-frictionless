@@ -1,4 +1,4 @@
-"""Figures and tables for the paper (paper/figures, paper/tables) from the nested walk-forward of the PPO agent.
+"""Figures and tables for the paper (report/figures, report/tables) from the nested walk-forward of the PPO agent.
 
 Test: 1 January 2021 -> 1 August 2026, each year traded by models trained on the data before it
 (agents/ppo/results/walkforward, written by scripts/walkforward_nested.py and scripts/walkforward_report.py).
@@ -21,8 +21,8 @@ from core.data import load
 import walkforward_nested as nested
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER = ROOT.parent / 'paper'
-FIGURES, TABLES = PAPER / 'figures', PAPER / 'tables'
+REPORT = ROOT.parents[1] / 'report'                 # research/report, next to research/implementation
+FIGURES, TABLES = REPORT / 'figures', REPORT / 'tables'
 RUN = ROOT / 'agents/ppo/results/walkforward'
 YEARS = [str(y) for y in nested.TEST_YEARS]
 BENCHMARKS = ['Buy and hold', '50 day MA', '200 day MA', 'Time series momentum', 'MACD', 'RSI']

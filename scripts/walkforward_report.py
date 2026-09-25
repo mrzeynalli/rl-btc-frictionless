@@ -12,14 +12,12 @@ Overfitting diagnostics:
   deflated Sharpe      probability that the test Sharpe ratio exceeds the best of N trials expected by chance
                        (Bailey & Lopez de Prado 2014), with N the number of candidate configurations.
 
-    PYTHONPATH=.:scripts .venv/bin/python scripts/walkforward_report.py --algo ppo
+    PYTHONPATH=.:scripts .venv/bin/python scripts/walkforward_report.py
 """
-import argparse
 from concurrent.futures import ProcessPoolExecutor
 from itertools import combinations
 import json
 import math
-from pathlib import Path
 from statistics import NormalDist
 
 import numpy as np
@@ -34,7 +32,6 @@ from core.model import ActorCritic
 import walkforward_nested as nested
 from core.benchmarks import RULES, daily_signal_positions, win_rate
 
-ROOT = Path(__file__).resolve().parents[1]
 START = year(2021)
 KEYS = ('total_return_pct', 'equity_from_10k', 'sharpe', 'max_drawdown', 'position_changes', 'long_share',
         'short_share', 'flat_share', 'win_rate_pct')
@@ -89,10 +86,7 @@ def deflated_sharpe(R, trial_sharpes):
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--algo', choices=('ppo', 'reinforce'), required=True)
-    args = parser.parse_args()
-    out = ROOT / 'agents' / args.algo / 'results' / 'walkforward'
+    out = nested.RESULTS
     choices = {int(k): v for k, v in json.loads((out / 'choices.json').read_text()).items()}
     configs = json.loads((out / 'candidates.json').read_text())
     jobs = [(out, y, s, choices[y]['selected']['passes'], configs[choices[y]['selected']['config']]['hidden'])

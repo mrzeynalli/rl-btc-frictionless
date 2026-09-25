@@ -72,17 +72,3 @@ def test_every_config_constant_is_documented():
     section = text[text.index('## 11. Provenance'):]
     missing = [f.name for f in fields(Config) if f'`{f.name}`' not in section]
     assert not missing, missing
-
-
-def test_reinforce_update_is_finite():
-    """One critic-free update on a synthetic path runs and returns finite statistics."""
-    from agents.reinforce.reinforce import Reinforce
-    rng = np.random.default_rng(0)
-    features = rng.normal(size=(400, 5)).astype(np.float32)
-    returns = rng.normal(0, 0.01, 400)
-    returns[-1] = np.nan
-    config = Config(rollout=16, envs=4, hidden=8, algo='reinforce')
-    env = Env(features, returns, config.envs, config.eta, float(np.nanvar(returns)))
-    agent = Reinforce(ActorCritic(5 + 3, config.hidden), env, config)
-    summary = agent.update()
-    assert all(np.isfinite(v) for v in summary.values() if isinstance(v, float))

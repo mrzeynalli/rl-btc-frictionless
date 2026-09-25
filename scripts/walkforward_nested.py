@@ -11,8 +11,7 @@ retrained on everything before Y with ten random initializations, and it then tr
     2025        2022, 2023, 2024                                                    2017-08 -> 2024
     2026        2023, 2024, 2025                                                    2017-08 -> 2025 (test to 1 Aug)
 
-Algorithms: PPO (at most 15 passes) or critic-free One-Batch REINFORCE (at most 40 passes, as it takes one gradient
-step per batch instead of twelve).
+Algorithm: recurrent PPO, at most 15 passes.
 
 Candidates: a 2^4 factorial design over the actor learning rate, the network width, the entropy coefficient and
 the adaptation rate of the reward, all other settings fixed. Every candidate is trained with three random
@@ -23,9 +22,9 @@ ratio is averaged over the validation years of Y after each pass and smoothed ov
 smallest one within one standard error (across years) of the best, and the candidate with the highest mean minus one
 standard error at its pass count is selected.
 
-    PYTHONPATH=. .venv/bin/python scripts/walkforward_nested.py --algo ppo [--workers 6]
+    PYTHONPATH=. .venv/bin/python scripts/walkforward_nested.py [--workers 6]
 
-Results are written to agents/<algo>/results/walkforward/.
+Results are written to agents/ppo/results/walkforward/.
 """
 import argparse
 from itertools import product
@@ -38,27 +37,24 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+RESULTS = ROOT / 'agents' / 'ppo' / 'results' / 'walkforward'
 TEST_YEARS = (2021, 2022, 2023, 2024, 2025, 2026)
 VALIDATION_YEARS = (2019, 2020, 2021, 2022, 2023, 2024, 2025)
 SELECTION_SEEDS = (11, 29, 47)
 FINAL_SEEDS = (11, 29, 47, 61, 83, 101, 131, 163, 197, 229)
 MIN_PASSES, SMOOTH = 3, 3
-PASS_LIMIT = {'ppo': 15, 'reinforce': 40}     # REINFORCE takes one step per batch, so it needs more passes
-MAX_PASSES = PASS_LIMIT['ppo']
+MAX_PASSES = 15
 
-FIXED = {'ppo': {'algo': 'ppo', 'gamma': 0.98, 'gae_lambda': 0.95, 'clip': 0.2, 'critic_lr': 9.742244550984722e-04,
-                 'rollout': 64, 'epochs': 3, 'minibatches': 4, 'max_grad_norm': 1.0, 'obs_clip': 5.0},
-         'reinforce': {'algo': 'reinforce', 'gamma': 0.98, 'rollout': 64, 'max_grad_norm': 1.0, 'obs_clip': 5.0}}
-FACTORS = {'ppo': {'lr': (8.38429594542857e-05, 2.5e-4)},
-           'reinforce': {'lr': (3e-4, 1e-3)}}
-SHARED_FACTORS = {'hidden': (64, 128), 'entropy_coef': (0.01, 0.03), 'eta': (1 / 120, 1 / 336)}
+FIXED = {'gamma': 0.98, 'gae_lambda': 0.95, 'clip': 0.2, 'critic_lr': 9.742244550984722e-04,
+         'rollout': 64, 'epochs': 3, 'minibatches': 4, 'max_grad_norm': 1.0, 'obs_clip': 5.0}
+FACTORS = {'lr': (8.38429594542857e-05, 2.5e-4), 'hidden': (64, 128), 'entropy_coef': (0.01, 0.03),
+           'eta': (1 / 120, 1 / 336)}
 
 
-def candidates(algo):
-    factors = {**FACTORS[algo], **SHARED_FACTORS}
-    names = list(factors)
-    return {f'c{i:02d}': {**FIXED[algo], **dict(zip(names, values))}
-            for i, values in enumerate(product(*factors.values()))}
+def candidates():
+    names = list(FACTORS)
+    return {f'c{i:02d}': {**FIXED, **dict(zip(names, values))}
+            for i, values in enumerate(product(*FACTORS.values()))}
 
 
 def validation_dir(out, name, year, seed):
@@ -123,14 +119,11 @@ def selection_years(test_year):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--algo', choices=('ppo', 'reinforce'), required=True)
     parser.add_argument('--workers', type=int, default=6)
     args = parser.parse_args()
-    global MAX_PASSES
-    MAX_PASSES = PASS_LIMIT[args.algo]
-    out = ROOT / 'agents' / args.algo / 'results' / 'walkforward'
+    out = RESULTS
     out.mkdir(parents=True, exist_ok=True)
-    configs = candidates(args.algo)
+    configs = candidates()
     (out / 'candidates.json').write_text(json.dumps(configs, indent=1))
     log = open(out / 'progress.log', 'a')
 

@@ -1,1 +1,1 @@
-"""Learning algorithms: agents.ppo (actor and critic) and agents.reinforce (critic-free)."""
+"""Learning algorithm: agents.ppo (recurrent PPO with separate actor and critic)."""
