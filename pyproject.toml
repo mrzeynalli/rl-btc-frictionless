@@ -1,5 +1,5 @@
 [project]
-name = "rl-research-crypto"
+name = "rl-btc-frictionless"
 version = "1.0.0"
 description = "Recurrent PPO agent with a differential Sharpe reward for hourly Bitcoin perpetual futures trading"
 requires-python = ">=3.11"
